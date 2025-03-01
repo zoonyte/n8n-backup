@@ -1,0 +1,1192 @@
+{
+  "createdAt": "2025-01-26T21:01:50.205Z",
+  "updatedAt": "2025-02-14T14:50:05.219Z",
+  "id": "VGUhUZpwYLkuEzBk",
+  "name": "recebimento",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('UnificaDados').item.json.app.chatwoot.url }}/api/v1/accounts/{{ $('Normalizacao').item.json.app.chatwoot.accountId }}/conversations/{{ $('Normalizacao').item.json.meta.conversationId }}/toggle_status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "={{ $('UnificaDados').item.json.app.chatwoot.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"status\": \"open\"\n}",
+        "options": {}
+      },
+      "id": "c52c0734-217a-426c-9824-de4f83355e05",
+      "name": "AbrirConversa",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1220,
+        500
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "n8obYcq8z69dkAPy",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 566.4401996676281,
+        "width": 2370.447957777037,
+        "color": 6
+      },
+      "id": "ea13c652-a8cb-47ac-a11b-4d2d3841398b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -221.46251688274515,
+        412.84582770575173
+      ]
+    },
+    {
+      "parameters": {
+        "queue": "Evia",
+        "options": {}
+      },
+      "id": "41094aef-45c0-4c5b-a7ce-3c4eb45ebcc5",
+      "name": "SendRabbit",
+      "type": "n8n-nodes-base.rabbitmq",
+      "typeVersion": 1.1,
+      "position": [
+        20,
+        180
+      ],
+      "notesInFlow": true,
+      "credentials": {
+        "rabbitmq": {
+          "id": "Pppf7sL3MvkA96zf",
+          "name": "RabbitMQ account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "queue": "Evia",
+        "options": {
+          "acknowledge": "executionFinishesSuccessfully",
+          "jsonParseBody": true,
+          "onlyContent": true
+        }
+      },
+      "id": "2305e2bb-7d51-4c1b-b21f-14d44763e734",
+      "name": "Consimidor",
+      "type": "n8n-nodes-base.rabbitmqTrigger",
+      "typeVersion": 1,
+      "position": [
+        -180,
+        700
+      ],
+      "credentials": {
+        "rabbitmq": {
+          "id": "Pppf7sL3MvkA96zf",
+          "name": "RabbitMQ account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5bcbdc2e-99a4-47b2-aea0-1e1fb3e08b5f",
+              "name": "app.chatwoot.url",
+              "value": "=https://chatwoot.l7egers.com",
+              "type": "string"
+            },
+            {
+              "id": "ede19077-7935-4b6a-9f25-4b46bdc98424",
+              "name": "app.chatwoot.token",
+              "value": "=dfYYghMmvDZV3zAckaW4KGdx",
+              "type": "string"
+            },
+            {
+              "id": "7e013e46-be33-4aea-bc13-8bfef03d5150",
+              "name": "app.dify.key",
+              "value": "=dataset-0UitAhSgIZZdMBvbCaaF5hIy",
+              "type": "string"
+            },
+            {
+              "id": "6e9f8439-2f77-436f-a52e-f4a3b4c1a63f",
+              "name": "app.debouncerTime",
+              "value": "=6",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6c0d0b27-3133-46b9-9211-990195b17a2b",
+      "name": "Configurações",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        420,
+        480
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b6c302a9-3299-4c92-942f-9cdcec3441cd",
+              "leftValue": "={{ $json.app.chatwoot.assistantName }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "4a45b38b-aab5-4dc3-aaf9-06cf4341de23",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.pushName }}",
+              "rightValue": "={{ $json.app.chatwoot.assistantName }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "f9cbbcdf-35ab-4dea-b053-ceb845ec7d6a",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.senderType }}",
+              "rightValue": "User",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "19900ad7-2084-4ee8-ae0f-c8d259df27a5",
+      "name": "AbrirConversa?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1020,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "c7fb1058-f797-4495-90f5-8587e768621f",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.senderType }}",
+              "rightValue": "=Contact",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "095ddfdb-8121-4208-9971-b17fec7e5061",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.identifier.split('@')[1] }}",
+              "rightValue": "g.us",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "d2ffd184-037b-4731-aeb8-b7fbaf98f4da",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.phoneNumber }}",
+              "rightValue": "+123456",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "c02f2583-30c4-44c1-8292-835c579d4e02",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.conversationStatus }}",
+              "rightValue": "=pending",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "66dddfcf-03d5-42e8-a5e1-aa71147e2f5a",
+      "name": "FiltraMensagens",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1220,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Configurar nome da fila do Rabbit",
+        "height": 199.92100851423996,
+        "width": 180.90155202154455,
+        "color": 2
+      },
+      "id": "7a9b541a-1e2d-4b99-8631-4003842ca8e1",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -20,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Configurações do fluxo",
+        "height": 199.92100851423996,
+        "width": 180.90155202154455,
+        "color": 2
+      },
+      "id": "9071617b-9ede-45e1-885c-013c566fe756",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        380,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Configurar nome da fila do Rabbit",
+        "height": 199.92100851423996,
+        "width": 180.90155202154455,
+        "color": 2
+      },
+      "id": "f82d3c03-daf3-403d-9cff-a553eb100908",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Credenciais \n  - Rabbit\n  - Chatwoot\n  - Dify",
+        "height": 199.92100851423996,
+        "width": 180.90155202154455,
+        "color": 5
+      },
+      "id": "bfc61682-cc63-47dc-96c5-29d46dbc0989",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -220,
+        420
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 300.0071009276654,
+        "width": 678.7493949523891,
+        "color": 6
+      },
+      "id": "684ad0b7-9a75-4ff8-afb9-2593b3d08efc",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -259.4466756707973,
+        80
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bbe8de9a-e1f4-4c09-8660-65c05c8f6497",
+      "name": "NoOp.1",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        420,
+        700
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2b8ceefb-fc5d-47e0-82cb-95b67ffb1642",
+      "name": "NoOp.",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        220,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "lTobwF740Rb5FksU",
+          "mode": "list",
+          "cachedResultName": "Envio2"
+        },
+        "options": {}
+      },
+      "id": "ae968ac7-0e96-4403-9637-2ceb4fc0557c",
+      "name": "ProcessInfo",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        1820,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "content": "#### 1ª Parte do workflow da Anna\n- Adiciona input a fila do Rabbit\n- Faz normalização do input\n- Para a AI em caso interrupção humana\n- Filtra mensagens indesejadas\n- Envia para o processamento principal",
+        "height": 299.71586809608317,
+        "width": 361.5468993739327,
+        "color": 4
+      },
+      "id": "854838dd-fea8-475a-8a38-e8647a63c3db",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        440,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const dados = $('UnificaDados').item.json\nreturn dados"
+      },
+      "id": "85cfe90d-9307-448e-bf2c-fbb0f35bc61e",
+      "name": "ObtemDados",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "136b6c22-92af-480b-8999-c96229e2602c",
+              "name": "app.chatwoot.accountId",
+              "value": "={{ $json.body.account.id }}",
+              "type": "number"
+            },
+            {
+              "id": "25255c12-3351-4d29-8ab9-3f029844cbea",
+              "name": "app.chatwoot.accountName",
+              "value": "={{ $json.body.account.name }}",
+              "type": "string"
+            },
+            {
+              "id": "9fcd6245-1088-4908-b2ce-6dafaa9077cf",
+              "name": "content.type",
+              "value": "={{ \n  $json.body?.conversation?.messages?.[0]?.attachments?.[0]?.file_type === 'image' ? 'image' :\n  $json.body?.conversation?.messages?.[0]?.attachments?.[0]?.file_type === 'audio' ? 'audio' :\n  $json.body?.conversation?.messages?.[0]?.attachments?.[0]?.file_type === 'file' ? \n ($json.body?.conversation?.messages?.[0]?.attachments?.[0]?.data_url?.split('.').pop() || '') :\n  $json.body?.content_type === 'text' && $json.body?.content ? 'text' :\n\n  $json.body?.data?.message?.extendedTextMessage ? 'text' :\n  $json.body?.data?.message?.conversation ? 'text' :\n  $json.body?.data?.message?.audioMessage ? 'audio' :\n  $json.body?.data?.message?.imageMessage ? 'image' : \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "66a939b1-3785-4aca-ac51-695df40520be",
+              "name": "content.message",
+              "value": "={{ \n  $json.body?.content || \n\n  $json.body?.data?.message?.extendedTextMessage?.text || \n  $json.body?.data?.message?.imageMessage?.caption || \n  $json.body?.data?.message?.conversation || \n  $json?.message?.text || \n  $json?.message?.caption || \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "572a3721-47e5-4750-9be4-1de536d32107",
+              "name": "content.id",
+              "value": "={{\n  $json.body.conversation.messages[0].id ||\n  $json.body.data.key?.id\n}}",
+              "type": "string"
+            },
+            {
+              "id": "4b59bbc1-e156-404a-926e-64a724680e50",
+              "name": "=content.url",
+              "value": "={{ \n  $json.body?.attachments?.[0]?.data_url || \n\n  $json.body?.data?.message?.mediaUrl || \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "8d2c12a1-7fe3-4240-b26e-50bc3f456974",
+              "name": "meta.channel",
+              "value": "={{ $json.body.conversation.channel }}",
+              "type": "string"
+            },
+            {
+              "id": "5d45b300-6003-40a2-a254-a064f0e714d9",
+              "name": "meta.contactId",
+              "value": "={{ \n  $json.body?.conversation?.contact_inbox?.contact_id || \n  $json.body?.data?.key?.remoteJid || \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "0985145f-e7b3-4dd6-a5ca-7d2f2171857c",
+              "name": "meta.conversationId",
+              "value": "={{ $json.body.conversation.id }}",
+              "type": "number"
+            },
+            {
+              "id": "67c01702-3024-46ae-b04e-ef42dc9dca9b",
+              "name": "meta.pushName",
+              "value": "={{ \n  $json.body?.sender?.name || \n  $json.body?.data?.pushName || \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "1da1d918-fe26-45c5-ad7f-d313f116e133",
+              "name": "meta.senderType",
+              "value": "={{ $json.body.conversation.messages[0].sender_type }}",
+              "type": "string"
+            },
+            {
+              "id": "39574240-7c0e-45b5-b552-4d564d42cd37",
+              "name": "meta.identifier",
+              "value": "={{ \n  $json.body?.sender?.identifier || \n  $json.body?.sender || \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "97e73aa7-0771-4b3d-876e-494be5511914",
+              "name": "meta.phoneNumber",
+              "value": "={{ $json.body.sender.phone_number }}",
+              "type": "string"
+            },
+            {
+              "id": "b5fb5a8b-d8a8-434a-a0ba-80e5717bb6b1",
+              "name": "meta.conversationStatus",
+              "value": "={{ $json.body.conversation.status }}",
+              "type": "string"
+            },
+            {
+              "id": "d5e846be-8d10-4aa6-88c7-1cd0a46d3868",
+              "name": "app.evo.apikey",
+              "value": "={{ $json.body.apikey || null }}",
+              "type": "string"
+            },
+            {
+              "id": "875e7e25-7737-4efb-9491-c4f94b2afb85",
+              "name": "app.evo.instance",
+              "value": "={{ $json.body.instance || null }}",
+              "type": "string"
+            },
+            {
+              "id": "dc2454d2-5416-4616-abb9-6b4257b3b600",
+              "name": "app.evo.server",
+              "value": "={{ $json.body.server_url || null }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "81476cc6-7644-48b1-baf6-15ca251acbdc",
+      "name": "Normalizacao",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        220,
+        600
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {},
+      "id": "351ffcd7-a840-4195-a365-e3e9b404f0fb",
+      "name": "NoOp.4",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "38b982fe-7cad-43b2-81fe-1cebc8a54740",
+              "leftValue": "={{ $json.app.evo.instance }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "ebd31da3-c917-46ef-b0cf-e86464d0ab3a",
+      "name": "Origem",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        820,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "userId",
+              "keyValue": "={{ $('UnificaDados').item.json.meta.contactId }}"
+            }
+          ]
+        }
+      },
+      "id": "241354f7-7201-4882-b6a2-1e4f8a0880d5",
+      "name": "BuscaUsuario",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1620,
+        500
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "notesInFlow": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "z4au4NbP1vmuC6hy",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "={\n  \"sender\": \"{{ $('UnificaDados').item.json.meta.senderType }}\",\n  \"name\": \"{{ $('UnificaDados').item.json.meta.pushName }}\",\n  \"content\": \"{{ $('UnificaDados').item.json.content.message }}\"\n}"
+            }
+          ]
+        }
+      },
+      "id": "5f8ae52b-f6f2-4384-ada8-c2047d915170",
+      "name": "Chat Memory Manager3",
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        1820,
+        500
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c059947b-b631-4bf9-aa50-f1a996a9f572",
+      "name": "NoOp.6",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1620,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "38b982fe-7cad-43b2-81fe-1cebc8a54740",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.senderType }}",
+              "rightValue": "AgentBot",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "220b0dbf-47b9-4cc4-96b8-2a6b89d9ae09",
+              "leftValue": "={{ $('Normalizacao').item.json.content.message }}",
+              "rightValue": "={{ $('Normalizacao').item.json.content.message }}",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "3ef26f72-6bd8-43a3-8c44-621c2abfe06f",
+      "name": "RegistraMsg",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1420,
+        600
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9a1254b3-fd97-40cd-bdbc-5f25d7f4d013",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "message_created",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "758e63e0-89a3-44a1-abf5-c7c1a5897f4e",
+              "leftValue": "={{ $json.body.instance }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "da5194f7-9e53-4df1-a9ee-46d93dc63530",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        20,
+        700
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6a403a16-24e0-492b-97f8-99383cabd419",
+      "name": "NoOp.2",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        220,
+        800
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Habilite a memória da AI",
+        "height": 259.80359243954405,
+        "width": 150,
+        "color": 2
+      },
+      "id": "67fb6c77-90db-4c16-a76f-0b61f8bf2763",
+      "name": "Sticky Note9",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2000,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.sessionId || \"24058632-8e0e-4119-9cd3-60a204db1d46\"}}",
+        "sessionTTL": 9,
+        "contextWindowLength": 10
+      },
+      "id": "b0fba28f-845a-4509-9153-cb95cb015542",
+      "name": "Redis",
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.3,
+      "position": [
+        2040,
+        740
+      ],
+      "credentials": {
+        "redis": {
+          "id": "EPbNUILlmIshk6r7",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "2369fe66-496a-412d-89ae-8ddc6feba0ed",
+        "options": {}
+      },
+      "id": "a95a92ac-d315-4c9b-a1f6-b342ad69dd23",
+      "name": "EvoCloud",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        180
+      ],
+      "webhookId": "2369fe66-496a-412d-89ae-8ddc6feba0ed"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "id": "dbb344f1-1030-4787-9941-b4fc582a0d22",
+      "name": "UnificaDados",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        620,
+        600
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "6f1a76ab-2bdc-4734-9e78-399b3057fd18",
+        "options": {}
+      },
+      "id": "b12bef7a-00ed-4a1a-b516-1cc384ef7a4a",
+      "name": "Chatwoot",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        -80
+      ],
+      "webhookId": "6f1a76ab-2bdc-4734-9e78-399b3057fd18"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5bcbdc2e-99a4-47b2-aea0-1e1fb3e08b5f",
+              "name": "app.chatwoot.url",
+              "value": "=https://chatwoot.l7egers.com",
+              "type": "string"
+            },
+            {
+              "id": "ede19077-7935-4b6a-9f25-4b46bdc98424",
+              "name": "app.chatwoot.token",
+              "value": "=dfYYghMmvDZV3zAckaW4KGdx",
+              "type": "string"
+            },
+            {
+              "id": "3f7b0372-1974-49be-aaba-c380b930e248",
+              "name": "app.chatwoot.assistantName",
+              "value": "=Evia_0.1",
+              "type": "string"
+            },
+            {
+              "id": "90ea015f-09f9-4a9c-aeef-6fbfcd87ea43",
+              "name": "app.dify.url",
+              "value": "=https://dapi.l7egers.com/v1",
+              "type": "string"
+            },
+            {
+              "id": "7e013e46-be33-4aea-bc13-8bfef03d5150",
+              "name": "app.dify.key",
+              "value": "=dataset-0UitAhSgIZZdMBvbCaaF5hIy",
+              "type": "string"
+            },
+            {
+              "id": "6e9f8439-2f77-436f-a52e-f4a3b4c1a63f",
+              "name": "app.debouncerTime",
+              "value": "=6",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ab3c3677-370c-476b-8446-a1bf095a30c8",
+      "name": "Configurações1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        1280,
+        180
+      ],
+      "notesInFlow": true
+    }
+  ],
+  "connections": {
+    "AbrirConversa": {
+      "main": [
+        [
+          {
+            "node": "RegistraMsg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AbrirConversa?": {
+      "main": [
+        [
+          {
+            "node": "AbrirConversa",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "FiltraMensagens",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FiltraMensagens": {
+      "main": [
+        [
+          {
+            "node": "RegistraMsg",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ObtemDados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SendRabbit": {
+      "main": [
+        [
+          {
+            "node": "NoOp.",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.1": {
+      "main": [
+        [
+          {
+            "node": "UnificaDados",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "ObtemDados": {
+      "main": [
+        [
+          {
+            "node": "ProcessInfo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalizacao": {
+      "main": [
+        [
+          {
+            "node": "NoOp.1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Configurações",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.4": {
+      "main": [
+        [
+          {
+            "node": "ObtemDados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Origem": {
+      "main": [
+        [
+          {
+            "node": "AbrirConversa?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp.4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BuscaUsuario": {
+      "main": [
+        [
+          {
+            "node": "Chat Memory Manager3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RegistraMsg": {
+      "main": [
+        [
+          {
+            "node": "BuscaUsuario",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp.6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Normalizacao",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp.2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consimidor": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis": {
+      "ai_memory": [
+        [
+          {
+            "node": "Chat Memory Manager3",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UnificaDados": {
+      "main": [
+        [
+          {
+            "node": "Origem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chatwoot": {
+      "main": [
+        [
+          {
+            "node": "SendRabbit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configurações1": {
+      "main": [
+        []
+      ]
+    },
+    "Configurações": {
+      "main": [
+        [
+          {
+            "node": "UnificaDados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "callerPolicy": "workflowsFromSameOwner",
+    "saveExecutionProgress": true,
+    "saveManualExecutions": false
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {
+    "EvoCloud": [
+      {
+        "json": {
+          "headers": {
+            "host": "webhook.bitfy.ai",
+            "user-agent": "axios/1.7.7",
+            "content-length": "1160",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "content-type": "application/json",
+            "x-forwarded-for": "34.96.49.28",
+            "x-forwarded-host": "webhook.bitfy.ai",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "f9fa80764276",
+            "x-real-ip": "34.96.49.28"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "event": "messages.upsert",
+            "instance": "bf10a888-1ab7-4871-92e3-eba64e5ca1c5",
+            "instanceName": "Anna 5",
+            "data": {
+              "key": {
+                "id": "3FA7532774EB2FAE340D",
+                "remoteJid": "5511948182061@s.whatsapp.net",
+                "fromMe": false,
+                "profilePicUrl": "https://pps.whatsapp.net/v/t61.24694-24/427790916_1067752487616081_8626231362871951246_n.jpg?ccb=11-4&oh=01_Q5AaIGiZFq7bINx0svUdosoHogluje8a53PlY_b_TVv9FThC&oe=6740F7AA&_nc_sid=5e03e0&_nc_cat=108",
+                "participant": null,
+                "participantPushName": null
+              },
+              "pushName": "Pedro Nascimento",
+              "status": "DELIVERY_ACK",
+              "message": {
+                "messageContextInfo": {
+                  "deviceListMetadata": {
+                    "recipientKeyHash": "TRc7pkw5aO0reQ==",
+                    "recipientTimestamp": 1731454482,
+                    "senderKeyHash": "1RWUNzEQAl3Pvw==",
+                    "senderTimestamp": 1731021199
+                  },
+                  "deviceListMetadataVersion": 2
+                },
+                "conversation": "delete meu user"
+              },
+              "messageType": "conversation",
+              "messageTimestamp": 1731454513,
+              "instanceId": "bf10a888-1ab7-4871-92e3-eba64e5ca1c5",
+              "source": "unknown"
+            },
+            "destination": "https://webhook.bitfy.ai/webhook/5711be4b-146d-4618-8ec7-81d92f891d40",
+            "date_time": "2024-11-12T20:35:13.327Z",
+            "sender": "558585035162:13@s.whatsapp.net",
+            "server_url": "https://api.evoapicloud.com",
+            "apikey": "4A2173803269-4C1C-A946-42FD949F4A9D"
+          },
+          "webhookUrl": "https://webhook.bitfy.ai/webhook/5711be4b-146d-4618-8ec7-81d92f891d40",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "versionId": "2b82db63-af44-43e5-8c0e-8f1bda71225a",
+  "triggerCount": 3,
+  "tags": [
+    {
+      "createdAt": "2025-01-25T22:23:41.495Z",
+      "updatedAt": "2025-01-25T22:23:41.495Z",
+      "id": "WAm4ACIo4f3W7EKW",
+      "name": "Anna"
+    }
+  ]
+}
