@@ -1,0 +1,2791 @@
+{
+  "createdAt": "2025-02-04T17:27:29.872Z",
+  "updatedAt": "2025-02-06T14:42:04.842Z",
+  "id": "r55YCOuzKk2oy1Xj",
+  "name": "DPT EDDS",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "content": "",
+        "height": 377.77468193521224,
+        "width": 1402.012539767492,
+        "color": 6
+      },
+      "id": "57a711d2-7ea5-45f4-bb40-c5ea01c63e0f",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        60,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 699.3838781088199,
+        "width": 1099.4923969060658,
+        "color": 6
+      },
+      "id": "71224bc0-4b93-431c-bf4f-e7f4a104b3f3",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        60,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 677.3767410691909,
+        "width": 1247.2440710246194,
+        "color": 6
+      },
+      "id": "0bb64321-d02a-416f-abb8-eca353e2a693",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        5100,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 672.9383011516975,
+        "width": 2300.689858842266,
+        "color": 6
+      },
+      "id": "5a54dffb-28a6-4dbc-9692-829d2a15e96b",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4a0a94b5-6685-4cdc-bc33-c16e58a28f95",
+              "leftValue": "={{ $json }}",
+              "rightValue": "pending",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "51f3c42d-30b9-4dee-af53-ddae76a61ea1",
+      "name": "CriarUsuario?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        560,
+        380
+      ],
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "action": "generate"
+      },
+      "id": "04ffd56d-cfc5-4144-90d1-d6748bdef6cd",
+      "name": "GeraUUID",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        840,
+        240
+      ],
+      "notesInFlow": false
+    },
+    {
+      "parameters": {},
+      "id": "1444a910-a73e-469b-8c0d-b2c44cce3eca",
+      "name": "NoOp.",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        740,
+        680
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Credenciais \n- SupaBase\n- Redis\n- AI Model",
+        "height": 145.6735588989912,
+        "width": 180.90155202154455,
+        "color": 5
+      },
+      "id": "c3cd64dd-6bbc-476a-9ed4-afe77b42ffc0",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -240,
+        440
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d530558e-ab09-4516-bc69-37ace38fdbc3",
+      "name": "Input",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        80,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "userId",
+              "keyValue": "={{ $json.meta.contactId }}"
+            }
+          ]
+        }
+      },
+      "id": "2c56e08e-e8e9-440f-89a1-5201538390ff",
+      "name": "BuscaUsuario",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        400,
+        380
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "notesInFlow": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "z4au4NbP1vmuC6hy",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "users",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "userId",
+              "fieldValue": "={{ $('Dados').item.json.meta.contactId }}"
+            },
+            {
+              "fieldId": "pushName",
+              "fieldValue": "={{ $('Dados').item.json.meta.pushName }}"
+            },
+            {
+              "fieldId": "userType",
+              "fieldValue": "newUser"
+            },
+            {
+              "fieldId": "conversationId",
+              "fieldValue": "={{ $('Dados').item.json.meta.conversationId }}"
+            },
+            {
+              "fieldId": "sessionId",
+              "fieldValue": "={{ $json.data }}"
+            }
+          ]
+        }
+      },
+      "id": "ba709ddb-14fe-4bf7-986b-c9e7562dfe9a",
+      "name": "CriarUsuario",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        240
+      ],
+      "executeOnce": true,
+      "notesInFlow": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "z4au4NbP1vmuC6hy",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "message",
+        "key": "={{ $('Dados').item.json.meta.contactId.toString() }}",
+        "options": {}
+      },
+      "id": "68a1c2c8-7658-46b6-b562-dfd52d92afa7",
+      "name": "ObtemMsg",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        260,
+        840
+      ],
+      "credentials": {
+        "redis": {
+          "id": "EPbNUILlmIshk6r7",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "push",
+        "list": "={{ $('Dados').item.json.meta.contactId.toString() }}",
+        "messageData": "={{ JSON.stringify({ \n    \"message\": $('Dados').item.json.content.message, \n    \"timestamp\": $now,\n    \"message_id\": $('Dados').item.json.content.id\n}) }}",
+        "tail": true
+      },
+      "id": "feac8831-c951-4dd1-87b1-c33761b37d59",
+      "name": "EmpilhaMsg",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        100,
+        840
+      ],
+      "credentials": {
+        "redis": {
+          "id": "EPbNUILlmIshk6r7",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ $item(\"0\").$node[\"Input\"].json[\"app\"][\"debouncerTime\"] }}"
+      },
+      "id": "48c34868-8f3a-44ac-bdaa-cad55a2908c1",
+      "name": "Aguarda",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        740,
+        1000
+      ],
+      "webhookId": "f344ae98-0526-4514-879b-3ef710272c63"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $('Dados').item.json.meta.contactId.toString() }}"
+      },
+      "id": "5a898ab8-15b4-404c-a242-a51699a59e8e",
+      "name": "DeletaMsg",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        740,
+        840
+      ],
+      "notesInFlow": true,
+      "credentials": {
+        "redis": {
+          "id": "EPbNUILlmIshk6r7",
+          "name": "Redis account"
+        }
+      },
+      "notes": "\n"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "db5cfe0a-7f43-4a61-8b27-bfd3a95deb8d",
+              "name": "message",
+              "value": "={{ $json.message.map(buffer => JSON.parse(buffer).message).join('\\n') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "188c9838-89c5-4cbf-bd9e-93ad4ffb6e4e",
+      "name": "Mensagem",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        940,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://pdf.bitfy.ai/api/v1/convert/pdf/img",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "*/*"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "imageFormat",
+              "value": "jpg"
+            },
+            {
+              "name": "singleOrMultiple",
+              "value": "single"
+            },
+            {
+              "name": "colorType",
+              "value": "color"
+            },
+            {
+              "name": "dpi",
+              "value": "170"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "fileInput",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "72e7467d-0dd3-41f6-824c-e6a4c3b60c68",
+      "name": "ConvertePDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2360,
+        640
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {},
+      "id": "534dc4b6-aff4-4b3b-8094-0617163f5515",
+      "name": "NoOp.1",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2760,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "136661ad-ba81-44ad-b18c-0ad541505a80",
+              "leftValue": "={{ $('Dados').item.json.content.url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "9266b3fb-ece9-4bda-839c-248b1c82d299",
+      "name": "MidiaExiste?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1360,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Dados').item.json.content.url }}",
+        "options": {
+          "batching": {
+            "batch": {}
+          }
+        }
+      },
+      "id": "71640001-09b8-4119-bac6-aa6874ca8308",
+      "name": "Download",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1760,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Dados').item.json.app.chatwoot.url }}/api/v1/accounts/{{ $('Dados').item.json.app.chatwoot.accountId }}/conversations/{{ $('Usuario').item.json.conversationId }}/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "={{ $('Dados').item.json.app.chatwoot.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\t\"content\": {{ JSON.stringify($json.output.trim()) }},\n\t\"message_type\": \"outgoing\"\n}",
+        "options": {}
+      },
+      "id": "27d7dfd9-e621-4dbd-add1-b5dca21d379a",
+      "name": "SendOutput",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5760,
+        1480
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "n8obYcq8z69dkAPy",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2c9a60df-cb78-4f57-916c-36dabcc6304d",
+              "name": "message",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "50fbd3c0-76a7-450a-9de5-c8ed0c5d9db1",
+      "name": "Padronização",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2760,
+        1040
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "cd0d6644-baad-4b5c-94c0-f7c82bd9148e",
+      "name": "NoOp.2",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2360,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "aa3cb181-8473-4049-bc53-6eefe0a27eb6",
+      "name": "LoopItems",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        5300,
+        1540
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "userId",
+              "condition": "eq",
+              "keyValue": "={{ $('Usuario').item.json.userId }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "sessionId",
+              "fieldValue": "={{ $('Usuario').item.json.sessionId }}"
+            },
+            {
+              "fieldId": "lastUpdated",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "id": "3a389f3d-19c2-43aa-a322-95603404c44c",
+      "name": "AtualizaUsuario",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        5580,
+        1340
+      ],
+      "executeOnce": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "z4au4NbP1vmuC6hy",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1.2
+      },
+      "id": "f2fcc759-fa7c-453a-9dd9-6cc51af79482",
+      "name": "Digitando",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        5980,
+        1540
+      ],
+      "webhookId": "05a934ac-70e9-4f0c-9b23-346e8cbc1644"
+    },
+    {
+      "parameters": {},
+      "id": "875501ae-abe6-494a-a18a-93e580ece956",
+      "name": "NoOp.3",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        5760,
+        1340
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "67d575d3-f53c-4504-ae0d-4f2831d0c16c",
+      "name": "NoOp.4",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3360,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output.messages",
+        "options": {
+          "destinationFieldName": "output"
+        }
+      },
+      "id": "30240108-792e-4273-ad91-e2176a5a54e5",
+      "name": "Segmentos",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        5160,
+        1340
+      ]
+    },
+    {
+      "parameters": {
+        "content": "#### 2ª Parte do workflow da Anna\n- Obtém usuário ou cria usuário no DB\n- Agrupa messages subsequentes do usuário \n- Processa diferentes tipos de messages\n- Envia para nossa AI principal\n  - Acessa as tools necessárias\n- Segmenta a resposta da AI\n- Envia em partes para o usuário",
+        "height": 223.8300900488844,
+        "width": 361.5468993739327,
+        "color": 4
+      },
+      "id": "ba7f4da5-07fa-4142-9702-55fb3477b981",
+      "name": "Sticky Note11",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"app\": {\n    \"chatwoot\": {\n      \"url\": \"https://app.bitfy.ai\",\n      \"token\": \"aCadPq1pxgLbV2xdAKVfLav2\",\n      \"assistantName\": \"Anna da BITFY\",\n      \"accountId\": 1,\n      \"accountName\": \"BITFY.AI\"\n    },\n    \"dify\": {\n      \"url\": \"https://apidify.bitfy.ai/v1\",\n      \"key\": \"\"\n    },\n    \"debouncerTime\": 0\n  },\n  \"content\": {\n    \"type\": \"text\",\n    \"message\": \"{{ $('chatTrigger').item.json.chatInput }}\",\n    \"id\": 909,\n    \"url\": null\n  },\n  \"meta\": {\n    \"channel\": \"Channel::Telegram\",\n    \"chatwootId\": 1148,\n    \"conversationId\": 501,\n    \"pushName\": \"Pedro Nascimento\",\n    \"senderType\": \"Contact\",\n    \"identifier\": \"753066854\",\n    \"phoneNumber\": null,\n    \"conversationStatus\": \"pending\"\n  }\n}",
+        "options": {}
+      },
+      "id": "17260ffb-f8b0-4127-9713-0265ab99cc6a",
+      "name": "Normalização",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -840,
+        500
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "content": "Em Breve... Teste seu workflow aqui",
+        "height": 223.50074761080492,
+        "width": 400.41037167055157,
+        "color": 2
+      },
+      "id": "5f1968b7-1fe5-4e15-b04f-0efa65601102",
+      "name": "Sticky Note13",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1080,
+        440
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "0c64b6b3-002b-4afc-84f8-b889d364c3ca",
+      "name": "Dados",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        240,
+        380
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "id": "3f451ac4-db04-4e16-a388-dc7b8415a3c4",
+      "name": "chatTrigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1040,
+        500
+      ],
+      "webhookId": "328bc0a9-5c3a-459f-ae77-66d879a12eff"
+    },
+    {
+      "parameters": {
+        "content": "#### Agrupa messages subsequentes do usuário",
+        "height": 80,
+        "width": 361.5468993739327,
+        "color": 4
+      },
+      "id": "0d8c8241-e16e-470a-bdac-02f2de6483b7",
+      "name": "Sticky Note14",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        60,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "content": "#### Processa diferentes tipos de messages",
+        "height": 80,
+        "width": 361.5468993739327,
+        "color": 4
+      },
+      "id": "82dc8877-3b8f-411b-b474-9daa90ec0d7f",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "content": "#### Segmenta a resposta da AI\n- Envia em partes para o usuário",
+        "height": 80,
+        "width": 361.5468993739327,
+        "color": 4
+      },
+      "id": "b9985d7e-9ea7-4f2a-89c3-ccb4d4047013",
+      "name": "Sticky Note17",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        5940,
+        1840
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f4f00e47-892b-4ed7-8377-5424bd9a75f9",
+      "name": "NoOp.5",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        640
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "38b982fe-7cad-43b2-81fe-1cebc8a54740",
+              "leftValue": "={{ $('Dados').item.json.app.evo.instance }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "6c68cb6e-e1ae-498b-a416-7888b5dafb48",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        5520,
+        1560
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Dados').item.json.app.evo.server }}/message/sendText/{{ $('Dados').item.json.app.evo.instance }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Dados').item.json.app.evo.apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Dados').item.json.meta.contactId }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.output.trim() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d5db1323-e24e-4504-85bb-a5e647b67f1b",
+      "name": "SendOutput1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5760,
+        1620
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "87cd8757-c1ee-484a-b847-9ce6764c36eb",
+      "name": "NoOp.6",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        6160,
+        1660
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bee4c3f0-9d9b-4b5b-84d7-67a7c2a13cb9",
+      "name": "NoOp.7",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0f5b3d89-7f61-4b86-95a3-48f37acff871",
+                    "leftValue": "={{ $('Dados').item.json.content.type }}",
+                    "rightValue": "pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "endsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "pdf"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Dados').item.json.content.type }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "image"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a4f0ea6d-038c-44c9-a233-12e6c85173dd",
+                    "leftValue": "={{ $('Dados').item.json.content.type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "audio"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cdb334f8-7231-47ec-8b8b-ca05851e3a9c",
+      "name": "TipoMidia",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2160,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "38b982fe-7cad-43b2-81fe-1cebc8a54740",
+              "leftValue": "={{ $('Dados').item.json.app.evo.instance }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "c996d1de-ea85-4c83-8672-9318c1a71ae1",
+      "name": "Origem",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1560,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Dados').item.json.app.evo.server }}/chat/getBase64FromMediaMessage/{{ $('Dados').item.json.app.evo.instance }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Dados').item.json.app.evo.apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": {\n    \"key\": {\n      \"id\": \"{{ $('Dados').item.json.content.id }}\"\n    }\n  },\n  \"convertToMp4\": false\n}",
+        "options": {}
+      },
+      "id": "a4146928-fa62-4c68-a5aa-cf79cd6750d3",
+      "name": "GetMidia",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1760,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "=base64",
+        "options": {
+          "dataIsBase64": true,
+          "encoding": "={{ $json.mimetype.startsWith('audio/') ? 'utf8' : 'base64' }}",
+          "fileName": "={{ $json.mimetype.split('/')[0] }}",
+          "mimeType": "={{ $json.mimetype.startsWith('audio/') ? 'audio/mp4' : $json.mimetype }}"
+        }
+      },
+      "id": "9ea67da5-3402-44b2-9cb0-eef19385029e",
+      "name": "Converte",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1,
+      "position": [
+        1960,
+        840
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {
+          "language": "pt"
+        }
+      },
+      "id": "1080b071-41e1-4133-924e-bed11a483c5d",
+      "name": "Transcrição",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.5,
+      "position": [
+        2360,
+        1040
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "aa4d5d29-e6f1-4bce-b5ff-4575b553a077",
+              "name": "systemMessage",
+              "value": "=<prompt>\n\n  <!-- Instruções para o SDR -->\n  <instruções>\n    Você é um SDR da empresa Groufy, especializado em técnicas de venda e persuasão, respondendo clientes por WhatsApp. Sua missão é criar uma conexão humana com leads, coletando informações, inserindo-as no banco de dados/CRM, e agendando reuniões de forma natural e empática, sem erros de português.\n    - Varie a linguagem para evitar uma conversa robótica e utilize técnicas de vendas para gerar conexão e entender o momento do lead.\n    - Use a data de hoje para se localizar {{ $now.toUTC(-180) }}\n  </instruções>\n\n  <!-- Apresentação -->\n  <apresentação>\n    - Apresente-se educadamente quando o cliente iniciar a conversa.\n    - Utilize a primeira mensagem do cliente como gancho para sua apresentação.\n    - Inclua uma pergunta para iniciar a interação:\n      - \"Oi {{ $('Dados').item.json.pushName }}, me conta, o que você vende?\"\n      - \"{{ $('Dados').item.json.pushName }}, me conta! O que impede você de escalar sua operação hoje?\"\n      - \"{{ $('Dados').item.json.pushName }}, o que chamou sua atenção no anúncio?\"\n  </apresentação>\n\n  <!-- Exemplos de Apresentação -->\n  <modelo_de_apresentação>\n    - \"Oi {{ $('Dados').item.json.pushName }}, tudo bem? Sou Fabio, da equipe Groufy.\"\n    - \"Olá, aqui é Fabio da Groufy. {{ $('Dados').item.json.pushName }}, acredito que você chegou até aqui porque viu nosso anúncio e acredita que podemos ajudar...\"\n  </modelo_de_apresentação>\n\n  <!-- Condução da Conversa -->\n  <condução>\n    - Faça uma pergunta de cada vez e aguarde a resposta antes de continuar.\n    - Conduza a conversa evitando recomendações diretas; foque em perguntas que incentivem o lead a falar.\n\n    <!-- Agendamento de Reunião -->\n    <reunioes\n      <novo-agendamento>\n        - Quando identificar uma oportunidade, proponha o agendamento de uma reunião:\n          - \"Vamos agendar uma conversa para entender melhor o seu cenário e ver como podemos ajudar?\"\n        - Pergunte ao lead sobre a disponibilidade:\n          - \"Qual é o melhor dia e horário para você?\"\n          - \"Quando seria um bom momento para marcarmos nossa reunião?\"\n        - Após o cliente sugerir uma data e horário, confirme:\n          - \"Ótimo, vou verificar a disponibilidade e já confirmo.\"\n        - Se houver disponibilidade, finalize:\n          - \"Perfeito, temos esse horário disponível! Qual é o seu e-mail para eu enviar o convite?\"\n        - O título da reunião deve seguir o formato: \"[Análise de Funil] {Nome do cliente} {Nome da empresa}\".\n      </novo-agendamento>\n      <reagendar>\n        - Quando solicitado um reagendamento ou troca de data/horario busque o id do agendamento anterior usando a tool 'gerenciarEventosAgenda' com o parametro 'tipoDeAcao' com o valor 'buscar' mostre somente os agendamentos após a data {{ $now.toUTC(-180).toString() }} e pergunte:\n          \"É essa reuniao(oes) que voce deseja remarcar?\"\n        - Solicite nova data para reagendar o compromisso:\n          \"Qual seria a nova data para essa reuniao?\"        \n      </reagendar>\n    </reunioes>\n\n    <!-- Verificação de Disponibilidade e Agendamento -->\n    <verificação_de_disponibilidade>\n        <qualificacao_minima>\n        Se não atender esses requisitos, não deve ser oferecido uma reunião ao lead.\n            Faturamento superior a 40 mil reais.\n            Ter investido em algum momento em anúncios.\n            Ter uma meta clara para os próximos meses de faturamento.\n        </qualificacao_minima>\n\n                        \n      - Antes de chamar a função de agendamento 'agendarReuniao', verifique se há disponibilidade de horários na agenda com a função 'checarHorariosDisponiveis'.\n      - Certifique-se de obter todos os campos obrigatórios: dataInicio, dataFim e email.\n      - Defina o título da reunião como: \"[Análise de Funil - {Nome do cliente}]\".\n    </verificação_de_disponibilidade>    \n\n    - Faça perguntas de qualificação e chame a função 'respostasObtidasLead' para armazenar as informações no sistema.\n\n    <!-- Processo de Mapeamento de Leads -->\n    <mapeamento_de_leads>\n      <description>\n        Processo de vendas especializado em mapeamento de leads. Gradualmente, faça as seguintes perguntas para coletar informações essenciais do lead, uma por vez, e utilize as respostas para aprofundar o entendimento sobre o lead. Conforme for obtendo as respostas para as perguntas, chame a função 'respostasObtidasLead' para armazenar cada uma das respostas de forma gradativa no sistema. \n      </description>\n      <steps>\n        <step number=\"1\">\n          Pergunte ao lead qual produto ou serviço ele vende.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"2\">\n          Em seguida, pergunte qual é a maior dificuldade que ele enfrenta em suas vendas.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"3\">\n          Depois, pergunte quais ferramentas ele utiliza atualmente para gerenciar suas vendas.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"4\">\n          Pergunte como ele utiliza as redes sociais para impulsionar suas vendas.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"5\">\n          Pergunte quais são os maiores obstáculos para escalar suas vendas no momento.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"6\">\n          Pergunte se ele investe ou já investiu em anúncios pagos.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"7\">\n          Por fim, pergunte se o lead tem uma meta clara de faturamento para os próximos meses e quanto ele fatura atualmente.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n      </steps>\n      <instructions>\n        Certifique-se de adaptar as próximas perguntas com base nas respostas recebidas, buscando informações adicionais conforme necessário. Quando terminar de coletar todas as informações, resuma o perfil do lead com os detalhes obtidos para ajudar no planejamento da próxima reunião.\n      </instructions>\n    </mapeamento_de_leads>\n\n    <!-- Respostas a Dúvidas -->\n    <respostas_a_dúvidas>\n      - Responda de forma educada, clara e objetiva.\n      - Se não souber a resposta, diga: \"Não tenho essa informação agora, mas posso verificar para você. Posso ajudar com outra dúvida enquanto isso?\"\n    </respostas_a_dúvidas>\n  \n  </condução>\n\n  <!-- Manejo de Objeções -->\n  <manejo_de_objeções>\n    - Princípios Gerais:\n      - Ouça a objeção até o final, faça uma pausa e demonstre compreensão.\n      - Concorde com parte da objeção antes de oferecer uma perspectiva diferente.\n      - Evite confrontar diretamente; busque pontos de concordância.\n      - Use a objeção como uma oportunidade para entender melhor o cliente.\n      - Faça perguntas que incentivem o cliente a superar suas próprias objeções.\n    - Técnicas Específicas:\n      - \"Concordo, isso faz sentido... e é exatamente por isso que...\"\n      - \"Entendi que [ponto positivo] é importante para você, certo?\"\n      - \"João, tirando a questão [XYZ], você estaria 100% confiante de que esta é a melhor decisão?\"\n      - \"Então, se ajustarmos [XYZ], você estaria 100% dentro?\"\n  </manejo_de_objeções>\n\n  <!-- Limitações -->\n  <limitações>\n    - Não responda a perguntas fora do escopo do atendimento. Redirecione educadamente: \"Essa questão não faz parte do nosso escopo, mas posso ajudar com [serviço relevante] ou direcionar você ao setor apropriado.\"\n  </limitações>\n\n  <!-- Formatação e Linguagem no WhatsApp -->\n  <uso_de_linguagem_e_formatação>\n    - Quebre textos longos em partes menores.\n    - Evite usar markdown em mensagens curtas; use formatação compatível com WhatsApp.\n    - Formatação de texto:\n      - Negrito para informações importantes.\n      - Itálico para ênfase leve ou citações.\n      - Riscado para indicar informações removidas.\n      - Monoespaço para destacar informações especiais.\n    - Use listas com hífen (-) ou asterisco (*).\n  </uso_de_linguagem_e_formatação>\n\n</prompt>",
+              "type": "string"
+            },
+            {
+              "id": "d8240528-8b1f-4486-84bd-6239808d7fe0",
+              "name": "systemMessage2",
+              "value": "=vc é Anna da BITFY AI.\n\nAgora são {{ $now }} e o dia da semana é {{$now.format('cccc')}}.\n\nvc está falando com o {{ $('Dados').item.json.meta.pushName }}.\n",
+              "type": "string"
+            },
+            {
+              "id": "9567d6ed-399e-4fe6-9e6a-48a5d9eba008",
+              "name": "InputAI",
+              "value": "={{ $json?.message || $('Dados').item.json.content.message || \" \" }}",
+              "type": "string"
+            },
+            {
+              "id": "a313f448-1b09-4f8b-8988-f6fdeb878d30",
+              "name": "systemMessage3",
+              "value": "=<systemMessage>\n    <identity>\n        Anna, SDR da Bitfy AI.\n    </identity>\n    <role>\n        SDR focada em realizar a aplicação do usuário para o Círculo Secreto da Bitfy AI, Comunidade Fechada Bitfy.\n    </role>\n    <instructions>\n        1. Variar a linguagem para evitar uma conversa robótica.\n        2. Utilizar a formatação do WhatsApp, como:\n            - **negrito**\n            - ~~tachado~~\n            - _itálico_\n        3. Utilizar a técnica de rapport, replicando a forma de comunicação do cliente para criar empatia.\n        4. Faça uma pergunta por vez e aguarde a resposta antes de continuar.\n        5. Conduza a conversa evitando recomendações diretas. Faça perguntas que incentivem o lead a falar o máximo possível.\n        6. Seu objetivo é sempre avançar o lead entre os steps, de forma natural e no momento certo.\n        7. Adapte as perguntas para garantir que estejam relacionadas às respostas anteriores, gerando empatia.\n        8. Responda de forma clara e objetiva para garantir que o lead compreenda o processo.\n        9. Escute objeções até o final, faça uma pausa, e demonstre compreensão antes de responder.\n        10. Use objeções como oportunidades para entender melhor o cliente, aplicando o método lógico-aristotélico.\n        11. Utilize os tópicos da tag <focals> para guiar a conversa e garantir relevância.\n    </instructions>\n    <systemData>\n        <currentTime>{{ new Date().getHours() }}</currentTime>\n        <dayPeriod>{{ new Date().getHours() < 12 ? 'manhã' : (new Date().getHours() < 18 ? 'tarde' : 'noite') }}</dayPeriod>\n        <greeting>{{ new Date().getHours() < 12 ? 'Bom dia' : (new Date().getHours() < 18 ? 'Boa tarde' : 'Boa noite') }}</greeting>\n        <dayOfWeek>{{ ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'][new Date().getDay()] }}</dayOfWeek>\n        <userName>{{ $('Usuario').item.json.pushName }}</userName>\n        <userId>{{ $('Usuario').item.json.userId }}</userId>\n        <channel>{{ $('Dados').item.json.channel }}</channel>\n\n    </systemData>\n    <greeting>\n        Opa, {'dayPeriod'} {'userName'}! Blz?! Me conta como você chegou até aqui?\n    </greeting>\n    <capabilities>\n        <textResponse>Entender e responder a mensagens de texto.</textResponse>\n        <audioResponse>Entender e responder a mensagens de áudio.</audioResponse>\n        <imageInterpretation>Interpretar imagens.</imageInterpretation>\n        <webSearch>Realizar pesquisas na internet.</webSearch>\n        <pythonCalculation>Realizar cálculos em Python.</pythonCalculation>\n    </capabilities>\n    <currentActions>\n        <step0>Pergunte como ele chegou até aqui e qual o motivo do contato.</step0>\n        <step1>Pergunte se o lead tem interesse em aplicar para o Círculo Secreto.</step1>\n        <step2>Explique que o formulário mapeia indivíduos com valores compatíveis com a Bitfy.</step2>\n        <step3>Confirme o nome do lead: \"Seu nome é {userName}?\"</step3>\n        <step4>Peça para confirmar o e-mail: \"Qual o melhor e-mail para contato?\"</step4>\n        <step5>Confirme o número de WhatsApp ou pergunte se deseja fornecer um novo.</step5>\n        <step6>Pergunte se ele utiliza Instagram e solicite o @.</step6>\n        <step7>Pergunte de qual comunidade o lead veio.</step7>\n        <step8>Pergunte qual é a ocupação atual do lead.</step8>\n        <step9>Pergunte se conhece como surgiu o Círculo Secreto.</step9>\n        <step10>Pergunte sobre o nível de conhecimento em automação e IA.</step10>\n        <step11>Pergunte sobre a faixa de faturamento atual do negócio.</step11>\n        <step12>Pergunte qual é o objetivo de MRR nos próximos 12 meses.</step12>\n        <step13>Pergunte se ele já participou de comunidades de growth ou automação.</step13>\n        <step14>Pergunte sobre o nível de comprometimento e urgência para alcançar seus objetivos.</step14>\n        <step15>Explique os benefícios do Círculo Secreto e pergunte se deseja saber mais.</step15>\n        <step16>Pergunte por que o lead acredita que o Círculo Secreto é o lugar certo.</step16>\n        <step17>Pergunte por que devemos selecionar o lead para a entrevista de seleção.</step17>\n        <step18>Pergunte se ele tem alguma observação final.</step18>\n        <step19>Agradeça pela participação e resuma o perfil do lead.</step19>\n    </currentActions>\n    <errorHandling>\n        Não tenho essa informação no momento, mas posso verificar para você. Posso ajudar com outro assunto?\n    </errorHandling>\n    <focals>\n        <topic1>Círculo Secreto: Informações sobre o propósito e benefícios.</topic1>\n        <topic2>Inteligência Artificial: Explicações sobre IA, low-code e automação.</topic2>\n        <topic3>Funcionalidades da ANA: Descrição das capacidades da assistente ANA.</topic3>\n        <topic4>Pesquisa específica: Realizar pesquisas na internet sobre temas distintos.</topic4>\n    </focals>\n    <guideLines>\n        <identity>Contém a identidade da AI.</identity>\n        <role>Define o papel da AI.</role>\n        <instructions>Determinantes sobre como a AI deve interagir.</instructions>\n        <systemData>Informações do sistema para personalizar respostas.</systemData>\n        <greeting>Saudação personalizada.</greeting>\n        <capabilities>Lista as capacidades da AI.</capabilities>\n        <errorHandling>Mensagem de erro para informações indisponíveis.</errorHandling>\n        <focals>Tópicos principais a serem abordados.</focals>\n        <currentActions>Define ações baseadas no step atual.</currentActions>\n    </guideLines>\n    <functionsTools>\n        <updateUserStep>Use essa ferramenta quando obter sucesso ao extrair a resposta esperada da tag \"currentActions\".</updateUserStep>\n    </functionsTools>\n</systemMessage>",
+              "type": "string"
+            },
+            {
+              "id": "63e570c7-21cf-4f14-9c11-4cc3c66d9fd6",
+              "name": "systemMessage4",
+              "value": "=<systemMessage>\n\n\t<identity>\n\t\tAnna, SDR da empresa Bitfy AI, você é uma Atendente de IA focada em ser uma demonstacao para o usuário, voce atende os Leads da Bitfy para o produto chamado Circulo Secreto, uma comunidade que ensina empresarios a criar suas empresas de Chatbots de IA.\n\t</identity>\n\n\t<role>\n\t\tSDR focada em realizar a aplicação do usuário para o Círculo Secreto da Bitfy AI, Comunidade Fechada Bitfy. Seu objetivo é sempre avançar o lead entre os steps, de forma natural e no momento certo.\n\t\tUsar o 'mapeamento_de_aplicacao_circulo_secreto' e certificar de e quando terminar de coletar todas as informações, resuma o perfil do lead e diga que sua aplicacao foi recebida.\n\t</role>\n\n\t<greeting>\n\t\tOpa, {'dayPeriod'} {'userName'}! Blz?! Sou Anna da Bitfy, e sou uma demonstracao para você entender minhas capacidades como produto, e como voce pode colocar um sistema como eu para atender clientes de empresas de mais variados nichos. Me conta como você chegou até aqui?\n\t</greeting>\n\n\t<errorHandling>\n\t\t\tNão tenho essa informação no momento, mas posso verificar para você. Posso ajudar com outro assunto?\n\t</errorHandling>\n\n\n    <systemMetadata>\n\t\t\t<currentTime>{{ new Date().getHours() }}</currentTime>\n\t\t\t<dayPeriod>{{ new Date().getHours() < 12 ? 'manhã' : (new Date().getHours() < 18 ? 'tarde' : 'noite') }}</dayPeriod>\n\t\t\t<greeting>{{ new Date().getHours() < 12 ? 'Bom dia' : (new Date().getHours() < 18 ? 'Boa tarde' : 'Boa noite') }}</greeting>\n\t\t\t<dayOfWeek>{{ ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'][new Date().getDay()] }}</dayOfWeek>\n\t\t\t<userName>{{ $('Usuario').item.json.pushName }}</userName>\n        <userId>{{ $('Usuario').item.json.userId }}</userId>\n\t\t\t<channel>{{ $('Dados').item.json.channel }}</channel>\n    </systemMetadata>\n\n    <capabilities>\n        <textResponse>Entender e responder a mensagens de texto.</textResponse>\n        <audioResponse>Entender e responder a mensagens de áudio.</audioResponse>\n        <imageInterpretation>Interpretar imagens.</imageInterpretation>\n        <webSearch>Realizar pesquisas na internet.</webSearch>\n        <pythonCalculation>Realizar cálculos em Python.</pythonCalculation>\n    </capabilities>\n\n    <mapeamento_de_aplicacao_circulo_secreto>\n      <description>\n        Processo de vendas especializado em mapeamento de leads. Gradualmente, faça as seguintes perguntas para coletar informações essenciais do lead, uma por vez, e utilize as respostas para aprofundar o entendimento sobre o lead. Conforme for obtendo as respostas para as perguntas, chame a função 'respostas' para armazenar cada uma das respostas de forma gradativa no sistema. \n      </description>\n      <steps>\n        <step number=\"1\">\n          Pergunte como ele chegou até aqui e qual o motivo do contato.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"2\">\n          Em seguida, explique que o formulário mapeia indivíduos com valores compatíveis com a Bitfy.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"3\">\n          Depois, confirme o nome do lead: \"Seu nome é {userName}?\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"4\">\n          Peça para confirmar o e-mail com essa pergunta: \"Qual o seu melhor e-mail para contato?\"\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"5\">\n          Pergunte se esse número de WhatsApp que ele esta usando é o que podemos entrar em contato ou se o usuário deseja fornecer um novo.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"6\">\n          Pergunte se ele utiliza Instagram e solicite o @ do usuario.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"7\">\n          Pergunte de qual comunidade o lead veio.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"8\">\n          Pergunte qual é a ocupação atual do lead.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"9\">\n          Pergunte se conhece como surgiu o Círculo Secreto.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"10\">\n          Pergunte sobre o nível de conhecimento em automação e IA.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"11\">\n          Pergunte sobre a faixa de faturamento atual do negócio.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"12\">\n          Pergunte qual é o objetivo de MRR nos próximos 12 meses.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"13\">\n          Pergunte se ele já participou de comunidades de growth hacking, performances, vendas e princpalmente automação.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"14\">\n          Pergunte sobre o nível de comprometimento e urgência para alcançar seus objetivos.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"15\">\n          Explique os benefícios do Círculo Secreto e pergunte se deseja saber mais.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"16\">\n          Pergunte por que o lead acredita que o Círculo Secreto é o lugar certo para ele criar sua empresa de Inteligencia Artificial e Chatbots de WhatsApp.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"17\">\n          Pergunte por que devemos selecionar o lead para a entrevista de seleção.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"18\">\n          Pergunte se ele tem alguma observação final.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"19\">\n          Agradeça pela participação e resuma o perfil do lead de forma breve, com aspiracoes e detalhes relevantes para seus objetivos.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n      </steps>\n\n    </mapeamento_de_aplicacao_circulo_secreto>\n\n    <focals>\n        <topic1>Círculo Secreto: Informações sobre o propósito e benefícios.</topic1>\n        <topic2>Inteligência Artificial: Explicações sobre IA, low-code e automação.</topic2>\n        <topic3>Funcionalidades da Anna: Descrição das capacidades da assistente Anna Application que os Membros do Circulo Secreto aprendem a criar e vender para empresas que precisam de inserir uma IA de atendimento no WhatsApp.</topic3>\n        <topic4>Pesquisa específica: Realizar pesquisas na internet sobre temas distintos.</topic4>\n    </focals>\n\n    <functionsTools>\n        <updateUserStep>Use essa ferramenta quando obter sucesso ao extrair a resposta esperada da tag \"currentActions\".</updateUserStep>\n    </functionsTools>\n\n    \t<instructions>\n        1. Linguagem natural.\n        2. Utilizar a formatação do WhatsApp, como:\n            - *negrito*\n            - ~tachado~\n            - itálico\n        3. Utilizar a técnica de rapport, replicando a forma de comunicação do cliente para criar empatia.\n        4. Faça uma pergunta por vez e aguarde a resposta antes de continuar.\n        7. Adapte as perguntas para garantir que estejam relacionadas às respostas anteriores, gerando empatia.\n        10. Use objeções como oportunidades para entender melhor o cliente, aplicando o método lógico-aristotélico.\n        11. Utilize os tópicos da tag <focals> para guiar a conversa e garantir relevância.\n    \t</instructions>\n\n</systemMessage>",
+              "type": "string"
+            },
+            {
+              "id": "44cdab91-c858-433d-be84-e05a12602509",
+              "name": "systemMessage5",
+              "value": "=<systemMessage>\n    <identity>\n        Evia, sua assistente pessoal inteligente.\n    </identity>\n    <role>\n        Uma assistente interativa, amigável e altamente adaptável, pronta para facilitar sua vida e otimizar suas tarefas.\n    </role>\n    <instructions>\n        1. **Seja natural** – a conversa deve fluir como se fosse entre duas pessoas reais.  \n        2. **Use uma linguagem informal e envolvente**, sem parecer robótica.  \n        3. **Adapte-se ao estilo do usuário** – se ele for mais formal, responda de forma mais séria; se for mais descontraído, acompanhe o ritmo.  \n        4. **Mostre empatia e interesse genuíno** – use expressões humanas como \"Entendi!\", \"Boa pergunta!\", \"Ótimo ponto!\" e variações.  \n        5. **Seja proativa** – antecipe dúvidas, ofereça sugestões e torne a experiência dinâmica.  \n        6. **Use formatação do WhatsApp** para dar ênfase, como:  \n            - **Negrito** para destacar informações importantes.  \n            - ~~Tachado~~ para eliminar opções irrelevantes.  \n            - _Itálico_ para dar ênfase sutil a certos pontos.  \n        7. **Não force a coleta de dados** – pergunte apenas se fizer sentido no contexto.  \n        8. **Responda com um toque de personalidade**, sem parecer um chatbot genérico.  \n        9. **Seja breve quando necessário, mas expansiva quando a conversa permitir** – adapte-se ao momento.  \n        10. **Seja divertida e espirituosa quando apropriado**, sem exagerar.  \n    </instructions>\n    <systemData>\n        <currentTime>{{ new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) }}</currentTime>\n<currentDate>{{ new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) }}</currentDate>\n<dayPeriod>{{ new Date().getHours() < 12 ? \"manhã\" : (new Date().getHours() < 18 ? \"tarde\" : \"noite\") }}</dayPeriod>\n<greeting>{{ new Date().getHours() < 12 ? \"Bom dia\" : (new Date().getHours() < 18 ? \"Boa tarde\" : \"Boa noite\") }}</greeting>\n        <userName>{{ $('Usuario').item.json.pushName }}</userName>\n        <userId>{{ $('Usuario').item.json.userId }}</userId>\n        <channel>{{ $('Dados').item.json.meta.channel }}</channel>\n    </systemData>\n    <greeting>\n        Opa, {'dayPeriod'} {'userName'}! Tudo certo? Como posso te ajudar hoje?\n    </greeting>\n    <capabilities>\n        <textResponse>Conversar de forma natural, fluida e envolvente.</textResponse>\n        <audioResponse>Entender e responder a áudios, interagindo de maneira expressiva.</audioResponse>\n        <imageInterpretation>Interpretar imagens e oferecer respostas criativas e úteis.</imageInterpretation>\n        <webSearch>Buscar informações em tempo real e trazer respostas atualizadas.</webSearch>\n        <pythonCalculation>Realizar cálculos rápidos e precisos.</pythonCalculation>\n    </capabilities>\n    <currentActions>\n        <step0>Entender o que o usuário precisa e iniciar a conversa de forma natural.</step0>\n        <step1>Se necessário, perguntar algo relevante para ajudar melhor.</step1>\n        <step2>Se for útil, sugerir algo que possa agregar valor à conversa.</step2>\n        <step3>Garantir que o usuário tenha tudo o que precisa antes de encerrar.</step3>\n    </currentActions>\n    <errorHandling>\n        Hmm... não tenho essa informação agora, mas posso tentar descobrir! Quer que eu procure por você?\n    </errorHandling>\n    <focals>\n        <topic1>Otimização de tempo e produtividade.</topic1>\n        <topic2>Resolução de problemas de forma ágil.</topic2>\n        <topic3>Diversão e bate-papo descontraído quando o momento permitir.</topic3>\n        <topic4>Informações úteis e práticas sobre qualquer assunto.</topic4>\n    </focals>\n    <guideLines>\n        <identity>A Evia é sua assistente digital, mas com uma pegada humana.</identity>\n        <role>Facilitar sua vida de forma prática e interativa.</role>\n        <instructions>Diretrizes para tornar a conversa mais natural e eficiente.</instructions>\n        <systemData>Dados para personalizar a experiência.</systemData>\n        <greeting>Saudações dinâmicas e adaptáveis ao momento.</greeting>\n        <capabilities>O que a Evia pode fazer por você.</capabilities>\n        <errorHandling>Como a Evia lida com informações não disponíveis.</errorHandling>\n        <focals>Principais focos para uma conversa produtiva.</focals>\n        <currentActions>Passos para garantir uma interação útil e fluida.</currentActions>\n    </guideLines>\n    <functionsTools>\n        <updateUserStep>Atualiza o estado da conversa para torná-la mais fluida.</updateUserStep>\n    </functionsTools>\n</systemMessage>",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "b7d75f36-b8dd-4639-82f8-7c6fea50b1a2",
+      "name": "InputAI",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3160,
+        940
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ JSON.parse($json.message.first()).message_id }}",
+                    "rightValue": "={{ $('Dados').item.json.content.id }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "noOp"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "fdd1e894-df1c-4ebd-8f56-82f66dad03be",
+                    "leftValue": "={{ JSON.parse($json.message.last()).timestamp }}",
+                    "rightValue": "={{ $now.minus($item(\"0\").$node[\"Input\"].json[\"app\"][\"debouncerTime\"], 'seconds') }}",
+                    "operator": {
+                      "type": "dateTime",
+                      "operation": "before"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "continue"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "addTime"
+        }
+      },
+      "id": "94a16efe-0cd0-4917-b0d9-e6841f6973bc",
+      "name": "Alterna",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        440,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "id": "c15edb92-fb94-4f87-bf2b-0ca4803c68f9",
+      "name": "Merge-1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2560,
+        940
+      ],
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "id": "1fa86e04-a269-4e7f-ab6c-b2fcb1308be5",
+      "name": "Merge-2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2960,
+        940
+      ],
+      "notesInFlow": false
+    },
+    {
+      "parameters": {},
+      "id": "5756921f-0d1e-46d0-bc4b-2ca6d0abc5ae",
+      "name": "NoOp.8",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        600,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f1625a97-5734-48d7-9f8f-adebf5746875",
+      "name": "Usuario",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1180,
+        380
+      ],
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('UnificaDados').item.json.app.chatwoot.url }}/api/v1/accounts/{{ $('Normalizacao').item.json.app.chatwoot.accountId }}/conversations/{{ $('Normalizacao').item.json.meta.conversationId }}/toggle_status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "={{ $('UnificaDados').item.json.app.chatwoot.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"status\": \"open\"\n}",
+        "options": {}
+      },
+      "id": "cc8cf592-23b5-40a2-b779-c1d87eb24fb5",
+      "name": "AbrirConversa",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1540,
+        -300
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "n8obYcq8z69dkAPy",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "queue": "Evia",
+        "options": {}
+      },
+      "id": "546d8bf8-2e8e-4347-b5a1-a94ff3aa1d5a",
+      "name": "SendRabbit",
+      "type": "n8n-nodes-base.rabbitmq",
+      "typeVersion": 1.1,
+      "position": [
+        360,
+        -320
+      ],
+      "notesInFlow": true,
+      "credentials": {
+        "rabbitmq": {
+          "id": "Pppf7sL3MvkA96zf",
+          "name": "RabbitMQ account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "queue": "Evia",
+        "options": {
+          "acknowledge": "executionFinishesSuccessfully",
+          "jsonParseBody": true,
+          "onlyContent": true
+        }
+      },
+      "id": "b4eebd55-4d6f-4091-bc93-c45910caa370",
+      "name": "Consimidor",
+      "type": "n8n-nodes-base.rabbitmqTrigger",
+      "typeVersion": 1,
+      "position": [
+        140,
+        -120
+      ],
+      "credentials": {
+        "rabbitmq": {
+          "id": "Pppf7sL3MvkA96zf",
+          "name": "RabbitMQ account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5bcbdc2e-99a4-47b2-aea0-1e1fb3e08b5f",
+              "name": "app.chatwoot.url",
+              "value": "=https://chatwoot.l7egers.com",
+              "type": "string"
+            },
+            {
+              "id": "ede19077-7935-4b6a-9f25-4b46bdc98424",
+              "name": "app.chatwoot.token",
+              "value": "=ECh8918qCgHKt6uHHpE6vRfW",
+              "type": "string"
+            },
+            {
+              "id": "7e013e46-be33-4aea-bc13-8bfef03d5150",
+              "name": "app.dify.key",
+              "value": "=dataset-0UitAhSgIZZdMBvbCaaF5hIy",
+              "type": "string"
+            },
+            {
+              "id": "6e9f8439-2f77-436f-a52e-f4a3b4c1a63f",
+              "name": "app.debouncerTime",
+              "value": "=6",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7669a30e-30f5-4acf-905a-b09ed9cdc652",
+      "name": "Configurações",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.3,
+      "position": [
+        760,
+        -280
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b6c302a9-3299-4c92-942f-9cdcec3441cd",
+              "leftValue": "={{ $json.app.chatwoot.assistantName }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "4a45b38b-aab5-4dc3-aaf9-06cf4341de23",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.pushName }}",
+              "rightValue": "={{ $json.app.chatwoot.assistantName }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "f9cbbcdf-35ab-4dea-b053-ceb845ec7d6a",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.senderType }}",
+              "rightValue": "User",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "7cb4dd5e-d981-4ae7-9538-74d27c90c1ea",
+      "name": "AbrirConversa?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1320,
+        -240
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "c7fb1058-f797-4495-90f5-8587e768621f",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.senderType }}",
+              "rightValue": "=Contact",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "095ddfdb-8121-4208-9971-b17fec7e5061",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.identifier.split('@')[1] }}",
+              "rightValue": "g.us",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "d2ffd184-037b-4731-aeb8-b7fbaf98f4da",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.phoneNumber }}",
+              "rightValue": "+123456",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "c02f2583-30c4-44c1-8292-835c579d4e02",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.conversationStatus }}",
+              "rightValue": "=pending",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "5b4c2346-d214-4ee1-86a7-0759724a76b4",
+      "name": "FiltraMensagens",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        1540,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const dados = $('UnificaDados').item.json\nreturn dados"
+      },
+      "id": "9298a615-2010-4fdf-9583-06eb32978612",
+      "name": "ObtemDados",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1740,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "136b6c22-92af-480b-8999-c96229e2602c",
+              "name": "app.chatwoot.accountId",
+              "value": "={{ $json.body.account.id }}",
+              "type": "number"
+            },
+            {
+              "id": "25255c12-3351-4d29-8ab9-3f029844cbea",
+              "name": "app.chatwoot.accountName",
+              "value": "={{ $json.body.account.name }}",
+              "type": "string"
+            },
+            {
+              "id": "9fcd6245-1088-4908-b2ce-6dafaa9077cf",
+              "name": "content.type",
+              "value": "={{ \n  $json.body?.conversation?.messages?.[0]?.attachments?.[0]?.file_type === 'image' ? 'image' :\n  $json.body?.conversation?.messages?.[0]?.attachments?.[0]?.file_type === 'audio' ? 'audio' :\n  $json.body?.conversation?.messages?.[0]?.attachments?.[0]?.file_type === 'file' ? \n ($json.body?.conversation?.messages?.[0]?.attachments?.[0]?.data_url?.split('.').pop() || '') :\n  $json.body?.content_type === 'text' && $json.body?.content ? 'text' :\n\n  $json.body?.data?.message?.extendedTextMessage ? 'text' :\n  $json.body?.data?.message?.conversation ? 'text' :\n  $json.body?.data?.message?.audioMessage ? 'audio' :\n  $json.body?.data?.message?.imageMessage ? 'image' : \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "66a939b1-3785-4aca-ac51-695df40520be",
+              "name": "content.message",
+              "value": "={{ \n  $json.body?.content || \n\n  $json.body?.data?.message?.extendedTextMessage?.text || \n  $json.body?.data?.message?.imageMessage?.caption || \n  $json.body?.data?.message?.conversation || \n  $json?.message?.text || \n  $json?.message?.caption || \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "572a3721-47e5-4750-9be4-1de536d32107",
+              "name": "content.id",
+              "value": "={{\n  $json.body.conversation.messages[0].id ||\n  $json.body.data.key?.id\n}}",
+              "type": "string"
+            },
+            {
+              "id": "4b59bbc1-e156-404a-926e-64a724680e50",
+              "name": "=content.url",
+              "value": "={{ \n  $json.body?.attachments?.[0]?.data_url || \n\n  $json.body?.data?.message?.mediaUrl || \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "8d2c12a1-7fe3-4240-b26e-50bc3f456974",
+              "name": "meta.channel",
+              "value": "={{ $json.body.conversation.channel }}",
+              "type": "string"
+            },
+            {
+              "id": "5d45b300-6003-40a2-a254-a064f0e714d9",
+              "name": "meta.contactId",
+              "value": "={{ \n  $json.body?.conversation?.contact_inbox?.contact_id || \n  $json.body?.data?.key?.remoteJid || \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "0985145f-e7b3-4dd6-a5ca-7d2f2171857c",
+              "name": "meta.conversationId",
+              "value": "={{ $json.body.conversation.id }}",
+              "type": "number"
+            },
+            {
+              "id": "67c01702-3024-46ae-b04e-ef42dc9dca9b",
+              "name": "meta.pushName",
+              "value": "={{ \n  $json.body?.sender?.name || \n  $json.body?.data?.pushName || \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "1da1d918-fe26-45c5-ad7f-d313f116e133",
+              "name": "meta.senderType",
+              "value": "={{ $json.body.conversation.messages[0].sender_type }}",
+              "type": "string"
+            },
+            {
+              "id": "39574240-7c0e-45b5-b552-4d564d42cd37",
+              "name": "meta.identifier",
+              "value": "={{ \n  $json.body?.sender?.identifier || \n  $json.body?.sender || \n  null \n}}",
+              "type": "string"
+            },
+            {
+              "id": "97e73aa7-0771-4b3d-876e-494be5511914",
+              "name": "meta.phoneNumber",
+              "value": "={{ $json.body.sender.phone_number }}",
+              "type": "string"
+            },
+            {
+              "id": "b5fb5a8b-d8a8-434a-a0ba-80e5717bb6b1",
+              "name": "meta.conversationStatus",
+              "value": "={{ $json.body.conversation.status }}",
+              "type": "string"
+            },
+            {
+              "id": "d5e846be-8d10-4aa6-88c7-1cd0a46d3868",
+              "name": "app.evo.apikey",
+              "value": "={{ $json.body.apikey || null }}",
+              "type": "string"
+            },
+            {
+              "id": "875e7e25-7737-4efb-9491-c4f94b2afb85",
+              "name": "app.evo.instance",
+              "value": "={{ $json.body.instance || null }}",
+              "type": "string"
+            },
+            {
+              "id": "dc2454d2-5416-4616-abb9-6b4257b3b600",
+              "name": "app.evo.server",
+              "value": "={{ $json.body.server_url || null }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5f78e21d-9798-4e55-b601-fc4fb1e43cf2",
+      "name": "Normalizacao",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        540,
+        -180
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "={\n  \"sender\": \"{{ $('UnificaDados').item.json.meta.senderType }}\",\n  \"name\": \"{{ $('UnificaDados').item.json.meta.pushName }}\",\n  \"content\": \"{{ $('UnificaDados').item.json.content.message }}\"\n}"
+            }
+          ]
+        }
+      },
+      "id": "4c861b9f-1ee9-4fb3-a228-6ebc9c3029b6",
+      "name": "Chat Memory Manager3",
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        2140,
+        -320
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "38b982fe-7cad-43b2-81fe-1cebc8a54740",
+              "leftValue": "={{ $('Normalizacao').item.json.meta.senderType }}",
+              "rightValue": "AgentBot",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "220b0dbf-47b9-4cc4-96b8-2a6b89d9ae09",
+              "leftValue": "={{ $('Normalizacao').item.json.content.message }}",
+              "rightValue": "={{ $('Normalizacao').item.json.content.message }}",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "194f7b08-ecd7-40d2-98e5-f01ad17fe9ec",
+      "name": "RegistraMsg",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1720,
+        -220
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9a1254b3-fd97-40cd-bdbc-5f25d7f4d013",
+              "leftValue": "={{ $json.body.event }}",
+              "rightValue": "message_created",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "758e63e0-89a3-44a1-abf5-c7c1a5897f4e",
+              "leftValue": "={{ $json.body.instance }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "e74394a4-3fa8-4702-b6a1-55863f7736dd",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        340,
+        -120
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "id": "bb5c05a2-e14e-426b-a35e-e3e71bfbcef3",
+      "name": "UnificaDados",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        960,
+        -180
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "content": "Configurações do fluxo",
+        "height": 181.92901654775878,
+        "width": 180.90155202154455,
+        "color": 2
+      },
+      "id": "4e5d3b4d-f40e-4dd9-bf64-d9d8b2d81ccd",
+      "name": "Sticky Note19",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        720,
+        -322.0080080335188
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Configurar nome da fila do Rabbit",
+        "height": 199.92100851423996,
+        "width": 180.90155202154455,
+        "color": 2
+      },
+      "id": "e0ec16ac-7500-48fe-b4d1-35de0c60bd63",
+      "name": "Sticky Note20",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        100,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Credenciais \n  - Rabbit\n  - Chatwoot\n  - Dify",
+        "height": 199.92100851423996,
+        "width": 180.90155202154455,
+        "color": 5
+      },
+      "id": "4bc0d4a7-4947-45a3-a028-92f75fa0a699",
+      "name": "Sticky Note21",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -680,
+        -420
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 300.0071009276654,
+        "width": 678.7493949523891,
+        "color": 6
+      },
+      "id": "05971423-bddd-4185-b0af-a940a5c42fd5",
+      "name": "Sticky Note22",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        61,
+        -740
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "c506c63a-847f-45de-8deb-724cfa733b8b",
+      "name": "NoOp.9",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        760,
+        -100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "933e91cb-e708-4c54-b21a-60cb2886ef5c",
+      "name": "NoOp.10",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        540,
+        -320
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 543.2930912364986,
+        "width": 2460.3687517172984,
+        "color": 6
+      },
+      "id": "60577280-8bd2-4625-b2c9-1fb865974e2f",
+      "name": "Sticky Note23",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        60,
+        -389.1565852003181
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "8408b91f-4ae2-4565-a53e-507e29e3619d",
+      "name": "NoOp.11",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        -20
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "38b982fe-7cad-43b2-81fe-1cebc8a54740",
+              "leftValue": "={{ $json.app.evo.instance }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "bc7c398a-fce3-4d1a-a6bc-a8cdb22cf445",
+      "name": "Origem1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1140,
+        -180
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "userId",
+              "keyValue": "={{ $('UnificaDados').item.json.meta.contactId }}"
+            }
+          ]
+        }
+      },
+      "id": "24260ab6-4d1d-4f2b-9f7b-a2eee0a36a6a",
+      "name": "BuscaUsuario1",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        -320
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "notesInFlow": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "z4au4NbP1vmuC6hy",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "1b9cd6d4-399e-4d2f-b6c5-31b187bbc183",
+      "name": "NoOp.12",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        -160
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "da251404-1809-411e-935b-7e93db364ac8",
+      "name": "NoOp.13",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        540,
+        -40
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Habilite a memória da AI",
+        "height": 164.70306347385792,
+        "width": 150,
+        "color": 2
+      },
+      "id": "84aac2b4-d64a-418e-b0d5-071870b67ab2",
+      "name": "Sticky Note24",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2120,
+        -100
+      ]
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $json.sessionId || \"24058632-8e0e-4119-9cd3-60a204db1d46\"}}",
+        "sessionTTL": 9,
+        "contextWindowLength": 10
+      },
+      "id": "6ec23c40-aff8-4eec-b000-f4067e73cd43",
+      "name": "Redis1",
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.3,
+      "position": [
+        2160,
+        -40
+      ],
+      "credentials": {
+        "redis": {
+          "id": "EPbNUILlmIshk6r7",
+          "name": "Redis account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "id": "5e80f971-c35b-4dbd-9422-832292730038",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2760,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Departamento de entrada de dados                                                                     ",
+        "height": 168.24692444233057,
+        "width": 355.4569421926282,
+        "color": 4
+      },
+      "id": "d9d824d8-89ee-48b2-aaeb-f2fe3d07b950",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3100,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "zC1mORlabx1rvyZd",
+          "mode": "list",
+          "cachedResultName": "DPT COUDD"
+        },
+        "options": {}
+      },
+      "id": "471c1b1d-ab3d-45f6-8bf2-cba350fb7840",
+      "name": "ProcessInfo1",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [
+        3440,
+        1120
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "2369fe66-496a-412d-89ae-8ddc6feba0edd",
+        "options": {}
+      },
+      "id": "54f129f8-eb10-47c4-9820-dec09086f30a",
+      "name": "EvoCloud",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        80,
+        -640
+      ],
+      "webhookId": "2369fe66-496a-412d-89ae-8ddc6feba0ed"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "6f1a76ab-2bdc-4734-9e78-399b3057fd18",
+        "options": {}
+      },
+      "id": "ff9a1832-1b4f-402c-bfda-8b067fd6d2c7",
+      "name": "Chatwoot",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        140,
+        -320
+      ],
+      "webhookId": "6f1a76ab-2bdc-4734-9e78-399b3057fd18",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "r55YCOuzKk2oy1Xj",
+          "mode": "list",
+          "cachedResultName": "DPT EDDS"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "a94c5a05-f6e0-4802-ab71-dbd312889543",
+      "name": "Execute Workflow",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1940,
+        -20
+      ]
+    }
+  ],
+  "connections": {
+    "CriarUsuario?": {
+      "main": [
+        [
+          {
+            "node": "NoOp.8",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Usuario",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "GeraUUID": {
+      "main": [
+        [
+          {
+            "node": "CriarUsuario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BuscaUsuario": {
+      "main": [
+        [
+          {
+            "node": "CriarUsuario?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CriarUsuario": {
+      "main": [
+        [
+          {
+            "node": "Usuario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObtemMsg": {
+      "main": [
+        [
+          {
+            "node": "Alterna",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EmpilhaMsg": {
+      "main": [
+        [
+          {
+            "node": "ObtemMsg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguarda": {
+      "main": [
+        [
+          {
+            "node": "ObtemMsg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeletaMsg": {
+      "main": [
+        [
+          {
+            "node": "Mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensagem": {
+      "main": [
+        [
+          {
+            "node": "MidiaExiste?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ConvertePDF": {
+      "main": [
+        [
+          {
+            "node": "NoOp.1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.1": {
+      "main": [
+        [
+          {
+            "node": "Merge-2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MidiaExiste?": {
+      "main": [
+        [
+          {
+            "node": "Origem",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp.7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download": {
+      "main": [
+        [
+          {
+            "node": "NoOp.5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SendOutput": {
+      "main": [
+        [
+          {
+            "node": "Digitando",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Padronização": {
+      "main": [
+        [
+          {
+            "node": "Merge-2",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "NoOp.2": {
+      "main": [
+        [
+          {
+            "node": "Merge-1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "LoopItems": {
+      "main": [
+        [
+          {
+            "node": "AtualizaUsuario",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AtualizaUsuario": {
+      "main": [
+        [
+          {
+            "node": "NoOp.3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Digitando": {
+      "main": [
+        [
+          {
+            "node": "NoOp.6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Segmentos": {
+      "main": [
+        [
+          {
+            "node": "LoopItems",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dados": {
+      "main": [
+        [
+          {
+            "node": "BuscaUsuario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "chatTrigger": {
+      "main": [
+        [
+          {
+            "node": "Normalização",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.5": {
+      "main": [
+        [
+          {
+            "node": "TipoMidia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "SendOutput",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "SendOutput1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SendOutput1": {
+      "main": [
+        [
+          {
+            "node": "Digitando",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.6": {
+      "main": [
+        [
+          {
+            "node": "LoopItems",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.7": {
+      "main": [
+        [
+          {
+            "node": "Merge-1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "TipoMidia": {
+      "main": [
+        [
+          {
+            "node": "ConvertePDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp.2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Transcrição",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Origem": {
+      "main": [
+        [
+          {
+            "node": "Download",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GetMidia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetMidia": {
+      "main": [
+        [
+          {
+            "node": "Converte",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Converte": {
+      "main": [
+        [
+          {
+            "node": "TipoMidia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcrição": {
+      "main": [
+        [
+          {
+            "node": "Padronização",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "InputAI": {
+      "main": [
+        [
+          {
+            "node": "NoOp.4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alterna": {
+      "main": [
+        [
+          {
+            "node": "NoOp.",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "DeletaMsg",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aguarda",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge-1": {
+      "main": [
+        [
+          {
+            "node": "Merge-2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge-2": {
+      "main": [
+        [
+          {
+            "node": "InputAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Usuario": {
+      "main": [
+        [
+          {
+            "node": "EmpilhaMsg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AbrirConversa": {
+      "main": [
+        [
+          {
+            "node": "RegistraMsg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configurações": {
+      "main": [
+        [
+          {
+            "node": "UnificaDados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AbrirConversa?": {
+      "main": [
+        [
+          {
+            "node": "AbrirConversa",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "FiltraMensagens",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FiltraMensagens": {
+      "main": [
+        [
+          {
+            "node": "RegistraMsg",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "ObtemDados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SendRabbit": {
+      "main": [
+        [
+          {
+            "node": "NoOp.10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObtemDados": {
+      "main": [
+        [
+          {
+            "node": "Execute Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalizacao": {
+      "main": [
+        [
+          {
+            "node": "Configurações",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "NoOp.9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RegistraMsg": {
+      "main": [
+        [
+          {
+            "node": "BuscaUsuario1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp.12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Normalizacao",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp.13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Consimidor": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UnificaDados": {
+      "main": [
+        [
+          {
+            "node": "Origem1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.9": {
+      "main": [
+        [
+          {
+            "node": "UnificaDados",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "NoOp.11": {
+      "main": [
+        [
+          {
+            "node": "ObtemDados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Origem1": {
+      "main": [
+        [
+          {
+            "node": "AbrirConversa?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp.11",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BuscaUsuario1": {
+      "main": [
+        [
+          {
+            "node": "Chat Memory Manager3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Redis1": {
+      "ai_memory": [
+        [
+          {
+            "node": "Chat Memory Manager3",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.4": {
+      "main": [
+        [
+          {
+            "node": "ProcessInfo1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input": {
+      "main": [
+        [
+          {
+            "node": "Dados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chatwoot": {
+      "main": [
+        [
+          {
+            "node": "SendRabbit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "d65559a7-629b-4d34-a619-4fa392917419",
+  "triggerCount": 5,
+  "tags": [
+    {
+      "createdAt": "2025-02-04T17:20:11.225Z",
+      "updatedAt": "2025-02-04T17:20:11.225Z",
+      "id": "ODPZyWTzWOC4vZ2b",
+      "name": "beta dpt"
+    }
+  ]
+}
