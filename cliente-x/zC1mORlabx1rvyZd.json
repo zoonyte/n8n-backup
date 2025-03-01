@@ -1,0 +1,813 @@
+{
+  "createdAt": "2025-01-27T23:52:36.058Z",
+  "updatedAt": "2025-02-06T13:36:56.362Z",
+  "id": "zC1mORlabx1rvyZd",
+  "name": "DPT COUDD",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "content": "",
+        "height": 254.281161054044,
+        "width": 867.643157874064
+      },
+      "id": "2853091e-276f-4c46-b6c6-96527d1a855b",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        800,
+        -100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "ca2528b0-05d4-4dbe-a7a3-3f4cde808192",
+      "name": "Calculator",
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        3780,
+        1540
+      ]
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "=Use essa tool para deletar o seu usuário específico do banco de dados (DB). Chame essa função para remover seu perfil ou conta de usuário do sistema. Essa operação é irreversível, portanto, use com cautela.",
+        "operation": "delete",
+        "tableId": "users",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "userId",
+              "condition": "eq",
+              "keyValue": "={{ $('Dados').item.json.meta.contactId }}"
+            }
+          ]
+        }
+      },
+      "id": "ea1663d6-49c9-44d9-932a-9ce815d57320",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        3980,
+        1540
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "z4au4NbP1vmuC6hy",
+          "name": "Supabase account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "Selecione seu modelo de preferencia e configure as credenciais",
+        "height": 259.6035924395444,
+        "width": 419.8387214184153,
+        "color": 2
+      },
+      "id": "2412fd5f-97be-4c6f-86f2-27e69a9de7bf",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2780,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "766a51d4-f78b-4efa-9855-e3e920ce3898",
+      "name": "Anthropic",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        2800,
+        1220
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "073ece4a-800d-42e9-81ab-8df03fd54034",
+      "name": "Groq",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        3000,
+        1220
+      ],
+      "credentials": {
+        "groqApi": {
+          "id": "jQZLUhZDVRvdnIUh",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "58ac84b0-7fe9-47e8-acf4-54edf08d7f69",
+      "name": "Gemini",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        3100,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Habilite a memória da AI",
+        "height": 259.80359243954405,
+        "width": 150,
+        "color": 2
+      },
+      "id": "b8cdb4ea-14ee-4c3f-a911-2b29b2d9d839",
+      "name": "Sticky Note9",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3220,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Usuario').item.json.sessionId }}",
+        "sessionTTL": 864000,
+        "contextWindowLength": 80
+      },
+      "id": "70a7f34f-a93c-43d9-93fd-50aa18aa3df8",
+      "name": "Redis",
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.3,
+      "position": [
+        3260,
+        1100
+      ],
+      "credentials": {
+        "redis": {
+          "id": "EPbNUILlmIshk6r7",
+          "name": "Redis account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "Adicione infinitas funcionalidades com tools personalizadas",
+        "height": 146.9770664957773,
+        "width": 724.7928708055931,
+        "color": 2
+      },
+      "id": "1be1ee7d-dee6-4c38-af39-655c9e781198",
+      "name": "Sticky Note10",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3755,
+        1505
+      ]
+    },
+    {
+      "parameters": {
+        "name": "VectorStore"
+      },
+      "id": "0beed7ae-a4e4-49f6-9c40-e4e6a26e5a31",
+      "name": "VectorStore",
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        2800,
+        1420
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "Amplie o contexto da AI com sua base de dados vetorial",
+        "height": 320.2834020122841,
+        "width": 400.3291096048409,
+        "color": 2
+      },
+      "id": "47abb336-901a-42a8-8f69-961b0085732d",
+      "name": "Sticky Note12",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2780,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "model": "text-embedding-3-small",
+        "options": {}
+      },
+      "id": "5504b4e8-df88-410f-885a-0b0d179ce397",
+      "name": "Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3060,
+        1560
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "c2f8f8e3-6922-4265-807b-921468c87a2e",
+      "name": "OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3060,
+        1420
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "4MrwhGjpgGjMDBqF",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "#### Envia para nossa AI principal\n  - Acessa as tools necessárias",
+        "height": 80,
+        "width": 329.0770749338561,
+        "color": 4
+      },
+      "id": "d7c101e2-5caf-49fe-821f-05e9c9281cb8",
+      "name": "Sticky Note16",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        4180,
+        1040
+      ]
+    },
+    {
+      "parameters": {
+        "name": "EventManager",
+        "description": "Use essa tool para gerenciar eventos de forma simplificada. Chame essa função fornecendo a operação desejada, a consulta do usuário e, opcionalmente, informações relevantes do histórico da conversa. Esta ferramenta está projetada para passar essas informações para uma IA especializada que realizará o agendamento ou outra operação necessária, interpretando o contexto e os detalhes fornecidos pelo usuário.",
+        "workflowId": {
+          "__rl": true,
+          "value": "Tv0DRWQaIbRuQfpf",
+          "mode": "list",
+          "cachedResultName": "[Anna-Tolls] EventManager"
+        },
+        "fields": {
+          "values": [
+            {
+              "name": "pushName",
+              "stringValue": "={{ $('Dados').item.json.meta.pushName }}"
+            },
+            {
+              "name": "chatwootId",
+              "type": "numberValue",
+              "numberValue": "={{ $('Dados').item.json.meta.chatwootId }}"
+            },
+            {
+              "name": "sessionId",
+              "stringValue": "={{ $('Usuario').item.json.sessionId }}"
+            }
+          ]
+        },
+        "specifyInputSchema": true,
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"operation\": {\n      \"type\": \"string\",\n      \"description\": \"A operação a ser realizada: 'create', 'update', 'delete' ou 'fetch'\",\n      \"enum\": [\"create\", \"update\", \"delete\", \"fetch\"],\n      \"example\": \"create\"\n    },\n    \"userQuery\": {\n      \"type\": \"string\",\n      \"description\": \"A instrução ou pedido fornecido pelo usuário\",\n      \"example\": \"Agende uma reunião com a equipe para discutir o novo projeto na próxima semana.\"\n    },\n    \"conversationHistory\": {\n      \"type\": \"string\",\n      \"description\": \"Informações relevantes do histórico da conversa para fornecer contexto adicional à IA especializada\",\n      \"example\": \"O usuário mencionou que todos estão disponíveis na quarta-feira.\"\n    }\n  },\n  \"required\": [\"operation\", \"userQuery\"]\n}"
+      },
+      "id": "ce0a5ef9-e470-4d53-99d4-e860223071f0",
+      "name": "EventManager",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        3880,
+        1540
+      ]
+    },
+    {
+      "parameters": {
+        "name": "StoreManager",
+        "description": "=Use essa tool para gerenciar bancos de dados vetoriais de forma abrangente. Chame essa função para criar, atualizar, deletar ou obter Stores, Docs e Vectors. Ela permite realizar operações como criar uma nova Store, adicionar ou atualizar Docs, gerenciar Vectors, e muito mais. Especifique a operação desejada e forneça a consulta do usuário para que o agente especializado possa interpretar e executar a tarefa solicitada.",
+        "workflowId": {
+          "__rl": true,
+          "value": "25xYRIFXnacDD2zQ",
+          "mode": "list",
+          "cachedResultName": "[Anna-Tolls] VectorDBManager"
+        },
+        "fields": {
+          "values": [
+            {
+              "name": "app.dify.url",
+              "stringValue": "={{ $('Dados').item.json.app.dify.url }}"
+            },
+            {
+              "name": "app.dify.key",
+              "stringValue": "={{ $('Dados').item.json.app.dify.key }}"
+            },
+            {
+              "name": "meta.pushName",
+              "stringValue": "={{ $('Dados').item.json.meta.pushName }}"
+            }
+          ]
+        },
+        "specifyInputSchema": true,
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"operation\": {\n      \"type\": \"string\",\n      \"description\": \"A operação a ser realizada. As opções incluem: 'CreateStore', 'ListStores', 'GetStoreVectors', 'CreateDocFile', 'CreateDocText', 'ListStoreDocs', 'DeleteStore', 'UpDocFile', 'UpDocText', 'AddVectorsDoc', 'ListDocVectors', 'DeleteDoc', 'GetDocStatus', 'UpDocVector', 'DeleteDocVector'\",\n      \"enum\": [\"CreateStore\", \"ListStores\", \"GetStoreVectors\", \"CreateDocFile\", \"CreateDocText\", \"ListStoreDocs\", \"DeleteStore\", \"UpDocFile\", \"UpDocText\", \"AddVectorsDoc\", \"ListDocVectors\", \"DeleteDoc\", \"GetDocStatus\", \"UpDocVector\", \"DeleteDocVector\"],\n      \"example\": \"CreateStore\"\n    },\n    \"userQuery\": {\n      \"type\": \"string\",\n      \"description\": \"A instrução ou pedido fornecido pelo usuário\",\n      \"example\": \"Crie uma nova Store chamada 'Projeto X' com acesso somente para mim.\"\n    },\n    \"conversationHistory\": {\n      \"type\": \"string\",\n      \"description\": \"Informações relevantes do histórico da conversa para fornecer contexto adicional ao agente especializado\",\n      \"example\": \"O usuário mencionou que precisa atualizar um documento específico com novos dados.\"\n    }\n  },\n  \"required\": [\"operation\", \"userQuery\"]\n}"
+      },
+      "id": "01d20d70-5673-47fe-93cf-c28e91527a1a",
+      "name": "VectorManager",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        4080,
+        1540
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "toolDescription": "Use esta ferramenta para transferir a conversa para o atendimento humano quando solicitado pelo usuário. Ao acionar esta ferramenta, a conversa será atribuída a um membro da equipe humana para continuar o atendimento.",
+        "method": "POST",
+        "url": "={{ $('Dados').item.json.app.chatwoot.url }}/api/v1/accounts/{{ $('Dados').item.json.app.chatwoot.accountId }}/conversations/{{ $('Dados').item.json.meta.conversationId }}/assignments",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "parametersBody": {
+          "values": [
+            {
+              "name": "team_id",
+              "valueProvider": "fieldValue",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "id": "0386b98c-81de-43ab-9017-5554c63ac880",
+      "name": "TransferHuman",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        4180,
+        1540
+      ],
+      "notesInFlow": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "n8obYcq8z69dkAPy",
+          "name": "Header Auth account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "Habilite a memória da AI",
+        "height": 126.09431373403345,
+        "width": 238.28658396280537,
+        "color": 2
+      },
+      "id": "adebf73a-ef46-4d5d-ac72-f14aba7f3b5b",
+      "name": "Sticky Note18",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3240,
+        1511
+      ]
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"messages\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    }\n  },\n  \"required\": [\"messages\"]\n}"
+      },
+      "id": "79c6bf5c-2bee-4b81-aa99-0e63b9ed3a54",
+      "name": "OutputParser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        3380,
+        1540
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f4a33a02-6a69-4e06-a9c5-624ced6dadc9",
+      "name": "OpenAI2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        3260,
+        1540
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "4MrwhGjpgGjMDBqF",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "fccc0847-a7c9-497b-a677-7ffab62c07a1",
+      "name": "SerpAPI",
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        4280,
+        1540
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "respostas",
+        "description": "Chame essa tool para guardar as respostas dos leads",
+        "workflowId": {
+          "__rl": true,
+          "value": "S3yMsS2D9VK7usHc",
+          "mode": "id"
+        },
+        "specifyInputSchema": true,
+        "jsonSchemaExample": "{\n  \"respostas\": {\n    \"pergunta\": \"\",\n    \"resposta\": \"\"\n  },\n  \"userId\": \"\" \n}"
+      },
+      "id": "a6180e50-e58d-46b2-85fa-821d6730d154",
+      "name": "answer",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        4380,
+        1540
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b90e49ff-d352-4c5b-b849-6d1c54253cff",
+      "name": "Postgres PGVector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1,
+      "position": [
+        2800,
+        1560
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Usuario').item.json.sessionId }}",
+        "contextWindowLength": 90
+      },
+      "id": "c02f1a2a-1590-4693-b700-5b37cfd3feeb",
+      "name": "Window Buffer Memory1",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        3260,
+        1220
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "bdd7accc-1d50-4625-90f6-7651232a14da",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        2900,
+        1220
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "4MrwhGjpgGjMDBqF",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.InputAI }}",
+        "options": {
+          "systemMessage": "={{ $json.systemMessage5 }}",
+          "returnIntermediateSteps": true,
+          "passthroughBinaryImages": true
+        }
+      },
+      "id": "95d6520b-8aa0-41ad-ad48-2b41ad6434aa",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        3460,
+        1080
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 100,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {},
+      "id": "aa4513c7-220d-4d19-b42d-51456494aa58",
+      "name": "NoOp.14",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        4380,
+        1180
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Whatsapp message to be splitted: {{ $json.output }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Por favor, gere a saída no seguinte formato JSON:\n{\n  \"messages\": [\n    \"splitedMessage\",\n    \"splitedMessage\",\n    \"splitedMessage\"\n  ]\n}\n\nAs mensagens devem ser divididas de forma natural, afinal estamos conversando com um humano, não é mesmo?\n\nCertifique-se de que a resposta siga exatamente essa estrutura, incluindo os colchetes e as aspas."
+            }
+          ]
+        }
+      },
+      "id": "03bfb80f-afc3-413e-95c3-c5addda1a1fb",
+      "name": "Parser  Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        3840,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 661.1307552011426,
+        "width": 1773.4168988812307,
+        "color": 6
+      },
+      "id": "2f8594f3-abe6-44d7-85b3-a2b71c564779",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2760,
+        1040
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3612a5f9-3db4-4ee2-9f97-1f9807228d1c",
+      "name": "Workflow Input Trigger",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        3060,
+        800
+      ]
+    }
+  ],
+  "connections": {
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VectorStore": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "VectorStore",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EventManager": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VectorManager": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TransferHuman": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OutputParser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Parser  Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Parser  Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "answer": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "VectorStore",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Parser  Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parser  Chain": {
+      "main": [
+        [
+          {
+            "node": "NoOp.14",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Workflow Input Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "d7ed2b4c-39f4-45c3-9685-1e662f5b46fa",
+  "triggerCount": 0,
+  "tags": [
+    {
+      "createdAt": "2025-02-04T17:20:11.225Z",
+      "updatedAt": "2025-02-04T17:20:11.225Z",
+      "id": "ODPZyWTzWOC4vZ2b",
+      "name": "beta dpt"
+    }
+  ]
+}
