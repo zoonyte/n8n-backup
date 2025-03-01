@@ -1,0 +1,18 @@
+{
+  "createdAt": "2025-02-04T17:36:28.662Z",
+  "updatedAt": "2025-02-04T17:36:28.662Z",
+  "id": "zFuN7xMt0D2qsSh7",
+  "name": "DPT RPS",
+  "active": false,
+  "nodes": [],
+  "connections": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "766860dd-17bc-4b83-afb4-08d67fc64721",
+  "triggerCount": 0,
+  "tags": []
+}
