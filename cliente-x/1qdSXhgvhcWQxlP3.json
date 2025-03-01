@@ -1,0 +1,200 @@
+{
+  "createdAt": "2025-03-01T16:51:41.177Z",
+  "updatedAt": "2025-03-01T17:16:59.408Z",
+  "id": "1qdSXhgvhcWQxlP3",
+  "name": "My workflow",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1445148b-3a4d-4b8c-873a-e7cdc3171357",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        620,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e5a194ea-8223-4928-9a96-f0feb4a56d04",
+              "name": "arquivo",
+              "value": "cliente-x/1bemk7OZSvTIezzy.json",
+              "type": "string"
+            },
+            {
+              "id": "1bbd0408-e9c3-4052-987c-9e2135626c85",
+              "name": "dono",
+              "value": "zoonyte",
+              "type": "string"
+            },
+            {
+              "id": "693d0b31-0b82-4e9e-b5c3-3f67ff116335",
+              "name": "repositorio",
+              "value": "n8n-backup",
+              "type": "string"
+            },
+            {
+              "id": "b318c7d1-dd69-42dc-9d14-730f5aa7b0ac",
+              "name": "versao",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "298039a1-a1a0-46f0-937f-dd396961db1e",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        840,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "={{ $json.dono }}",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "={{ $json.repositorio }}",
+          "mode": "name"
+        },
+        "filePath": "={{ $json.arquivo }}",
+        "additionalParameters": {
+          "reference": "={{ $json.versao }}"
+        }
+      },
+      "id": "60821dbf-0714-4a44-adcc-2b95109b2e18",
+      "name": "GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        220
+      ],
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "6tfoYcaiZGrh6pMP",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "id": "ffcaccb1-0780-45b3-a546-9b80019fb164",
+      "name": "Extract from File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        220
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "workflowId": {
+          "__rl": true,
+          "value": "={{ $json.data.id }}",
+          "mode": "id"
+        },
+        "workflowObject": "={{ JSON.stringify($json.data) }}",
+        "requestOptions": {}
+      },
+      "id": "a53d942e-546a-4bdd-9e8f-a0ba8725cf4d",
+      "name": "n8n",
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        1500,
+        220
+      ],
+      "credentials": {
+        "n8nApi": {
+          "id": "37rIbtn6OUj2beDP",
+          "name": "n8n account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "GitHub",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "a17ded4c-22ba-4879-9d1c-e31b01130251",
+  "triggerCount": 0,
+  "tags": [
+    {
+      "createdAt": "2025-03-01T17:16:49.431Z",
+      "updatedAt": "2025-03-01T17:16:49.431Z",
+      "id": "rWbVdZtbsJ2TbgMj",
+      "name": "backup"
+    }
+  ]
+}
