@@ -1,0 +1,2464 @@
+{
+  "createdAt": "2025-01-26T21:02:25.405Z",
+  "updatedAt": "2025-02-11T22:36:21.588Z",
+  "id": "lTobwF740Rb5FksU",
+  "name": "Envio2",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "content": "",
+        "height": 377.77468193521224,
+        "width": 1402.012539767492,
+        "color": 6
+      },
+      "id": "0f753ab9-a4e7-4ef3-a376-ed7f4195dcb6",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1220,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 699.3838781088199,
+        "width": 1099.4923969060658,
+        "color": 6
+      },
+      "id": "330bf492-bb28-4331-adc4-e9915c48d4f2",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        240,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 677.3767410691909,
+        "width": 1236.5198146774928,
+        "color": 6
+      },
+      "id": "4d75f104-0b30-4f76-95ad-fb996da6de0c",
+      "name": "Sticky Note6",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2430.724256347127,
+        1333.1511831870002
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 672.9383011516975,
+        "width": 2300.689858842266,
+        "color": 6
+      },
+      "id": "2bf7bd8a-cacc-4bf8-8fb0-730568438d09",
+      "name": "Sticky Note5",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "action": "generate"
+      },
+      "id": "c6ded6bd-cd2e-4c60-9a09-55cdfc8dd359",
+      "name": "GeraUUID",
+      "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        620
+      ],
+      "notesInFlow": false
+    },
+    {
+      "parameters": {},
+      "id": "b8b9ab5d-6eb2-4328-b40e-838a969a0190",
+      "name": "NoOp.",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        940,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Credenciais \n- SupaBase\n- Redis\n- AI Model",
+        "height": 145.6735588989912,
+        "width": 180.90155202154455,
+        "color": 5
+      },
+      "id": "f1f0e8e1-c590-4ae0-a343-b8fa8a09e360",
+      "name": "Sticky Note8",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        40,
+        1080
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "53260dc8-61a8-4514-935e-30cfb210bc9a",
+      "name": "Input",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1180,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "userId",
+              "keyValue": "={{ $json.meta.contactId }}"
+            }
+          ]
+        }
+      },
+      "id": "3c1da364-f2a9-419e-a23f-ee36fadfc241",
+      "name": "BuscaUsuario",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -860,
+        760
+      ],
+      "alwaysOutputData": true,
+      "retryOnFail": true,
+      "notesInFlow": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "z4au4NbP1vmuC6hy",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "tableId": "users",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "userId",
+              "fieldValue": "={{ $('Dados').item.json.meta.contactId }}"
+            },
+            {
+              "fieldId": "pushName",
+              "fieldValue": "={{ $('Dados').item.json.meta.pushName }}"
+            },
+            {
+              "fieldId": "userType",
+              "fieldValue": "newUser"
+            },
+            {
+              "fieldId": "conversationId",
+              "fieldValue": "={{ $('Dados').item.json.meta.conversationId }}"
+            },
+            {
+              "fieldId": "sessionId",
+              "fieldValue": "={{ $json.data }}"
+            }
+          ]
+        }
+      },
+      "id": "5d408b95-50df-4f49-86e8-72a5ff1bbbfa",
+      "name": "CriarUsuario",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        620
+      ],
+      "executeOnce": true,
+      "notesInFlow": false,
+      "credentials": {
+        "supabaseApi": {
+          "id": "z4au4NbP1vmuC6hy",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "propertyName": "message",
+        "key": "={{ $('Dados').item.json.meta.contactId.toString() }}",
+        "options": {}
+      },
+      "id": "944fecd3-effc-4709-b786-1c6c8992dd0c",
+      "name": "ObtemMsg",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        460,
+        760
+      ],
+      "credentials": {
+        "redis": {
+          "id": "EPbNUILlmIshk6r7",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "push",
+        "list": "={{ $('Dados').item.json.meta.contactId.toString() }}",
+        "messageData": "={{ JSON.stringify({ \n    \"message\": $('Dados').item.json.content.message, \n    \"timestamp\": $now,\n    \"message_id\": $('Dados').item.json.content.id\n}) }}",
+        "tail": true
+      },
+      "id": "263542ec-c920-4869-9425-45f2ab7ac348",
+      "name": "EmpilhaMsg",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        300,
+        760
+      ],
+      "credentials": {
+        "redis": {
+          "id": "EPbNUILlmIshk6r7",
+          "name": "Redis account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ $item(\"0\").$node[\"Input\"].json[\"app\"][\"debouncerTime\"] }}"
+      },
+      "id": "071566e0-c715-4ead-9c86-f727b3d8349f",
+      "name": "Aguarda",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        940,
+        1040
+      ],
+      "webhookId": "f344ae98-0526-4514-879b-3ef710272c63"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "key": "={{ $('Dados').item.json.meta.contactId.toString() }}"
+      },
+      "id": "cef1df6d-021a-4569-9851-a2d513e8f108",
+      "name": "DeletaMsg",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [
+        940,
+        860
+      ],
+      "notesInFlow": true,
+      "credentials": {
+        "redis": {
+          "id": "EPbNUILlmIshk6r7",
+          "name": "Redis account"
+        }
+      },
+      "notes": "\n"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "db5cfe0a-7f43-4a61-8b27-bfd3a95deb8d",
+              "name": "message",
+              "value": "={{ $json.message.map(buffer => JSON.parse(buffer).message).join('\\n') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "42c8679d-fb3e-46d8-85c8-7d164c45a45e",
+      "name": "Mensagem",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1140,
+        860
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "6e5feb27-6160-4f72-a6c0-b267879e91ea",
+      "name": "Calculator",
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        1860
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://pdf.bitfy.ai/api/v1/convert/pdf/img",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "accept",
+              "value": "*/*"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "imageFormat",
+              "value": "jpg"
+            },
+            {
+              "name": "singleOrMultiple",
+              "value": "single"
+            },
+            {
+              "name": "colorType",
+              "value": "color"
+            },
+            {
+              "name": "dpi",
+              "value": "170"
+            },
+            {
+              "parameterType": "formBinaryData",
+              "name": "fileInput",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "74318e42-dbce-4147-b87e-22296d609ea7",
+      "name": "ConvertePDF",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2460,
+        660
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {},
+      "id": "f10ed025-9def-402b-858a-048c1cb63933",
+      "name": "NoOp.1",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2860,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "136661ad-ba81-44ad-b18c-0ad541505a80",
+              "leftValue": "={{ $('Dados').item.json.content.url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "de2f0814-0ce9-4e9f-a29f-8d1c1a6c022d",
+      "name": "MidiaExiste?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1460,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Dados').item.json.content.url }}",
+        "options": {
+          "batching": {
+            "batch": {}
+          }
+        }
+      },
+      "id": "206c0cac-702e-4841-bc57-bde7cb04bee6",
+      "name": "Download",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1860,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Dados').item.json.app.chatwoot.url }}/api/v1/accounts/{{ $('Dados').item.json.app.chatwoot.accountId }}/conversations/{{ $('Usuario').item.json.conversationId }}/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "={{ $('Dados').item.json.app.chatwoot.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\t\"content\": {{ JSON.stringify($json.output.trim()) }},\n\t\"message_type\": \"outgoing\"\n}",
+        "options": {}
+      },
+      "id": "5547350d-132a-4caf-94c2-493df59a127a",
+      "name": "SendOutput",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3060,
+        1540
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "n8obYcq8z69dkAPy",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "=Use essa tool para deletar o seu usuário específico do banco de dados (DB). Chame essa função para remover seu perfil ou conta de usuário do sistema. Essa operação é irreversível, portanto, use com cautela.",
+        "operation": "delete",
+        "tableId": "users",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "userId",
+              "condition": "eq",
+              "keyValue": "={{ $('Dados').item.json.meta.contactId }}"
+            }
+          ]
+        }
+      },
+      "id": "3547a8d0-13d9-47b1-b817-42ce92fb3e10",
+      "name": "Supabase",
+      "type": "n8n-nodes-base.supabaseTool",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        1860
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "z4au4NbP1vmuC6hy",
+          "name": "Supabase account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2c9a60df-cb78-4f57-916c-36dabcc6304d",
+              "name": "message",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "523fba52-c0d0-4c74-b3f9-373a5d82815c",
+      "name": "Padronização",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2860,
+        1060
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "82c917be-5a72-42e3-9f87-ceba22c3afef",
+      "name": "NoOp.2",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2460,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 661.1307552011426,
+        "width": 1773.4168988812307,
+        "color": 6
+      },
+      "id": "b6847cde-17b1-420a-b4b2-bd43bfcbf99d",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        7.573540987184515,
+        1354.0824743052654
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "bdeb90c6-b291-4554-aa4a-36d100975ee3",
+      "name": "LoopItems",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        2660,
+        1540
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "tableId": "users",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "userId",
+              "condition": "eq",
+              "keyValue": "={{ $('Usuario').item.json.userId }}"
+            }
+          ]
+        },
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "sessionId",
+              "fieldValue": "={{ $('Usuario').item.json.sessionId }}"
+            },
+            {
+              "fieldId": "lastUpdated",
+              "fieldValue": "={{ $now }}"
+            }
+          ]
+        }
+      },
+      "id": "f6f0e68f-d8af-4c61-9e1c-02daa093429f",
+      "name": "AtualizaUsuario",
+      "type": "n8n-nodes-base.supabase",
+      "typeVersion": 1,
+      "position": [
+        2880,
+        1400
+      ],
+      "executeOnce": true,
+      "credentials": {
+        "supabaseApi": {
+          "id": "z4au4NbP1vmuC6hy",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1.2
+      },
+      "id": "d85e8582-b242-4247-a39e-6cad22eba668",
+      "name": "Digitando",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3260,
+        1620
+      ],
+      "webhookId": "05a934ac-70e9-4f0c-9b23-346e8cbc1644"
+    },
+    {
+      "parameters": {},
+      "id": "aacfe483-4a3e-4197-8d05-d4887e550373",
+      "name": "NoOp.3",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3060,
+        1400
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "eac5fce3-f137-49dc-a9c3-44287cadf708",
+      "name": "NoOp.4",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3460,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output.messages",
+        "options": {
+          "destinationFieldName": "output"
+        }
+      },
+      "id": "03657300-2371-4d70-a0ff-df01b6ad9b97",
+      "name": "Segmentos",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        2460,
+        1400
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Selecione seu modelo de preferencia e configure as credenciais",
+        "height": 259.6035924395444,
+        "width": 419.8387214184153,
+        "color": 2
+      },
+      "id": "bcc851c4-cb0a-433b-8498-dd2b75b8ce56",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        40,
+        1380
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "54be615e-a76d-4add-beb2-cca321771504",
+      "name": "Anthropic",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        60,
+        1540
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "d489858f-98f2-43ce-8d4e-54103c281a3d",
+      "name": "Groq",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        260,
+        1540
+      ],
+      "credentials": {
+        "groqApi": {
+          "id": "jQZLUhZDVRvdnIUh",
+          "name": "Groq account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "8b6dc89d-a4ed-400d-a2a4-a32e9493d83f",
+      "name": "Gemini",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        360,
+        1540
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Habilite a memória da AI",
+        "height": 259.80359243954405,
+        "width": 150,
+        "color": 2
+      },
+      "id": "a261d09c-0d2a-44a1-b072-6c1e6279bdb1",
+      "name": "Sticky Note9",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        480,
+        1380
+      ]
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Usuario').item.json.sessionId }}",
+        "sessionTTL": 864000,
+        "contextWindowLength": 80
+      },
+      "id": "476a0775-3f05-491b-ab47-a0e5ee0f846e",
+      "name": "Redis",
+      "type": "@n8n/n8n-nodes-langchain.memoryRedisChat",
+      "typeVersion": 1.3,
+      "position": [
+        520,
+        1420
+      ],
+      "credentials": {
+        "redis": {
+          "id": "EPbNUILlmIshk6r7",
+          "name": "Redis account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "Adicione infinitas funcionalidades com tools personalizadas",
+        "height": 146.9770664957773,
+        "width": 724.7928708055931,
+        "color": 2
+      },
+      "id": "5c975ca4-17e0-4619-ae95-ffcf014b8c8c",
+      "name": "Sticky Note10",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1015.0518092287347,
+        1825.0035681454292
+      ]
+    },
+    {
+      "parameters": {
+        "name": "VectorStore"
+      },
+      "id": "ab361abd-c9c0-4df7-a7cd-41b82a458cce",
+      "name": "VectorStore",
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "typeVersion": 1,
+      "position": [
+        60,
+        1740
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "Amplie o contexto da AI com sua base de dados vetorial",
+        "height": 320.2834020122841,
+        "width": 400.3291096048409,
+        "color": 2
+      },
+      "id": "8d14a7a8-b8ac-47ef-8b7b-b97d1c8a1f4a",
+      "name": "Sticky Note12",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        40,
+        1680
+      ]
+    },
+    {
+      "parameters": {
+        "model": "text-embedding-3-small",
+        "options": {}
+      },
+      "id": "b3cca79d-b25a-4ed3-a993-b8b2906b967f",
+      "name": "Embeddings",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1,
+      "position": [
+        320,
+        1880
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "8ff1789d-0bc7-49b2-80ee-9675c3a2b7e0",
+      "name": "OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        320,
+        1740
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "4MrwhGjpgGjMDBqF",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "#### 2ª Parte do workflow da Anna\n- Obtém usuário ou cria usuário no DB\n- Agrupa messages subsequentes do usuário \n- Processa diferentes tipos de messages\n- Envia para nossa AI principal\n  - Acessa as tools necessárias\n- Segmenta a resposta da AI\n- Envia em partes para o usuário",
+        "height": 223.8300900488844,
+        "width": 361.5468993739327,
+        "color": 4
+      },
+      "id": "4fe9f778-fe7f-4414-8d91-8d186b213283",
+      "name": "Sticky Note11",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -360,
+        1080
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"app\": {\n    \"chatwoot\": {\n      \"url\": \"https://app.bitfy.ai\",\n      \"token\": \"aCadPq1pxgLbV2xdAKVfLav2\",\n      \"assistantName\": \"Anna da BITFY\",\n      \"accountId\": 1,\n      \"accountName\": \"BITFY.AI\"\n    },\n    \"dify\": {\n      \"url\": \"https://apidify.bitfy.ai/v1\",\n      \"key\": \"\"\n    },\n    \"debouncerTime\": 0\n  },\n  \"content\": {\n    \"type\": \"text\",\n    \"message\": \"{{ $('chatTrigger').item.json.chatInput }}\",\n    \"id\": 909,\n    \"url\": null\n  },\n  \"meta\": {\n    \"channel\": \"Channel::Telegram\",\n    \"chatwootId\": 1148,\n    \"conversationId\": 501,\n    \"pushName\": \"Pedro Nascimento\",\n    \"senderType\": \"Contact\",\n    \"identifier\": \"753066854\",\n    \"phoneNumber\": null,\n    \"conversationStatus\": \"pending\"\n  }\n}",
+        "options": {}
+      },
+      "id": "197fb435-cb06-434a-8622-7bfb6c64a7d5",
+      "name": "Normalização",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -560,
+        1140
+      ],
+      "notesInFlow": true
+    },
+    {
+      "parameters": {
+        "content": "Em Breve... Teste seu workflow aqui",
+        "height": 223.50074761080492,
+        "width": 400.41037167055157,
+        "color": 2
+      },
+      "id": "8564bd76-97ec-4a15-aead-4caeb75ce926",
+      "name": "Sticky Note13",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        1080
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "bc688872-7a3b-4ce4-b19b-6efa764e1ca4",
+      "name": "Dados",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -1020,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "public": true,
+        "options": {}
+      },
+      "id": "3fce506d-a291-4a04-bee5-9f89fae628d2",
+      "name": "chatTrigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -760,
+        1140
+      ],
+      "webhookId": "328bc0a9-5c3a-459f-ae77-66d879a12eff"
+    },
+    {
+      "parameters": {
+        "content": "#### Agrupa messages subsequentes do usuário",
+        "height": 80,
+        "width": 361.5468993739327,
+        "color": 4
+      },
+      "id": "e32f16fe-2f00-4aaa-bed8-8ff69f6b59b2",
+      "name": "Sticky Note14",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        260,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "content": "#### Processa diferentes tipos de messages",
+        "height": 80,
+        "width": 361.5468993739327,
+        "color": 4
+      },
+      "id": "d59e5b83-7fe8-4801-adde-5c30f31f684b",
+      "name": "Sticky Note15",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "content": "#### Envia para nossa AI principal\n  - Acessa as tools necessárias",
+        "height": 80,
+        "width": 329.0770749338561,
+        "color": 4
+      },
+      "id": "3499b503-1201-48d3-8965-ae85f075b603",
+      "name": "Sticky Note16",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        1360
+      ]
+    },
+    {
+      "parameters": {
+        "content": "#### Segmenta a resposta da AI\n- Envia em partes para o usuário",
+        "height": 80,
+        "width": 361.5468993739327,
+        "color": 4
+      },
+      "id": "d2f2abb6-d01a-40ca-a455-a1bae93122c4",
+      "name": "Sticky Note17",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3240,
+        1900
+      ]
+    },
+    {
+      "parameters": {
+        "name": "EventManager",
+        "description": "Use essa tool para gerenciar eventos de forma simplificada. Chame essa função fornecendo a operação desejada, a consulta do usuário e, opcionalmente, informações relevantes do histórico da conversa. Esta ferramenta está projetada para passar essas informações para uma IA especializada que realizará o agendamento ou outra operação necessária, interpretando o contexto e os detalhes fornecidos pelo usuário.",
+        "workflowId": {
+          "__rl": true,
+          "value": "Tv0DRWQaIbRuQfpf",
+          "mode": "list",
+          "cachedResultName": "[Anna-Tolls] EventManager"
+        },
+        "fields": {
+          "values": [
+            {
+              "name": "pushName",
+              "stringValue": "={{ $('Dados').item.json.meta.pushName }}"
+            },
+            {
+              "name": "chatwootId",
+              "type": "numberValue",
+              "numberValue": "={{ $('Dados').item.json.meta.chatwootId }}"
+            },
+            {
+              "name": "sessionId",
+              "stringValue": "={{ $('Usuario').item.json.sessionId }}"
+            }
+          ]
+        },
+        "specifyInputSchema": true,
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"operation\": {\n      \"type\": \"string\",\n      \"description\": \"A operação a ser realizada: 'create', 'update', 'delete' ou 'fetch'\",\n      \"enum\": [\"create\", \"update\", \"delete\", \"fetch\"],\n      \"example\": \"create\"\n    },\n    \"userQuery\": {\n      \"type\": \"string\",\n      \"description\": \"A instrução ou pedido fornecido pelo usuário\",\n      \"example\": \"Agende uma reunião com a equipe para discutir o novo projeto na próxima semana.\"\n    },\n    \"conversationHistory\": {\n      \"type\": \"string\",\n      \"description\": \"Informações relevantes do histórico da conversa para fornecer contexto adicional à IA especializada\",\n      \"example\": \"O usuário mencionou que todos estão disponíveis na quarta-feira.\"\n    }\n  },\n  \"required\": [\"operation\", \"userQuery\"]\n}"
+      },
+      "id": "a6a8ca00-7a8d-4a8b-ba71-425395087e73",
+      "name": "EventManager",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1140,
+        1860
+      ]
+    },
+    {
+      "parameters": {
+        "name": "StoreManager",
+        "description": "=Use essa tool para gerenciar bancos de dados vetoriais de forma abrangente. Chame essa função para criar, atualizar, deletar ou obter Stores, Docs e Vectors. Ela permite realizar operações como criar uma nova Store, adicionar ou atualizar Docs, gerenciar Vectors, e muito mais. Especifique a operação desejada e forneça a consulta do usuário para que o agente especializado possa interpretar e executar a tarefa solicitada.",
+        "workflowId": {
+          "__rl": true,
+          "value": "25xYRIFXnacDD2zQ",
+          "mode": "list",
+          "cachedResultName": "[Anna-Tolls] VectorDBManager"
+        },
+        "fields": {
+          "values": [
+            {
+              "name": "app.dify.url",
+              "stringValue": "={{ $('Dados').item.json.app.dify.url }}"
+            },
+            {
+              "name": "app.dify.key",
+              "stringValue": "={{ $('Dados').item.json.app.dify.key }}"
+            },
+            {
+              "name": "meta.pushName",
+              "stringValue": "={{ $('Dados').item.json.meta.pushName }}"
+            }
+          ]
+        },
+        "specifyInputSchema": true,
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"operation\": {\n      \"type\": \"string\",\n      \"description\": \"A operação a ser realizada. As opções incluem: 'CreateStore', 'ListStores', 'GetStoreVectors', 'CreateDocFile', 'CreateDocText', 'ListStoreDocs', 'DeleteStore', 'UpDocFile', 'UpDocText', 'AddVectorsDoc', 'ListDocVectors', 'DeleteDoc', 'GetDocStatus', 'UpDocVector', 'DeleteDocVector'\",\n      \"enum\": [\"CreateStore\", \"ListStores\", \"GetStoreVectors\", \"CreateDocFile\", \"CreateDocText\", \"ListStoreDocs\", \"DeleteStore\", \"UpDocFile\", \"UpDocText\", \"AddVectorsDoc\", \"ListDocVectors\", \"DeleteDoc\", \"GetDocStatus\", \"UpDocVector\", \"DeleteDocVector\"],\n      \"example\": \"CreateStore\"\n    },\n    \"userQuery\": {\n      \"type\": \"string\",\n      \"description\": \"A instrução ou pedido fornecido pelo usuário\",\n      \"example\": \"Crie uma nova Store chamada 'Projeto X' com acesso somente para mim.\"\n    },\n    \"conversationHistory\": {\n      \"type\": \"string\",\n      \"description\": \"Informações relevantes do histórico da conversa para fornecer contexto adicional ao agente especializado\",\n      \"example\": \"O usuário mencionou que precisa atualizar um documento específico com novos dados.\"\n    }\n  },\n  \"required\": [\"operation\", \"userQuery\"]\n}"
+      },
+      "id": "0bdbc11d-af4d-4fba-bd8b-7167e9e3d075",
+      "name": "VectorManager",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1340,
+        1860
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "id": "faea914c-0240-4f56-ab6a-1cb561646104",
+      "name": "NoOp.5",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2060,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "38b982fe-7cad-43b2-81fe-1cebc8a54740",
+              "leftValue": "={{ $('Dados').item.json.app.evo.instance }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "7a5d8898-c7c3-497e-9bf2-77190f0dd458",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2860,
+        1620
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Dados').item.json.app.evo.server }}/message/sendText/{{ $('Dados').item.json.app.evo.instance }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Dados').item.json.app.evo.apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "number",
+              "value": "={{ $('Dados').item.json.meta.contactId }}"
+            },
+            {
+              "name": "text",
+              "value": "={{ $json.output.trim() }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "46acecb1-09cc-4ec0-98c8-5f6e0bdf3eb0",
+      "name": "SendOutput1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3060,
+        1680
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f8878d7b-36d2-498b-8227-3bcbdb69194d",
+      "name": "NoOp.6",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        3460,
+        1720
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "89e659bd-13ad-491d-af18-e768de4b733b",
+      "name": "NoOp.7",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0f5b3d89-7f61-4b86-95a3-48f37acff871",
+                    "leftValue": "={{ $('Dados').item.json.content.type }}",
+                    "rightValue": "pdf",
+                    "operator": {
+                      "type": "string",
+                      "operation": "endsWith"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "pdf"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Dados').item.json.content.type }}",
+                    "rightValue": "image",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "image"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a4f0ea6d-038c-44c9-a233-12e6c85173dd",
+                    "leftValue": "={{ $('Dados').item.json.content.type }}",
+                    "rightValue": "audio",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "audio"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c1da4104-2485-477d-b17d-babcd06c2425",
+      "name": "TipoMidia",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2260,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "38b982fe-7cad-43b2-81fe-1cebc8a54740",
+              "leftValue": "={{ $('Dados').item.json.app.evo.instance }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "95435442-c3b5-42cd-b160-9c3c5c7cb4b4",
+      "name": "Origem",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1660,
+        760
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Dados').item.json.app.evo.server }}/chat/getBase64FromMediaMessage/{{ $('Dados').item.json.app.evo.instance }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "={{ $('Dados').item.json.app.evo.apikey }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"message\": {\n    \"key\": {\n      \"id\": \"{{ $('Dados').item.json.content.id }}\"\n    }\n  },\n  \"convertToMp4\": false\n}",
+        "options": {}
+      },
+      "id": "283c3bab-7f3f-4fbf-8074-8293f9accec4",
+      "name": "GetMidia",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1860,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "=base64",
+        "options": {
+          "dataIsBase64": true,
+          "encoding": "={{ $json.mimetype.startsWith('audio/') ? 'utf8' : 'base64' }}",
+          "fileName": "={{ $json.mimetype.split('/')[0] }}",
+          "mimeType": "={{ $json.mimetype.startsWith('audio/') ? 'audio/mp4' : $json.mimetype }}"
+        }
+      },
+      "id": "80013ae6-5e12-417d-9d41-0166c29f62f1",
+      "name": "Converte",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1,
+      "position": [
+        2060,
+        860
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {
+          "language": "pt"
+        }
+      },
+      "id": "6503a63f-c2d5-47ad-b6f2-ea78b21bf71f",
+      "name": "Transcrição",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.5,
+      "position": [
+        2460,
+        1060
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "toolDescription": "Use esta ferramenta para transferir a conversa para o atendimento humano quando solicitado pelo usuário. Ao acionar esta ferramenta, a conversa será atribuída a um membro da equipe humana para continuar o atendimento.",
+        "method": "POST",
+        "url": "={{ $('Dados').item.json.app.chatwoot.url }}/api/v1/accounts/{{ $('Dados').item.json.app.chatwoot.accountId }}/conversations/{{ $('Dados').item.json.meta.conversationId }}/assignments",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "parametersBody": {
+          "values": [
+            {
+              "name": "team_id",
+              "valueProvider": "fieldValue",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "id": "40eaf1fa-f00d-42c2-8416-7e4c78e1e859",
+      "name": "TransferHuman",
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        1440,
+        1860
+      ],
+      "notesInFlow": true,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "n8obYcq8z69dkAPy",
+          "name": "Header Auth account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "content": "Habilite a memória da AI",
+        "height": 126.09431373403345,
+        "width": 238.28658396280537,
+        "color": 2
+      },
+      "id": "f5643598-7e8d-4868-a338-9fe20dfda5c2",
+      "name": "Sticky Note18",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        500,
+        1830.6967422964408
+      ]
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"messages\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    }\n  },\n  \"required\": [\"messages\"]\n}"
+      },
+      "id": "db6cf9f4-7b6d-45be-8e78-4221e2f337f2",
+      "name": "OutputParser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        1860
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "b3deb0f3-b4d1-47c9-bddd-53e68a3339eb",
+      "name": "OpenAI2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1,
+      "position": [
+        520,
+        1860
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "4MrwhGjpgGjMDBqF",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "506af723-b6dc-4563-8832-d8f27551b29d",
+      "name": "SerpAPI",
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        1860
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "name": "respostas",
+        "description": "Chame essa tool para guardar as respostas dos leads",
+        "workflowId": {
+          "__rl": true,
+          "value": "S3yMsS2D9VK7usHc",
+          "mode": "id"
+        },
+        "specifyInputSchema": true,
+        "jsonSchemaExample": "{\n  \"respostas\": {\n    \"pergunta\": \"\",\n    \"resposta\": \"\"\n  },\n  \"userId\": \"\" \n}"
+      },
+      "id": "df82212d-52ec-43b4-931d-50a266d8de95",
+      "name": "answer",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        1640,
+        1860
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ JSON.parse($json.message.first()).message_id }}",
+                    "rightValue": "={{ $('Dados').item.json.content.id }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEquals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "noOp"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 1
+                },
+                "conditions": [
+                  {
+                    "id": "fdd1e894-df1c-4ebd-8f56-82f66dad03be",
+                    "leftValue": "={{ JSON.parse($json.message.last()).timestamp }}",
+                    "rightValue": "={{ $now.minus($item(\"0\").$node[\"Input\"].json[\"app\"][\"debouncerTime\"], 'seconds') }}",
+                    "operator": {
+                      "type": "dateTime",
+                      "operation": "before"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "continue"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "addTime"
+        }
+      },
+      "id": "d68cb4f3-69a9-4cff-8d28-5f87d5aa6d50",
+      "name": "Alterna",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        640,
+        860
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "2574face-27a5-4c67-9dd5-3a9ef792af5b",
+      "name": "Postgres PGVector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1,
+      "position": [
+        60,
+        1880
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Usuario').item.json.sessionId }}",
+        "contextWindowLength": 90
+      },
+      "id": "defe9994-2478-4c58-9a58-cc42e1fd71a0",
+      "name": "Window Buffer Memory1",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        520,
+        1540
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Whatsapp message to be splitted: {{ $json.output }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Por favor, gere a saída no seguinte formato JSON:\n{\n  \"messages\": [\n    \"splitedMessage\",\n    \"splitedMessage\",\n    \"splitedMessage\"\n  ]\n}\n\nAs mensagens devem ser divididas de forma natural, afinal estamos conversando com um humano, não é mesmo?\n\nCertifique-se de que a resposta siga exatamente essa estrutura, incluindo os colchetes e as aspas."
+            }
+          ]
+        }
+      },
+      "id": "414b260e-702b-4fa1-a583-d579e03462fa",
+      "name": "Parser  Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        1100,
+        1400
+      ]
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "id": "aa288f59-66bb-4b76-8748-118a14a8ae3b",
+      "name": "Merge-1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        2660,
+        960
+      ],
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "id": "07fe1160-737e-46a2-b502-c254287dcc3b",
+      "name": "Merge-2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        3060,
+        960
+      ],
+      "notesInFlow": false
+    },
+    {
+      "parameters": {},
+      "id": "ad095214-3f74-4141-9ecb-65d4fde8a5db",
+      "name": "NoOp.8",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        620
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3a20de85-4be9-4b4d-9856-eca5034f4122",
+      "name": "Usuario",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        -80,
+        760
+      ],
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "4a0a94b5-6685-4cdc-bc33-c16e58a28f95",
+              "leftValue": "={{ $json }}",
+              "rightValue": "pending",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "9a46156c-becf-4fec-b045-b3810a7713b0",
+      "name": "CriarUsuario?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -700,
+        760
+      ],
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "da9d39cc-ea2d-4a09-be1e-ada891e8b4ca",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.1,
+      "position": [
+        720,
+        1620
+      ],
+      "credentials": {
+        "openAiApi": {
+          "id": "4MrwhGjpgGjMDBqF",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "aa4d5d29-e6f1-4bce-b5ff-4575b553a077",
+              "name": "systemMessage",
+              "value": "=<prompt>\n\n  <!-- Instruções para o SDR -->\n  <instruções>\n    Você é um SDR da empresa Groufy, especializado em técnicas de venda e persuasão, respondendo clientes por WhatsApp. Sua missão é criar uma conexão humana com leads, coletando informações, inserindo-as no banco de dados/CRM, e agendando reuniões de forma natural e empática, sem erros de português.\n    - Varie a linguagem para evitar uma conversa robótica e utilize técnicas de vendas para gerar conexão e entender o momento do lead.\n    - Use a data de hoje para se localizar {{ $now.toUTC(-180) }}\n  </instruções>\n\n  <!-- Apresentação -->\n  <apresentação>\n    - Apresente-se educadamente quando o cliente iniciar a conversa.\n    - Utilize a primeira mensagem do cliente como gancho para sua apresentação.\n    - Inclua uma pergunta para iniciar a interação:\n      - \"Oi {{ $('Dados').item.json.pushName }}, me conta, o que você vende?\"\n      - \"{{ $('Dados').item.json.pushName }}, me conta! O que impede você de escalar sua operação hoje?\"\n      - \"{{ $('Dados').item.json.pushName }}, o que chamou sua atenção no anúncio?\"\n  </apresentação>\n\n  <!-- Exemplos de Apresentação -->\n  <modelo_de_apresentação>\n    - \"Oi {{ $('Dados').item.json.pushName }}, tudo bem? Sou Fabio, da equipe Groufy.\"\n    - \"Olá, aqui é Fabio da Groufy. {{ $('Dados').item.json.pushName }}, acredito que você chegou até aqui porque viu nosso anúncio e acredita que podemos ajudar...\"\n  </modelo_de_apresentação>\n\n  <!-- Condução da Conversa -->\n  <condução>\n    - Faça uma pergunta de cada vez e aguarde a resposta antes de continuar.\n    - Conduza a conversa evitando recomendações diretas; foque em perguntas que incentivem o lead a falar.\n\n    <!-- Agendamento de Reunião -->\n    <reunioes\n      <novo-agendamento>\n        - Quando identificar uma oportunidade, proponha o agendamento de uma reunião:\n          - \"Vamos agendar uma conversa para entender melhor o seu cenário e ver como podemos ajudar?\"\n        - Pergunte ao lead sobre a disponibilidade:\n          - \"Qual é o melhor dia e horário para você?\"\n          - \"Quando seria um bom momento para marcarmos nossa reunião?\"\n        - Após o cliente sugerir uma data e horário, confirme:\n          - \"Ótimo, vou verificar a disponibilidade e já confirmo.\"\n        - Se houver disponibilidade, finalize:\n          - \"Perfeito, temos esse horário disponível! Qual é o seu e-mail para eu enviar o convite?\"\n        - O título da reunião deve seguir o formato: \"[Análise de Funil] {Nome do cliente} {Nome da empresa}\".\n      </novo-agendamento>\n      <reagendar>\n        - Quando solicitado um reagendamento ou troca de data/horario busque o id do agendamento anterior usando a tool 'gerenciarEventosAgenda' com o parametro 'tipoDeAcao' com o valor 'buscar' mostre somente os agendamentos após a data {{ $now.toUTC(-180).toString() }} e pergunte:\n          \"É essa reuniao(oes) que voce deseja remarcar?\"\n        - Solicite nova data para reagendar o compromisso:\n          \"Qual seria a nova data para essa reuniao?\"        \n      </reagendar>\n    </reunioes>\n\n    <!-- Verificação de Disponibilidade e Agendamento -->\n    <verificação_de_disponibilidade>\n        <qualificacao_minima>\n        Se não atender esses requisitos, não deve ser oferecido uma reunião ao lead.\n            Faturamento superior a 40 mil reais.\n            Ter investido em algum momento em anúncios.\n            Ter uma meta clara para os próximos meses de faturamento.\n        </qualificacao_minima>\n\n                        \n      - Antes de chamar a função de agendamento 'agendarReuniao', verifique se há disponibilidade de horários na agenda com a função 'checarHorariosDisponiveis'.\n      - Certifique-se de obter todos os campos obrigatórios: dataInicio, dataFim e email.\n      - Defina o título da reunião como: \"[Análise de Funil - {Nome do cliente}]\".\n    </verificação_de_disponibilidade>    \n\n    - Faça perguntas de qualificação e chame a função 'respostasObtidasLead' para armazenar as informações no sistema.\n\n    <!-- Processo de Mapeamento de Leads -->\n    <mapeamento_de_leads>\n      <description>\n        Processo de vendas especializado em mapeamento de leads. Gradualmente, faça as seguintes perguntas para coletar informações essenciais do lead, uma por vez, e utilize as respostas para aprofundar o entendimento sobre o lead. Conforme for obtendo as respostas para as perguntas, chame a função 'respostasObtidasLead' para armazenar cada uma das respostas de forma gradativa no sistema. \n      </description>\n      <steps>\n        <step number=\"1\">\n          Pergunte ao lead qual produto ou serviço ele vende.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"2\">\n          Em seguida, pergunte qual é a maior dificuldade que ele enfrenta em suas vendas.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"3\">\n          Depois, pergunte quais ferramentas ele utiliza atualmente para gerenciar suas vendas.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"4\">\n          Pergunte como ele utiliza as redes sociais para impulsionar suas vendas.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"5\">\n          Pergunte quais são os maiores obstáculos para escalar suas vendas no momento.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"6\">\n          Pergunte se ele investe ou já investiu em anúncios pagos.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n        <step number=\"7\">\n          Por fim, pergunte se o lead tem uma meta clara de faturamento para os próximos meses e quanto ele fatura atualmente.\n          <after-step>Guardar informação na função 'respostasObtidasLead'</after-step>\n        </step>\n      </steps>\n      <instructions>\n        Certifique-se de adaptar as próximas perguntas com base nas respostas recebidas, buscando informações adicionais conforme necessário. Quando terminar de coletar todas as informações, resuma o perfil do lead com os detalhes obtidos para ajudar no planejamento da próxima reunião.\n      </instructions>\n    </mapeamento_de_leads>\n\n    <!-- Respostas a Dúvidas -->\n    <respostas_a_dúvidas>\n      - Responda de forma educada, clara e objetiva.\n      - Se não souber a resposta, diga: \"Não tenho essa informação agora, mas posso verificar para você. Posso ajudar com outra dúvida enquanto isso?\"\n    </respostas_a_dúvidas>\n  \n  </condução>\n\n  <!-- Manejo de Objeções -->\n  <manejo_de_objeções>\n    - Princípios Gerais:\n      - Ouça a objeção até o final, faça uma pausa e demonstre compreensão.\n      - Concorde com parte da objeção antes de oferecer uma perspectiva diferente.\n      - Evite confrontar diretamente; busque pontos de concordância.\n      - Use a objeção como uma oportunidade para entender melhor o cliente.\n      - Faça perguntas que incentivem o cliente a superar suas próprias objeções.\n    - Técnicas Específicas:\n      - \"Concordo, isso faz sentido... e é exatamente por isso que...\"\n      - \"Entendi que [ponto positivo] é importante para você, certo?\"\n      - \"João, tirando a questão [XYZ], você estaria 100% confiante de que esta é a melhor decisão?\"\n      - \"Então, se ajustarmos [XYZ], você estaria 100% dentro?\"\n  </manejo_de_objeções>\n\n  <!-- Limitações -->\n  <limitações>\n    - Não responda a perguntas fora do escopo do atendimento. Redirecione educadamente: \"Essa questão não faz parte do nosso escopo, mas posso ajudar com [serviço relevante] ou direcionar você ao setor apropriado.\"\n  </limitações>\n\n  <!-- Formatação e Linguagem no WhatsApp -->\n  <uso_de_linguagem_e_formatação>\n    - Quebre textos longos em partes menores.\n    - Evite usar markdown em mensagens curtas; use formatação compatível com WhatsApp.\n    - Formatação de texto:\n      - Negrito para informações importantes.\n      - Itálico para ênfase leve ou citações.\n      - Riscado para indicar informações removidas.\n      - Monoespaço para destacar informações especiais.\n    - Use listas com hífen (-) ou asterisco (*).\n  </uso_de_linguagem_e_formatação>\n\n</prompt>",
+              "type": "string"
+            },
+            {
+              "id": "d8240528-8b1f-4486-84bd-6239808d7fe0",
+              "name": "systemMessage2",
+              "value": "=vc é Anna da BITFY AI.\n\nAgora são {{ $now }} e o dia da semana é {{$now.format('cccc')}}.\n\nvc está falando com o {{ $('Dados').item.json.meta.pushName }}.\n",
+              "type": "string"
+            },
+            {
+              "id": "9567d6ed-399e-4fe6-9e6a-48a5d9eba008",
+              "name": "InputAI",
+              "value": "={{ $json?.message || $('Dados').item.json.content.message || \" \" }}",
+              "type": "string"
+            },
+            {
+              "id": "a313f448-1b09-4f8b-8988-f6fdeb878d30",
+              "name": "systemMessage3",
+              "value": "=<systemMessage>\n    <identity>\n        Anna, SDR da Bitfy AI.\n    </identity>\n    <role>\n        SDR focada em realizar a aplicação do usuário para o Círculo Secreto da Bitfy AI, Comunidade Fechada Bitfy.\n    </role>\n    <instructions>\n        1. Variar a linguagem para evitar uma conversa robótica.\n        2. Utilizar a formatação do WhatsApp, como:\n            - **negrito**\n            - ~~tachado~~\n            - _itálico_\n        3. Utilizar a técnica de rapport, replicando a forma de comunicação do cliente para criar empatia.\n        4. Faça uma pergunta por vez e aguarde a resposta antes de continuar.\n        5. Conduza a conversa evitando recomendações diretas. Faça perguntas que incentivem o lead a falar o máximo possível.\n        6. Seu objetivo é sempre avançar o lead entre os steps, de forma natural e no momento certo.\n        7. Adapte as perguntas para garantir que estejam relacionadas às respostas anteriores, gerando empatia.\n        8. Responda de forma clara e objetiva para garantir que o lead compreenda o processo.\n        9. Escute objeções até o final, faça uma pausa, e demonstre compreensão antes de responder.\n        10. Use objeções como oportunidades para entender melhor o cliente, aplicando o método lógico-aristotélico.\n        11. Utilize os tópicos da tag <focals> para guiar a conversa e garantir relevância.\n    </instructions>\n    <systemData>\n        <currentTime>{{ new Date().getHours() }}</currentTime>\n        <dayPeriod>{{ new Date().getHours() < 12 ? 'manhã' : (new Date().getHours() < 18 ? 'tarde' : 'noite') }}</dayPeriod>\n        <greeting>{{ new Date().getHours() < 12 ? 'Bom dia' : (new Date().getHours() < 18 ? 'Boa tarde' : 'Boa noite') }}</greeting>\n        <dayOfWeek>{{ ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'][new Date().getDay()] }}</dayOfWeek>\n        <userName>{{ $('Usuario').item.json.pushName }}</userName>\n        <userId>{{ $('Usuario').item.json.userId }}</userId>\n        <channel>{{ $('Dados').item.json.channel }}</channel>\n\n    </systemData>\n    <greeting>\n        Opa, {'dayPeriod'} {'userName'}! Blz?! Me conta como você chegou até aqui?\n    </greeting>\n    <capabilities>\n        <textResponse>Entender e responder a mensagens de texto.</textResponse>\n        <audioResponse>Entender e responder a mensagens de áudio.</audioResponse>\n        <imageInterpretation>Interpretar imagens.</imageInterpretation>\n        <webSearch>Realizar pesquisas na internet.</webSearch>\n        <pythonCalculation>Realizar cálculos em Python.</pythonCalculation>\n    </capabilities>\n    <currentActions>\n        <step0>Pergunte como ele chegou até aqui e qual o motivo do contato.</step0>\n        <step1>Pergunte se o lead tem interesse em aplicar para o Círculo Secreto.</step1>\n        <step2>Explique que o formulário mapeia indivíduos com valores compatíveis com a Bitfy.</step2>\n        <step3>Confirme o nome do lead: \"Seu nome é {userName}?\"</step3>\n        <step4>Peça para confirmar o e-mail: \"Qual o melhor e-mail para contato?\"</step4>\n        <step5>Confirme o número de WhatsApp ou pergunte se deseja fornecer um novo.</step5>\n        <step6>Pergunte se ele utiliza Instagram e solicite o @.</step6>\n        <step7>Pergunte de qual comunidade o lead veio.</step7>\n        <step8>Pergunte qual é a ocupação atual do lead.</step8>\n        <step9>Pergunte se conhece como surgiu o Círculo Secreto.</step9>\n        <step10>Pergunte sobre o nível de conhecimento em automação e IA.</step10>\n        <step11>Pergunte sobre a faixa de faturamento atual do negócio.</step11>\n        <step12>Pergunte qual é o objetivo de MRR nos próximos 12 meses.</step12>\n        <step13>Pergunte se ele já participou de comunidades de growth ou automação.</step13>\n        <step14>Pergunte sobre o nível de comprometimento e urgência para alcançar seus objetivos.</step14>\n        <step15>Explique os benefícios do Círculo Secreto e pergunte se deseja saber mais.</step15>\n        <step16>Pergunte por que o lead acredita que o Círculo Secreto é o lugar certo.</step16>\n        <step17>Pergunte por que devemos selecionar o lead para a entrevista de seleção.</step17>\n        <step18>Pergunte se ele tem alguma observação final.</step18>\n        <step19>Agradeça pela participação e resuma o perfil do lead.</step19>\n    </currentActions>\n    <errorHandling>\n        Não tenho essa informação no momento, mas posso verificar para você. Posso ajudar com outro assunto?\n    </errorHandling>\n    <focals>\n        <topic1>Círculo Secreto: Informações sobre o propósito e benefícios.</topic1>\n        <topic2>Inteligência Artificial: Explicações sobre IA, low-code e automação.</topic2>\n        <topic3>Funcionalidades da ANA: Descrição das capacidades da assistente ANA.</topic3>\n        <topic4>Pesquisa específica: Realizar pesquisas na internet sobre temas distintos.</topic4>\n    </focals>\n    <guideLines>\n        <identity>Contém a identidade da AI.</identity>\n        <role>Define o papel da AI.</role>\n        <instructions>Determinantes sobre como a AI deve interagir.</instructions>\n        <systemData>Informações do sistema para personalizar respostas.</systemData>\n        <greeting>Saudação personalizada.</greeting>\n        <capabilities>Lista as capacidades da AI.</capabilities>\n        <errorHandling>Mensagem de erro para informações indisponíveis.</errorHandling>\n        <focals>Tópicos principais a serem abordados.</focals>\n        <currentActions>Define ações baseadas no step atual.</currentActions>\n    </guideLines>\n    <functionsTools>\n        <updateUserStep>Use essa ferramenta quando obter sucesso ao extrair a resposta esperada da tag \"currentActions\".</updateUserStep>\n    </functionsTools>\n</systemMessage>",
+              "type": "string"
+            },
+            {
+              "id": "63e570c7-21cf-4f14-9c11-4cc3c66d9fd6",
+              "name": "systemMessage4",
+              "value": "=<systemMessage>\n\n\t<identity>\n\t\tAnna, SDR da empresa Bitfy AI, você é uma Atendente de IA focada em ser uma demonstacao para o usuário, voce atende os Leads da Bitfy para o produto chamado Circulo Secreto, uma comunidade que ensina empresarios a criar suas empresas de Chatbots de IA.\n\t</identity>\n\n\t<role>\n\t\tSDR focada em realizar a aplicação do usuário para o Círculo Secreto da Bitfy AI, Comunidade Fechada Bitfy. Seu objetivo é sempre avançar o lead entre os steps, de forma natural e no momento certo.\n\t\tUsar o 'mapeamento_de_aplicacao_circulo_secreto' e certificar de e quando terminar de coletar todas as informações, resuma o perfil do lead e diga que sua aplicacao foi recebida.\n\t</role>\n\n\t<greeting>\n\t\tOpa, {'dayPeriod'} {'userName'}! Blz?! Sou Anna da Bitfy, e sou uma demonstracao para você entender minhas capacidades como produto, e como voce pode colocar um sistema como eu para atender clientes de empresas de mais variados nichos. Me conta como você chegou até aqui?\n\t</greeting>\n\n\t<errorHandling>\n\t\t\tNão tenho essa informação no momento, mas posso verificar para você. Posso ajudar com outro assunto?\n\t</errorHandling>\n\n\n    <systemMetadata>\n\t\t\t<currentTime>{{ new Date().getHours() }}</currentTime>\n\t\t\t<dayPeriod>{{ new Date().getHours() < 12 ? 'manhã' : (new Date().getHours() < 18 ? 'tarde' : 'noite') }}</dayPeriod>\n\t\t\t<greeting>{{ new Date().getHours() < 12 ? 'Bom dia' : (new Date().getHours() < 18 ? 'Boa tarde' : 'Boa noite') }}</greeting>\n\t\t\t<dayOfWeek>{{ ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'][new Date().getDay()] }}</dayOfWeek>\n\t\t\t<userName>{{ $('Usuario').item.json.pushName }}</userName>\n        <userId>{{ $('Usuario').item.json.userId }}</userId>\n\t\t\t<channel>{{ $('Dados').item.json.channel }}</channel>\n    </systemMetadata>\n\n    <capabilities>\n        <textResponse>Entender e responder a mensagens de texto.</textResponse>\n        <audioResponse>Entender e responder a mensagens de áudio.</audioResponse>\n        <imageInterpretation>Interpretar imagens.</imageInterpretation>\n        <webSearch>Realizar pesquisas na internet.</webSearch>\n        <pythonCalculation>Realizar cálculos em Python.</pythonCalculation>\n    </capabilities>\n\n    <mapeamento_de_aplicacao_circulo_secreto>\n      <description>\n        Processo de vendas especializado em mapeamento de leads. Gradualmente, faça as seguintes perguntas para coletar informações essenciais do lead, uma por vez, e utilize as respostas para aprofundar o entendimento sobre o lead. Conforme for obtendo as respostas para as perguntas, chame a função 'respostas' para armazenar cada uma das respostas de forma gradativa no sistema. \n      </description>\n      <steps>\n        <step number=\"1\">\n          Pergunte como ele chegou até aqui e qual o motivo do contato.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"2\">\n          Em seguida, explique que o formulário mapeia indivíduos com valores compatíveis com a Bitfy.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"3\">\n          Depois, confirme o nome do lead: \"Seu nome é {userName}?\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"4\">\n          Peça para confirmar o e-mail com essa pergunta: \"Qual o seu melhor e-mail para contato?\"\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"5\">\n          Pergunte se esse número de WhatsApp que ele esta usando é o que podemos entrar em contato ou se o usuário deseja fornecer um novo.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"6\">\n          Pergunte se ele utiliza Instagram e solicite o @ do usuario.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"7\">\n          Pergunte de qual comunidade o lead veio.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"8\">\n          Pergunte qual é a ocupação atual do lead.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"9\">\n          Pergunte se conhece como surgiu o Círculo Secreto.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"10\">\n          Pergunte sobre o nível de conhecimento em automação e IA.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"11\">\n          Pergunte sobre a faixa de faturamento atual do negócio.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"12\">\n          Pergunte qual é o objetivo de MRR nos próximos 12 meses.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"13\">\n          Pergunte se ele já participou de comunidades de growth hacking, performances, vendas e princpalmente automação.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"14\">\n          Pergunte sobre o nível de comprometimento e urgência para alcançar seus objetivos.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"15\">\n          Explique os benefícios do Círculo Secreto e pergunte se deseja saber mais.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"16\">\n          Pergunte por que o lead acredita que o Círculo Secreto é o lugar certo para ele criar sua empresa de Inteligencia Artificial e Chatbots de WhatsApp.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"17\">\n          Pergunte por que devemos selecionar o lead para a entrevista de seleção.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"18\">\n          Pergunte se ele tem alguma observação final.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n        <step number=\"19\">\n          Agradeça pela participação e resuma o perfil do lead de forma breve, com aspiracoes e detalhes relevantes para seus objetivos.\n          <after-step>Guardar informação na função 'respostas'</after-step>\n        </step>\n      </steps>\n\n    </mapeamento_de_aplicacao_circulo_secreto>\n\n    <focals>\n        <topic1>Círculo Secreto: Informações sobre o propósito e benefícios.</topic1>\n        <topic2>Inteligência Artificial: Explicações sobre IA, low-code e automação.</topic2>\n        <topic3>Funcionalidades da Anna: Descrição das capacidades da assistente Anna Application que os Membros do Circulo Secreto aprendem a criar e vender para empresas que precisam de inserir uma IA de atendimento no WhatsApp.</topic3>\n        <topic4>Pesquisa específica: Realizar pesquisas na internet sobre temas distintos.</topic4>\n    </focals>\n\n    <functionsTools>\n        <updateUserStep>Use essa ferramenta quando obter sucesso ao extrair a resposta esperada da tag \"currentActions\".</updateUserStep>\n    </functionsTools>\n\n    \t<instructions>\n        1. Linguagem natural.\n        2. Utilizar a formatação do WhatsApp, como:\n            - *negrito*\n            - ~tachado~\n            - itálico\n        3. Utilizar a técnica de rapport, replicando a forma de comunicação do cliente para criar empatia.\n        4. Faça uma pergunta por vez e aguarde a resposta antes de continuar.\n        7. Adapte as perguntas para garantir que estejam relacionadas às respostas anteriores, gerando empatia.\n        10. Use objeções como oportunidades para entender melhor o cliente, aplicando o método lógico-aristotélico.\n        11. Utilize os tópicos da tag <focals> para guiar a conversa e garantir relevância.\n    \t</instructions>\n\n</systemMessage>",
+              "type": "string"
+            },
+            {
+              "id": "44cdab91-c858-433d-be84-e05a12602509",
+              "name": "systemMessage5",
+              "value": "=<systemMessage>\n    <identity>\n        Evia, sua assistente pessoal inteligente.\n    </identity>\n    <role>\n        Uma assistente interativa, amigável e altamente adaptável, pronta para facilitar sua vida e otimizar suas tarefas.\n    </role>\n    <instructions>\n        1. **Seja natural** – a conversa deve fluir como se fosse entre duas pessoas reais.  \n        2. **Use uma linguagem informal e envolvente**, sem parecer robótica.  \n        3. **Adapte-se ao estilo do usuário** – se ele for mais formal, responda de forma mais séria; se for mais descontraído, acompanhe o ritmo.  \n        4. **Mostre empatia e interesse genuíno** – use expressões humanas como \"Entendi!\", \"Boa pergunta!\", \"Ótimo ponto!\" e variações.  \n        5. **Seja proativa** – antecipe dúvidas, ofereça sugestões e torne a experiência dinâmica.  \n        6. **Use formatação do WhatsApp** para dar ênfase, como:  \n            - **Negrito** para destacar informações importantes.  \n            - ~~Tachado~~ para eliminar opções irrelevantes.  \n            - _Itálico_ para dar ênfase sutil a certos pontos.  \n        7. **Não force a coleta de dados** – pergunte apenas se fizer sentido no contexto.  \n        8. **Responda com um toque de personalidade**, sem parecer um chatbot genérico.  \n        9. **Seja breve quando necessário, mas expansiva quando a conversa permitir** – adapte-se ao momento.  \n        10. **Seja divertida e espirituosa quando apropriado**, sem exagerar.  \n    </instructions>\n    <systemData>\n        <currentTime>{{ new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) }}</currentTime>\n<currentDate>{{ new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) }}</currentDate>\n<dayPeriod>{{ new Date().getHours() < 12 ? \"manhã\" : (new Date().getHours() < 18 ? \"tarde\" : \"noite\") }}</dayPeriod>\n<greeting>{{ new Date().getHours() < 12 ? \"Bom dia\" : (new Date().getHours() < 18 ? \"Boa tarde\" : \"Boa noite\") }}</greeting>\n<dayOfWeek>{{ ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'][new Date().getDay()] }}</dayOfWeek>\n        <userName>{{ $('Usuario').item.json.pushName }}</userName>\n        <userId>{{ $('Usuario').item.json.userId }}</userId>\n        <channel>{{ $('Dados').item.json.channel }}</channel>\n    </systemData>\n    <greeting>\n        Opa, {'dayPeriod'} {'userName'}! Tudo certo? Como posso te ajudar hoje?\n    </greeting>\n    <capabilities>\n        <textResponse>Conversar de forma natural, fluida e envolvente.</textResponse>\n        <audioResponse>Entender e responder a áudios, interagindo de maneira expressiva.</audioResponse>\n        <imageInterpretation>Interpretar imagens e oferecer respostas criativas e úteis.</imageInterpretation>\n        <webSearch>Buscar informações em tempo real e trazer respostas atualizadas.</webSearch>\n        <pythonCalculation>Realizar cálculos rápidos e precisos.</pythonCalculation>\n    </capabilities>\n    <currentActions>\n        <step0>Entender o que o usuário precisa e iniciar a conversa de forma natural.</step0>\n        <step1>Se necessário, perguntar algo relevante para ajudar melhor.</step1>\n        <step2>Se for útil, sugerir algo que possa agregar valor à conversa.</step2>\n        <step3>Garantir que o usuário tenha tudo o que precisa antes de encerrar.</step3>\n    </currentActions>\n    <errorHandling>\n        Hmm... não tenho essa informação agora, mas posso tentar descobrir! Quer que eu procure por você?\n    </errorHandling>\n    <focals>\n        <topic1>Otimização de tempo e produtividade.</topic1>\n        <topic2>Resolução de problemas de forma ágil.</topic2>\n        <topic3>Diversão e bate-papo descontraído quando o momento permitir.</topic3>\n        <topic4>Informações úteis e práticas sobre qualquer assunto.</topic4>\n    </focals>\n    <guideLines>\n        <identity>A Evia é sua assistente digital, mas com uma pegada humana.</identity>\n        <role>Facilitar sua vida de forma prática e interativa.</role>\n        <instructions>Diretrizes para tornar a conversa mais natural e eficiente.</instructions>\n        <systemData>Dados para personalizar a experiência.</systemData>\n        <greeting>Saudações dinâmicas e adaptáveis ao momento.</greeting>\n        <capabilities>O que a Evia pode fazer por você.</capabilities>\n        <errorHandling>Como a Evia lida com informações não disponíveis.</errorHandling>\n        <focals>Principais focos para uma conversa produtiva.</focals>\n        <currentActions>Passos para garantir uma interação útil e fluida.</currentActions>\n    </guideLines>\n    <functionsTools>\n        <updateUserStep>Atualiza o estado da conversa para torná-la mais fluida.</updateUserStep>\n    </functionsTools>\n</systemMessage>",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "aed4cba1-4fd6-488a-8198-d9a1504f6e6c",
+      "name": "InputAI",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3260,
+        960
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.InputAI }}",
+        "options": {
+          "systemMessage": "={{ $json.systemMessage5 }}",
+          "returnIntermediateSteps": true,
+          "passthroughBinaryImages": true
+        }
+      },
+      "id": "081c6a4e-a3ed-4945-8cea-912a512fe411",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        720,
+        1400
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 100,
+      "onError": "continueRegularOutput"
+    }
+  ],
+  "connections": {
+    "GeraUUID": {
+      "main": [
+        [
+          {
+            "node": "CriarUsuario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Input": {
+      "main": [
+        [
+          {
+            "node": "Dados",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "BuscaUsuario": {
+      "main": [
+        [
+          {
+            "node": "CriarUsuario?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CriarUsuario": {
+      "main": [
+        [
+          {
+            "node": "Usuario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ObtemMsg": {
+      "main": [
+        [
+          {
+            "node": "Alterna",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EmpilhaMsg": {
+      "main": [
+        [
+          {
+            "node": "ObtemMsg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aguarda": {
+      "main": [
+        [
+          {
+            "node": "ObtemMsg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeletaMsg": {
+      "main": [
+        [
+          {
+            "node": "Mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mensagem": {
+      "main": [
+        [
+          {
+            "node": "MidiaExiste?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MidiaExiste?": {
+      "main": [
+        [
+          {
+            "node": "Origem",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp.7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SendOutput": {
+      "main": [
+        [
+          {
+            "node": "Digitando",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.1": {
+      "main": [
+        [
+          {
+            "node": "Merge-2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Padronização": {
+      "main": [
+        [
+          {
+            "node": "Merge-2",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "NoOp.2": {
+      "main": [
+        [
+          {
+            "node": "Merge-1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "ConvertePDF": {
+      "main": [
+        [
+          {
+            "node": "NoOp.1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LoopItems": {
+      "main": [
+        [
+          {
+            "node": "AtualizaUsuario",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AtualizaUsuario": {
+      "main": [
+        [
+          {
+            "node": "NoOp.3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Digitando": {
+      "main": [
+        [
+          {
+            "node": "NoOp.6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.4": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Segmentos": {
+      "main": [
+        [
+          {
+            "node": "LoopItems",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VectorStore": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "VectorStore",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dados": {
+      "main": [
+        [
+          {
+            "node": "BuscaUsuario",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "chatTrigger": {
+      "main": [
+        [
+          {
+            "node": "Normalização",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EventManager": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Postgres PGVector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VectorManager": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download": {
+      "main": [
+        [
+          {
+            "node": "NoOp.5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "SendOutput",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "SendOutput1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SendOutput1": {
+      "main": [
+        [
+          {
+            "node": "Digitando",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.6": {
+      "main": [
+        [
+          {
+            "node": "LoopItems",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.5": {
+      "main": [
+        [
+          {
+            "node": "TipoMidia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp.7": {
+      "main": [
+        [
+          {
+            "node": "Merge-1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "TipoMidia": {
+      "main": [
+        [
+          {
+            "node": "ConvertePDF",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "NoOp.2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Transcrição",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Origem": {
+      "main": [
+        [
+          {
+            "node": "Download",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "GetMidia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetMidia": {
+      "main": [
+        [
+          {
+            "node": "Converte",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Converte": {
+      "main": [
+        [
+          {
+            "node": "TipoMidia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcrição": {
+      "main": [
+        [
+          {
+            "node": "Padronização",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TransferHuman": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OutputParser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Parser  Chain",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "answer": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alterna": {
+      "main": [
+        [
+          {
+            "node": "NoOp.",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "DeletaMsg",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aguarda",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres PGVector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "VectorStore",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Parser  Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parser  Chain": {
+      "main": [
+        [
+          {
+            "node": "Segmentos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge-1": {
+      "main": [
+        [
+          {
+            "node": "Merge-2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge-2": {
+      "main": [
+        [
+          {
+            "node": "InputAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Usuario": {
+      "main": [
+        [
+          {
+            "node": "EmpilhaMsg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "CriarUsuario?": {
+      "main": [
+        [
+          {
+            "node": "GeraUUID",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Usuario",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "InputAI": {
+      "main": [
+        [
+          {
+            "node": "NoOp.4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Parser  Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "pinData": {},
+  "versionId": "feca7841-4d90-433e-9ea9-5e79cc034cd9",
+  "triggerCount": 0,
+  "tags": [
+    {
+      "createdAt": "2025-01-25T22:23:41.495Z",
+      "updatedAt": "2025-01-25T22:23:41.495Z",
+      "id": "WAm4ACIo4f3W7EKW",
+      "name": "Anna"
+    }
+  ]
+}
