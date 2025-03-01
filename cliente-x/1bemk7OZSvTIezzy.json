@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-03-01T13:17:59.071Z",
-  "updatedAt": "2025-03-01T14:51:37.516Z",
+  "updatedAt": "2025-03-01T16:47:52.299Z",
   "id": "1bemk7OZSvTIezzy",
   "name": "Backap",
   "active": false,
@@ -40,36 +40,26 @@
     },
     {
       "parameters": {
-        "authentication": "oAuth2",
-        "resource": "file",
-        "operation": "get",
-        "owner": {
-          "__rl": true,
-          "value": "={{ $('Edit Fields').item.json.owner }}",
-          "mode": "name"
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2529992d-cab3-4a80-b58a-993c925ccf00",
+              "name": "data",
+              "value": "={{ $json}}",
+              "type": "object"
+            }
+          ]
         },
-        "repository": {
-          "__rl": true,
-          "value": "={{ $('Edit Fields').item.json.repository }}",
-          "mode": "name"
-        },
-        "filePath": "=cliente-x/{{ $json.id }}.json",
-        "additionalParameters": {}
+        "options": {}
       },
-      "id": "949abfbe-d0f9-453b-a3f4-ee7b0b3df991",
-      "name": "GitHub",
-      "type": "n8n-nodes-base.github",
-      "typeVersion": 1,
+      "id": "36cc9d61-db04-4f4f-a36d-01abdc077b18",
+      "name": "Dados",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
       "position": [
-        1420,
-        80
-      ],
-      "credentials": {
-        "githubOAuth2Api": {
-          "id": "6tfoYcaiZGrh6pMP",
-          "name": "GitHub account"
-        }
-      }
+        1240,
+        300
+      ]
     },
     {
       "parameters": {
@@ -92,7 +82,7 @@
         "options": {}
       },
       "id": "c7824917-f6f3-4fc4-aa1f-8ab500ef4078",
-      "name": "Edit Fields",
+      "name": "infos Basicas",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
@@ -102,25 +92,108 @@
     },
     {
       "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "2529992d-cab3-4a80-b58a-993c925ccf00",
-              "name": "data",
-              "value": "={{ $json}}",
-              "type": "object"
-            }
-          ]
+        "operation": "fromJson",
+        "options": {
+          "keepSource": "json"
+        }
+      },
+      "id": "b3a7b83f-ecdc-456d-abcb-f67d0aa02316",
+      "name": "Extract from File",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "get",
+        "owner": {
+          "__rl": true,
+          "value": "={{ $('infos Basicas').item.json.owner }}",
+          "mode": "name"
         },
+        "repository": {
+          "__rl": true,
+          "value": "={{ $('infos Basicas').item.json.repository }}",
+          "mode": "name"
+        },
+        "filePath": "=cliente-x/{{ $json.id }}.json",
+        "additionalParameters": {}
+      },
+      "id": "949abfbe-d0f9-453b-a3f4-ee7b0b3df991",
+      "name": "GitHub",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        140
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "6tfoYcaiZGrh6pMP",
+          "name": "GitHub account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $json.data }}",
         "options": {}
       },
-      "id": "36cc9d61-db04-4f4f-a36d-01abdc077b18",
-      "name": "Dados",
+      "id": "ad28eb27-0165-492e-9044-d8056835d642",
+      "name": "Edit Fields",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1240,
-        360
+        2000,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "mode": "each",
+        "options": {
+          "format": true,
+          "fileName": "={{ $json.id }}.json"
+        }
+      },
+      "id": "9aae28ca-15de-47d6-bd50-460c4bc66128",
+      "name": "Convert to File",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2180,
+        440
+      ]
+    },
+    {
+      "parameters": {
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "data.id",
+              "field2": "data.id"
+            }
+          ]
+        },
+        "resolve": "preferInput2",
+        "options": {}
+      },
+      "id": "71661f84-951f-446e-af6f-3bb3fa403a50",
+      "name": "Compare Datasets",
+      "type": "n8n-nodes-base.compareDatasets",
+      "typeVersion": 2.3,
+      "position": [
+        1640,
+        280
       ]
     },
     {
@@ -129,25 +202,92 @@
         "resource": "file",
         "owner": {
           "__rl": true,
-          "value": "={{ $('Edit Fields').item.json.owner }}",
+          "value": "={{ $('infos Basicas').first().json.owner }}",
           "mode": "name"
         },
         "repository": {
           "__rl": true,
-          "value": "={{ $('Edit Fields').item.json.repository }}",
+          "value": "={{ $('infos Basicas').first().json.repository }}",
           "mode": "name"
         },
-        "filePath": "=cliente-x/{{ $json.data.id }}.json",
-        "fileContent": "={{ JSON.stringify($json.data) }}",
-        "commitMessage": "={{ $json.data.name }}"
+        "filePath": "=cliente-x/{{ $('Edit Fields').item.json.id }}.json",
+        "binaryData": true,
+        "commitMessage": "={{ $('Edit Fields').item.json.name }} {{ $now.toString() }}"
       },
       "id": "12bffef4-5681-44d7-8ce5-8b4b4fa5e26c",
-      "name": "GitHub1",
+      "name": "Create file",
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        1460,
-        360
+        2380,
+        440
+      ],
+      "credentials": {
+        "githubOAuth2Api": {
+          "id": "6tfoYcaiZGrh6pMP",
+          "name": "GitHub account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={{ $json.data }}",
+        "options": {}
+      },
+      "id": "da77ce69-21c6-45f1-bca9-6d1399664102",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2000,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "toJson",
+        "mode": "each",
+        "options": {
+          "format": true,
+          "fileName": "={{ $json.id }}.json"
+        }
+      },
+      "id": "1fe7b215-30b5-4a82-9576-aa2f93792c7f",
+      "name": "Convert to File1",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2180,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "resource": "file",
+        "operation": "edit",
+        "owner": {
+          "__rl": true,
+          "value": "={{ $('infos Basicas').first().json.owner }}",
+          "mode": "name"
+        },
+        "repository": {
+          "__rl": true,
+          "value": "={{ $('infos Basicas').first().json.repository }}",
+          "mode": "name"
+        },
+        "filePath": "=cliente-x/{{ $('Edit Fields1').item.json.id }}.json",
+        "binaryData": true,
+        "commitMessage": "={{ $('Edit Fields1').item.json.name }} {{ $now.toString() }}"
+      },
+      "id": "3369145c-b7c8-4514-83fa-548b51aea84e",
+      "name": "editar",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [
+        2400,
+        300
       ],
       "credentials": {
         "githubOAuth2Api": {
@@ -178,18 +318,7 @@
       "main": [
         [
           {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields": {
-      "main": [
-        [
-          {
-            "node": "n8n",
+            "node": "infos Basicas",
             "type": "main",
             "index": 0
           }
@@ -200,7 +329,104 @@
       "main": [
         [
           {
-            "node": "GitHub1",
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "infos Basicas": {
+      "main": [
+        [
+          {
+            "node": "n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Compare Datasets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Create file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compare Datasets": {
+      "main": [
+        [],
+        [],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File1": {
+      "main": [
+        [
+          {
+            "node": "editar",
             "type": "main",
             "index": 0
           }
@@ -216,7 +442,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "e0eb7761-c953-49d8-863e-590bb429817e",
+  "versionId": "4005d6ab-b2dd-47b0-9a18-943ecbe5d628",
   "triggerCount": 0,
   "tags": []
 }
