@@ -1,25 +1,12 @@
 {
   "createdAt": "2025-03-01T13:17:59.071Z",
-  "updatedAt": "2025-03-01T16:47:52.299Z",
+  "updatedAt": "2025-03-01T17:19:56.728Z",
   "id": "1bemk7OZSvTIezzy",
   "name": "Backap",
   "active": false,
   "nodes": [
     {
-      "parameters": {},
-      "id": "578cf2d2-8975-4f97-b925-846093c83645",
-      "name": "When clicking ‘Test workflow’",
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        620,
-        220
-      ]
-    },
-    {
       "parameters": {
-        "returnAll": false,
-        "limit": 1,
         "filters": {},
         "requestOptions": {}
       },
@@ -219,7 +206,7 @@
       "type": "n8n-nodes-base.github",
       "typeVersion": 1,
       "position": [
-        2380,
+        2400,
         440
       ],
       "credentials": {
@@ -295,6 +282,26 @@
           "name": "GitHub account"
         }
       }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 12
+            }
+          ]
+        }
+      },
+      "id": "719ef29f-d8e0-465a-be91-10e018311281",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        580,
+        220
+      ]
     }
   ],
   "connections": {
@@ -308,17 +315,6 @@
           },
           {
             "node": "Dados",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking ‘Test workflow’": {
-      "main": [
-        [
-          {
-            "node": "infos Basicas",
             "type": "main",
             "index": 0
           }
@@ -432,6 +428,17 @@
           }
         ]
       ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "infos Basicas",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -442,7 +449,14 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "4005d6ab-b2dd-47b0-9a18-943ecbe5d628",
+  "versionId": "ccc1025b-9604-4e1a-9005-8dfd21c8de13",
   "triggerCount": 0,
-  "tags": []
+  "tags": [
+    {
+      "createdAt": "2025-03-01T17:16:49.431Z",
+      "updatedAt": "2025-03-01T17:16:49.431Z",
+      "id": "rWbVdZtbsJ2TbgMj",
+      "name": "backup"
+    }
+  ]
 }
