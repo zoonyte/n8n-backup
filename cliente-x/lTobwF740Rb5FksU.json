@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-01-26T21:02:25.405Z",
-  "updatedAt": "2025-02-11T22:36:21.588Z",
+  "updatedAt": "2025-03-03T00:48:27.968Z",
   "id": "lTobwF740Rb5FksU",
   "name": "Envio2",
   "active": false,
@@ -1677,8 +1677,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.1,
       "position": [
-        720,
-        1620
+        140,
+        1540
       ],
       "credentials": {
         "openAiApi": {
@@ -2413,13 +2413,7 @@
     },
     "OpenAI Chat Model": {
       "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "InputAI": {
@@ -2443,6 +2437,17 @@
           }
         ]
       ]
+    },
+    "Groq": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -2451,7 +2456,7 @@
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "feca7841-4d90-433e-9ea9-5e79cc034cd9",
+  "versionId": "d230b0e6-dbc0-40ce-ab08-0216e6951872",
   "triggerCount": 0,
   "tags": [
     {
