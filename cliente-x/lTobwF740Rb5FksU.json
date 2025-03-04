@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-01-26T21:02:25.405Z",
-  "updatedAt": "2025-03-03T00:48:27.968Z",
+  "updatedAt": "2025-03-04T13:11:30.964Z",
   "id": "lTobwF740Rb5FksU",
   "name": "Envio2",
   "active": false,
@@ -1762,6 +1762,27 @@
       "retryOnFail": true,
       "waitBetweenTries": 100,
       "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Usuario').item.json.sessionId }}",
+        "contextWindowLength": 0
+      },
+      "id": "d1efc40a-b330-442b-a6c4-3078e8da1012",
+      "name": "Postgres Chat Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        720,
+        1620
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "FDCZIPl60D8QQSRY",
+          "name": "Postgres account"
+        }
+      }
     }
   ],
   "connections": {
@@ -2329,13 +2350,7 @@
     },
     "Window Buffer Memory1": {
       "ai_memory": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_memory",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "OpenAI2": {
@@ -2448,6 +2463,17 @@
           }
         ]
       ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -2456,7 +2482,7 @@
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "d230b0e6-dbc0-40ce-ab08-0216e6951872",
+  "versionId": "a0b74b86-8e7b-4e0d-8eb2-e06eeb19cd9a",
   "triggerCount": 0,
   "tags": [
     {
