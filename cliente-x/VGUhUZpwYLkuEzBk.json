@@ -1,9 +1,9 @@
 {
   "createdAt": "2025-01-26T21:01:50.205Z",
-  "updatedAt": "2025-03-04T13:03:07.988Z",
+  "updatedAt": "2025-03-06T02:13:07.486Z",
   "id": "VGUhUZpwYLkuEzBk",
   "name": "recebimento",
-  "active": true,
+  "active": false,
   "nodes": [
     {
       "parameters": {
