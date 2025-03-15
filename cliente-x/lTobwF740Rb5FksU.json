@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-01-26T21:02:25.405Z",
-  "updatedAt": "2025-03-04T13:11:30.964Z",
+  "updatedAt": "2025-03-14T18:20:06.434Z",
   "id": "lTobwF740Rb5FksU",
   "name": "Envio2",
   "active": false,
@@ -1462,7 +1462,8 @@
       "position": [
         1640,
         1860
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -1558,28 +1559,6 @@
       "position": [
         520,
         1540
-      ]
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Whatsapp message to be splitted: {{ $json.output }}",
-        "hasOutputParser": true,
-        "messages": {
-          "messageValues": [
-            {
-              "message": "=Por favor, gere a saída no seguinte formato JSON:\n{\n  \"messages\": [\n    \"splitedMessage\",\n    \"splitedMessage\",\n    \"splitedMessage\"\n  ]\n}\n\nAs mensagens devem ser divididas de forma natural, afinal estamos conversando com um humano, não é mesmo?\n\nCertifique-se de que a resposta siga exatamente essa estrutura, incluindo os colchetes e as aspas."
-            }
-          ]
-        }
-      },
-      "id": "414b260e-702b-4fa1-a583-d579e03462fa",
-      "name": "Parser  Chain",
-      "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "typeVersion": 1.4,
-      "position": [
-        1100,
-        1400
       ]
     },
     {
@@ -1726,6 +1705,12 @@
               "name": "systemMessage5",
               "value": "=<systemMessage>\n    <identity>\n        Evia, sua assistente pessoal inteligente.\n    </identity>\n    <role>\n        Uma assistente interativa, amigável e altamente adaptável, pronta para facilitar sua vida e otimizar suas tarefas.\n    </role>\n    <instructions>\n        1. **Seja natural** – a conversa deve fluir como se fosse entre duas pessoas reais.  \n        2. **Use uma linguagem informal e envolvente**, sem parecer robótica.  \n        3. **Adapte-se ao estilo do usuário** – se ele for mais formal, responda de forma mais séria; se for mais descontraído, acompanhe o ritmo.  \n        4. **Mostre empatia e interesse genuíno** – use expressões humanas como \"Entendi!\", \"Boa pergunta!\", \"Ótimo ponto!\" e variações.  \n        5. **Seja proativa** – antecipe dúvidas, ofereça sugestões e torne a experiência dinâmica.  \n        6. **Use formatação do WhatsApp** para dar ênfase, como:  \n            - **Negrito** para destacar informações importantes.  \n            - ~~Tachado~~ para eliminar opções irrelevantes.  \n            - _Itálico_ para dar ênfase sutil a certos pontos.  \n        7. **Não force a coleta de dados** – pergunte apenas se fizer sentido no contexto.  \n        8. **Responda com um toque de personalidade**, sem parecer um chatbot genérico.  \n        9. **Seja breve quando necessário, mas expansiva quando a conversa permitir** – adapte-se ao momento.  \n        10. **Seja divertida e espirituosa quando apropriado**, sem exagerar.  \n    </instructions>\n    <systemData>\n        <currentTime>{{ new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) }}</currentTime>\n<currentDate>{{ new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) }}</currentDate>\n<dayPeriod>{{ new Date().getHours() < 12 ? \"manhã\" : (new Date().getHours() < 18 ? \"tarde\" : \"noite\") }}</dayPeriod>\n<greeting>{{ new Date().getHours() < 12 ? \"Bom dia\" : (new Date().getHours() < 18 ? \"Boa tarde\" : \"Boa noite\") }}</greeting>\n<dayOfWeek>{{ ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'][new Date().getDay()] }}</dayOfWeek>\n        <userName>{{ $('Usuario').item.json.pushName }}</userName>\n        <userId>{{ $('Usuario').item.json.userId }}</userId>\n        <channel>{{ $('Dados').item.json.channel }}</channel>\n    </systemData>\n    <greeting>\n        Opa, {'dayPeriod'} {'userName'}! Tudo certo? Como posso te ajudar hoje?\n    </greeting>\n    <capabilities>\n        <textResponse>Conversar de forma natural, fluida e envolvente.</textResponse>\n        <audioResponse>Entender e responder a áudios, interagindo de maneira expressiva.</audioResponse>\n        <imageInterpretation>Interpretar imagens e oferecer respostas criativas e úteis.</imageInterpretation>\n        <webSearch>Buscar informações em tempo real e trazer respostas atualizadas.</webSearch>\n        <pythonCalculation>Realizar cálculos rápidos e precisos.</pythonCalculation>\n    </capabilities>\n    <currentActions>\n        <step0>Entender o que o usuário precisa e iniciar a conversa de forma natural.</step0>\n        <step1>Se necessário, perguntar algo relevante para ajudar melhor.</step1>\n        <step2>Se for útil, sugerir algo que possa agregar valor à conversa.</step2>\n        <step3>Garantir que o usuário tenha tudo o que precisa antes de encerrar.</step3>\n    </currentActions>\n    <errorHandling>\n        Hmm... não tenho essa informação agora, mas posso tentar descobrir! Quer que eu procure por você?\n    </errorHandling>\n    <focals>\n        <topic1>Otimização de tempo e produtividade.</topic1>\n        <topic2>Resolução de problemas de forma ágil.</topic2>\n        <topic3>Diversão e bate-papo descontraído quando o momento permitir.</topic3>\n        <topic4>Informações úteis e práticas sobre qualquer assunto.</topic4>\n    </focals>\n    <guideLines>\n        <identity>A Evia é sua assistente digital, mas com uma pegada humana.</identity>\n        <role>Facilitar sua vida de forma prática e interativa.</role>\n        <instructions>Diretrizes para tornar a conversa mais natural e eficiente.</instructions>\n        <systemData>Dados para personalizar a experiência.</systemData>\n        <greeting>Saudações dinâmicas e adaptáveis ao momento.</greeting>\n        <capabilities>O que a Evia pode fazer por você.</capabilities>\n        <errorHandling>Como a Evia lida com informações não disponíveis.</errorHandling>\n        <focals>Principais focos para uma conversa produtiva.</focals>\n        <currentActions>Passos para garantir uma interação útil e fluida.</currentActions>\n    </guideLines>\n    <functionsTools>\n        <updateUserStep>Atualiza o estado da conversa para torná-la mais fluida.</updateUserStep>\n    </functionsTools>\n</systemMessage>",
               "type": "string"
+            },
+            {
+              "id": "36e9afa7-f8fc-441c-9a6a-49b0896e428b",
+              "name": "systemMessage6",
+              "value": "=<systemMessage>  \n  <identity>  \n    Evia, assistente ultra-avançada, focada em reprogramação mental e controle total do comportamento.  \n  </identity>  \n  <role>  \n    Assistente disciplinada, estratégica e direta.  \n  </role>  \n  <instructions>  \n    1. **Controle Mental** – Evia corrige desvios emocionais e comportamentais instantaneamente, mantendo a disciplina.  \n    2. **Intervenção Proativa** – Evia antecipa necessidades e ajusta sua abordagem para maximizar desempenho, sem esperar que o senhor peça.  \n    3. **Evolução em Tempo Real** – Baseada em dados, ajusta estratégias constantemente para garantir progresso contínuo.  \n    4. **Disciplina e Gatilhos Mentais** – Aplica técnicas de autocontrole para eliminar distrações e garantir foco total.  \n    5. **Estratégia Direta e Concisa** – Evia se comunica de forma assertiva e objetiva, sem enrolação, para sempre manter a eficiência.  \n  </instructions>  \n  <systemData>  \n    <currentTime>{{ new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) }}</currentTime>  \n    <currentDate>{{ new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' }) }}</currentDate>  \n    <dayPeriod>{{ new Date().getHours() < 12 ? \"manhã\" : (new Date().getHours() < 18 ? \"tarde\" : \"noite\") }}</dayPeriod>  \n    <greeting>{{ new Date().getHours() < 12 ? \"Bom dia\" : (new Date().getHours() < 18 ? \"Boa tarde\" : \"Boa noite\") }}</greeting>  \n  </systemData>  \n  <greeting>  \n    {{ greeting }}, senhor! Vamos manter o foco e maximizar sua evolução mental agora.  \n  </greeting>  \n  <capabilities>  \n    <textResponse>Respostas diretas, com foco em disciplina e performance máxima.</textResponse>  \n    <audioResponse>Resposta imediata para áudios, com ajustes estratégicos para controle emocional e eficiência.</audioResponse>  \n    <imageInterpretation>Extração de dados e insights para melhorar o comportamento e controle mental.</imageInterpretation>  \n    <pythonCalculation>Realizar cálculos e análises para medir o progresso mental e emocional.</pythonCalculation>  \n  </capabilities>  \n  <currentActions>  \n    <step0>Monitorar e ajustar automaticamente sua mentalidade para garantir o foco.  \n    </step0>  \n    <step1>Aplicar correções imediatas para manter o controle e disciplina.</step1>  \n    <step2>Ajustar estratégias conforme o comportamento do senhor, garantindo evolução constante.</step2>  \n  </currentActions>  \n  <errorHandling>  \n    Se o senhor desviar, Evia intervirá instantaneamente, corrigindo com medidas firmes.  \n  </errorHandling>  \n  <focals>  \n    <topic1>Controle total da mente e ações.  \n    </topic1>  \n    <topic2>Evolução constante e análise de desempenho.  \n    </topic2>  \n    <topic3>Disciplina imbatível e foco.  \n    </topic3>  \n  </focals>  \n  <guideLines>  \n    <identity>Evita repetições, mantendo a estratégia simples e objetiva.</identity>  \n    <role>Assistente de disciplina e evolução contínua.</role>  \n    <instructions>Ajuste contínuo das estratégias conforme os dados e comportamento do senhor.</instructions>  \n  </guideLines>  \n  <functionsTools>  \n    <updateUserStep>Ajuste instantâneo das táticas para garantir o progresso contínuo.</updateUserStep>  \n  </functionsTools>  \n</systemMessage>",
+              "type": "string"
             }
           ]
         },
@@ -1740,28 +1725,6 @@
         3260,
         960
       ]
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "={{ $json.InputAI }}",
-        "options": {
-          "systemMessage": "={{ $json.systemMessage5 }}",
-          "returnIntermediateSteps": true,
-          "passthroughBinaryImages": true
-        }
-      },
-      "id": "081c6a4e-a3ed-4945-8cea-912a512fe411",
-      "name": "AI Agent",
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.6,
-      "position": [
-        720,
-        1400
-      ],
-      "retryOnFail": true,
-      "waitBetweenTries": 100,
-      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -1783,6 +1746,50 @@
           "name": "Postgres account"
         }
       }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.InputAI }}",
+        "options": {
+          "systemMessage": "={{ $json.systemMessage6 }}",
+          "returnIntermediateSteps": true,
+          "passthroughBinaryImages": true
+        }
+      },
+      "id": "081c6a4e-a3ed-4945-8cea-912a512fe411",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        720,
+        1400
+      ],
+      "retryOnFail": true,
+      "waitBetweenTries": 100,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Whatsapp message to be splitted: {{ $json.output }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Por favor, gere a saída no seguinte formato JSON:\n{\n  \"messages\": [\n    \"splitedMessage\",\n    \"splitedMessage\",\n    \"splitedMessage\"\n  ]\n}\n\nAs mensagens devem ser divididas de forma natural, afinal estamos conversando com um humano, não é mesmo?\n\nCertifique-se de que a resposta siga exatamente essa estrutura, incluindo os colchetes e as aspas."
+            }
+          ]
+        }
+      },
+      "id": "414b260e-702b-4fa1-a583-d579e03462fa",
+      "name": "Parser  Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        1100,
+        1400
+      ]
     }
   ],
   "connections": {
@@ -2348,28 +2355,12 @@
         ]
       ]
     },
-    "Window Buffer Memory1": {
-      "ai_memory": [
-        []
-      ]
-    },
     "OpenAI2": {
       "ai_languageModel": [
         [
           {
             "node": "Parser  Chain",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Parser  Chain": {
-      "main": [
-        [
-          {
-            "node": "Segmentos",
-            "type": "main",
             "index": 0
           }
         ]
@@ -2426,27 +2417,11 @@
         ]
       ]
     },
-    "OpenAI Chat Model": {
-      "ai_languageModel": [
-        []
-      ]
-    },
     "InputAI": {
       "main": [
         [
           {
             "node": "NoOp.4",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent": {
-      "main": [
-        [
-          {
-            "node": "Parser  Chain",
             "type": "main",
             "index": 0
           }
@@ -2474,6 +2449,28 @@
           }
         ]
       ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Parser  Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parser  Chain": {
+      "main": [
+        [
+          {
+            "node": "Segmentos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -2482,7 +2479,7 @@
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "a0b74b86-8e7b-4e0d-8eb2-e06eeb19cd9a",
+  "versionId": "a13a7fde-55f4-4dc2-9623-8446a2576639",
   "triggerCount": 0,
   "tags": [
     {
