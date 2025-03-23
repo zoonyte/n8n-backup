@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-01-26T21:02:25.405Z",
-  "updatedAt": "2025-03-17T17:51:08.522Z",
+  "updatedAt": "2025-03-23T02:52:19.487Z",
   "id": "lTobwF740Rb5FksU",
   "name": "Envio2",
   "active": false,
@@ -683,6 +683,7 @@
     },
     {
       "parameters": {
+        "model": "=llama3-70b-8192",
         "options": {}
       },
       "id": "d489858f-98f2-43ce-8d4e-54103c281a3d",
@@ -1009,7 +1010,8 @@
       "position": [
         1140,
         1860
-      ]
+      ],
+      "disabled": true
     },
     {
       "parameters": {
@@ -2479,7 +2481,7 @@
   "staticData": null,
   "meta": null,
   "pinData": {},
-  "versionId": "cfea2d4f-1375-4f08-aee3-c846472c4427",
+  "versionId": "ec6d750a-828d-423c-b0ea-d16bd1e0da69",
   "triggerCount": 0,
   "tags": [
     {
