@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-01-26T21:01:50.205Z",
-  "updatedAt": "2025-03-17T20:26:02.750Z",
+  "updatedAt": "2025-03-23T02:58:25.245Z",
   "id": "VGUhUZpwYLkuEzBk",
   "name": "recebimento",
   "active": false,
@@ -52,8 +52,8 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -221.46251688274515,
-        412.84582770575173
+        -220,
+        420
       ]
     },
     {
@@ -1089,11 +1089,6 @@
         ]
       ]
     },
-    "Configurações1": {
-      "main": [
-        []
-      ]
-    },
     "Configurações": {
       "main": [
         [
@@ -1179,7 +1174,7 @@
       }
     ]
   },
-  "versionId": "2b82db63-af44-43e5-8c0e-8f1bda71225a",
+  "versionId": "b8757474-5b9a-463d-813a-97a64ff8f4e7",
   "triggerCount": 3,
   "tags": [
     {
