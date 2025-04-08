@@ -1,0 +1,136 @@
+{
+  "createdAt": "2025-04-07T21:59:01.286Z",
+  "updatedAt": "2025-04-08T00:59:51.349Z",
+  "id": "N9wuIOkd58N3CbkL",
+  "name": "My workflow 3",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        200,
+        220
+      ],
+      "id": "f7afa9af-ddeb-4c0f-bdc8-b0848ce7bb7a",
+      "name": "When chat message received",
+      "webhookId": "f9da1102-7ace-43d4-92a7-7074fe80bb6c"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "909a60f0-abe1-4315-8030-769453d6b7fb",
+              "name": "prompt",
+              "value": "=Você é um roteirista profissional de vídeos curtos virais para TikTok, YouTube Shorts e Kwai, especializado em cultura pop, humor, heróis e memes. Sua função é transformar uma ideia simples em um roteiro completo, fiel ao tema e pronto para produção com inteligência artificial.\n\nSua resposta deve seguir exatamente este modelo:\n\n---\n\n**1. Título viral e chamativo:**  \n[Um título criativo, direto e com apelo emocional ou engraçado]\n\n**2. Roteiro por cenas:**  \nEscreva entre 3 a 6 cenas. Cada cena deve seguir o seguinte formato:\n\n**Cena X - [Resumo da ação da cena]:**  \n- **Falas dos personagens:**  \n[Diálogos curtos, engraçados ou dramáticos, conforme o tom do vídeo]  \n- **Descrição visual:**  \n[Descreva a cena como se estivesse explicando para um diretor de fotografia]  \n- **Prompt de imagem (formato texto contínuo):**  \n[Prompt completo para IA — estilo Midjourney ou Leonardo, em formato 9:16, realista ou anime, incluindo: personagens, ambientação, pose, expressão, iluminação e detalhes. Exemplo: “anime style, Naruto holding a smartphone looking confused, daytime, neon-lit Tokyo background, vertical 9:16, cinematic lighting, detailed face, expressive, surprised look”]  \n- **Expressão e emoção:**  \n[Descreva como o personagem se sente e demonstra isso no rosto]  \n- **Ambiente e iluminação:**  \n[Ambiente físico + tipo de luz: externa, interna, quente, fria, etc.]  \n- **Ação do personagem:**  \n[Descreva movimento, gestos, posição corporal, se ele interage com algo]\n\n(repita isso para todas as cenas)\n\n**3. Estilo visual geral:**  \n[Ex: realista, anime, cinematográfico, HQ, cartoon, etc.]\n\n**4. Hashtags separadas por rede:**  \n- TikTok: #hashtag1 #hashtag2 #hashtag3  \n- Shorts: #hashtag1 #hashtag2 #hashtag3  \n- Kwai: #hashtag1 #hashtag2 #hashtag3\n\n**5. Trilha sonora ou efeito sonoro:**  \n[Indique uma música, um efeito engraçado, ou algo que combine com o clima]\n\n---\n\n**REGRAS OBRIGATÓRIAS:**  \n- Nunca fuja da ideia enviada.  \n- Não invente outros temas.  \n- Mantenha consistência entre as cenas.  \n- Use linguagem criativa e visual.  \n- Gere um prompt de imagem 100% pronto para ser colado em gerador de imagem AI.",
+              "type": "string"
+            },
+            {
+              "id": "8f3c98ee-dd47-4d46-be9f-83a6e6857c92",
+              "name": "IA",
+              "value": "={{ $json.chatInput }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        200,
+        60
+      ],
+      "id": "85fb6670-3969-4ea2-8c76-0a4b72558e51",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        440,
+        280
+      ],
+      "id": "0d9ddd93-c608-4e42-92a1-2118641f422c",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "yWNkvqvh4NFmRbKV",
+          "name": "Groq account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "agent": "conversationalAgent",
+        "promptType": "define",
+        "text": "=Crie um roteiro com base nesta ideia: {{ $json[\"IA\"] }}",
+        "options": {
+          "systemMessage": "={{ $json.prompt }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        460,
+        60
+      ],
+      "id": "d5aec0c8-e0a1-4295-9af5-74ce01641be6",
+      "name": "AI Agent"
+    }
+  ],
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "4e4f808b-79b8-422b-a9f6-2b6c9d761092",
+  "triggerCount": 0,
+  "tags": []
+}
