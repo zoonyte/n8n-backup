@@ -1,8 +1,8 @@
 {
   "createdAt": "2025-04-07T21:59:01.286Z",
-  "updatedAt": "2025-04-08T00:59:51.349Z",
+  "updatedAt": "2025-04-10T04:51:33.429Z",
   "id": "N9wuIOkd58N3CbkL",
-  "name": "My workflow 3",
+  "name": "Heeroiando",
   "active": false,
   "nodes": [
     {
@@ -56,8 +56,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
       "typeVersion": 1,
       "position": [
-        440,
-        280
+        480,
+        240
       ],
       "id": "0d9ddd93-c608-4e42-92a1-2118641f422c",
       "name": "Groq Chat Model",
@@ -84,7 +84,111 @@
         60
       ],
       "id": "d5aec0c8-e0a1-4295-9af5-74ce01641be6",
-      "name": "AI Agent"
+      "name": "Agent roterista"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/youtube/v3/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "part",
+              "value": "snippet"
+            },
+            {
+              "name": "q",
+              "value": "memes heros"
+            },
+            {
+              "name": "type",
+              "value": "video"
+            },
+            {
+              "name": "order",
+              "value": "viewCount"
+            },
+            {
+              "name": "maxResults",
+              "value": "2"
+            },
+            {
+              "name": "key",
+              "value": "AIzaSyA_uQbl3SYvPqIrBhM1WlFqVFdZA6uqzrs"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        600,
+        340
+      ],
+      "id": "63c06337-4d32-43bf-ac05-def161bed5a2",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/youtube/v3/videos",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "AIzaSyA_uQbl3SYvPqIrBhM1WlFqVFdZA6uqzrs"
+            },
+            {
+              "name": "part",
+              "value": "snippet,statistics"
+            },
+            {
+              "name": "id",
+              "value": "={{ $json.videoIds }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1040,
+        320
+      ],
+      "id": "9eb7297e-d16b-4f19-95da-72e002594fc1",
+      "name": "HTTP Request1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "return items.filter(item => {\n  const duration = item.json.contentDetails.duration;\n  const isShort = duration.includes(\"S\") && !duration.includes(\"M\");\n  const title = item.json.snippet.title.toLowerCase();\n  return isShort || title.includes(\"#shorts\");\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1240,
+        320
+      ],
+      "id": "37d76b6e-4fc5-4f63-9860-f074ac8ed4d0",
+      "name": "Code",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const videoItems = items[0].json.items;\nconst videoIds = [];\n\nfor (const video of videoItems) {\n  const id = video.id?.videoId;\n  if (id) {\n    videoIds.push(id);\n  }\n}\n\nreturn [\n  {\n    json: {\n      videoIds: videoIds.join(\",\")\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        800,
+        460
+      ],
+      "id": "d51849d3-fe13-46a2-9d6b-109359449be4",
+      "name": "Code1",
+      "onError": "continueErrorOutput"
     }
   ],
   "connections": {
@@ -103,7 +207,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Agent roterista",
             "type": "main",
             "index": 0
           }
@@ -114,8 +218,41 @@
       "ai_languageModel": [
         [
           {
-            "node": "AI Agent",
+            "node": "Agent roterista",
             "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
             "index": 0
           }
         ]
@@ -130,7 +267,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "4e4f808b-79b8-422b-a9f6-2b6c9d761092",
+  "versionId": "00dd1c64-fe25-4203-b975-d92a188ba3f6",
   "triggerCount": 0,
   "tags": []
 }
