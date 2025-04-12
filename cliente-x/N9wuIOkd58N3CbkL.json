@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-04-07T21:59:01.286Z",
-  "updatedAt": "2025-04-10T04:51:33.429Z",
+  "updatedAt": "2025-04-11T19:46:28.007Z",
   "id": "N9wuIOkd58N3CbkL",
   "name": "Heeroiando",
   "active": false,
@@ -87,6 +87,83 @@
       "name": "Agent roterista"
     },
     {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        780,
+        840
+      ],
+      "id": "77424942-ef1c-470f-b4c2-26e6a965c342",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1360,
+        880
+      ],
+      "id": "5c04adb9-fa78-4a41-b505-8e54cae49a3a",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Recebe o campo 'termos' do input, que deve ser uma string separada por vírgulas\nconst termosBrutos = $json.termos || '';\n\n// Divide os termos por vírgula, limpa espaços e filtra vazios\nconst termos = termosBrutos\n  .split(',')\n  .map(t => t.trim())\n  .filter(Boolean);\n\n// Embaralha e seleciona até 3 termos aleatórios\nconst selecionados = termos\n  .sort(() => 0.5 - Math.random())\n  .slice(0, 3);\n\n// Junta os termos com espaço (estilo de busca do YouTube)\nconst busca = selecionados.join(' ');\n\n// Retorna o valor da busca como campo 'q' para passar na API\nreturn [\n  {\n    json: {\n      q: busca\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1620,
+        1100
+      ],
+      "id": "a8ed69dd-8a63-448d-85c7-b47752dd0d72",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        1900,
+        1080
+      ],
+      "id": "bd189e13-294e-4769-8b0c-d33458fe048c",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b54a2881-7f0a-443d-af39-35b72f91ec22",
+              "name": "termos",
+              "value": "dc, desenho para crianças, spiderman, memes, marvel, herois, superhero, shorts, funny moments, batman, homem aranha, cartoon, kids, marvel shorts, superman, avengers, desenhos engraçados, superhero meme, ação infantil, iron man, hq animada, super hero kids, justice league, shorts engraçados, mini heróis, anime heroes, venom, marvel funny, epic battle",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1360,
+        1100
+      ],
+      "id": "7a042749-60cd-4d86-bfdc-1f4417a14258",
+      "name": "busca"
+    },
+    {
       "parameters": {
         "url": "https://www.googleapis.com/youtube/v3/search",
         "sendQuery": true,
@@ -98,7 +175,7 @@
             },
             {
               "name": "q",
-              "value": "memes heros"
+              "value": "={{ $json.q }}"
             },
             {
               "name": "type",
@@ -114,7 +191,7 @@
             },
             {
               "name": "key",
-              "value": "AIzaSyA_uQbl3SYvPqIrBhM1WlFqVFdZA6uqzrs"
+              "value": "={{ $json.key }}"
             }
           ]
         },
@@ -123,11 +200,52 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        600,
-        340
+        2220,
+        1080
       ],
-      "id": "63c06337-4d32-43bf-ac05-def161bed5a2",
-      "name": "HTTP Request"
+      "id": "1f85a452-5398-4e85-afea-f30cc733b469",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.filter(item => {\n  const duration = item.json.contentDetails?.duration || \"\";\n  const title = item.json.snippet?.title?.toLowerCase() || \"\";\n  const description = item.json.snippet?.description?.toLowerCase() || \"\";\n  const tags = item.json.snippet?.tags || [];\n\n  // Converter ISO 8601 (PT1M30S) para segundos\n  const match = duration.match(/PT(?:(\\d+)M)?(?:(\\d+)S)?/);\n  const minutes = match && match[1] ? parseInt(match[1]) : 0;\n  const seconds = match && match[2] ? parseInt(match[2]) : 0;\n  const totalSeconds = minutes * 60 + seconds;\n\n  const hasShortInTitle = title.includes(\"short\");\n  const hasShortInDesc = description.includes(\"short\");\n  const hasShortInTags = tags.some(tag => tag.toLowerCase().includes(\"short\"));\n\n  // critério inteligente\n  return totalSeconds <= 62 || hasShortInTitle || hasShortInDesc || hasShortInTags;\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1900,
+        880
+      ],
+      "id": "8c3fbe28-8a9c-4881-a719-16137c338618",
+      "name": "shorts1",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const videoItems = items[0].json.items;\nconst videoIds = [];\n\nfor (const video of videoItems) {\n  const id = video.id?.videoId;\n  if (id) {\n    videoIds.push(id);\n  }\n}\n\nreturn [\n  {\n    json: {\n      videoIds: videoIds.join(\",\")\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2020,
+        640
+      ],
+      "id": "319ea101-ebb4-4de7-bc8f-8f05b5d7b796",
+      "name": "ids1",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const videoIds = items.flatMap(item => {\n  return item.json.items.map(video => video.id.videoId);\n});\n\nreturn [\n  {\n    json: {\n      videoIds: videoIds.join(',')\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2460,
+        1080
+      ],
+      "id": "0d79b6b0-62f6-49ba-8dbd-cd65ddb8cdf4",
+      "name": "idss1"
     },
     {
       "parameters": {
@@ -137,11 +255,11 @@
           "parameters": [
             {
               "name": "key",
-              "value": "AIzaSyA_uQbl3SYvPqIrBhM1WlFqVFdZA6uqzrs"
+              "value": "={{ $json.key }}"
             },
             {
               "name": "part",
-              "value": "snippet,statistics"
+              "value": "snippet,statistics,contentDetails"
             },
             {
               "name": "id",
@@ -154,41 +272,47 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        1040,
-        320
+        1620,
+        880
       ],
-      "id": "9eb7297e-d16b-4f19-95da-72e002594fc1",
-      "name": "HTTP Request1",
-      "disabled": true
+      "id": "b8b60fa8-67bc-4188-95df-8530aafa66f8",
+      "name": "viws1"
     },
     {
       "parameters": {
-        "mode": "runOnceForEachItem",
-        "jsCode": "return items.filter(item => {\n  const duration = item.json.contentDetails.duration;\n  const isShort = duration.includes(\"S\") && !duration.includes(\"M\");\n  const title = item.json.snippet.title.toLowerCase();\n  return isShort || title.includes(\"#shorts\");\n});"
+        "options": {}
       },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
       "position": [
-        1240,
-        320
+        2700,
+        860
       ],
-      "id": "37d76b6e-4fc5-4f63-9860-f074ac8ed4d0",
-      "name": "Code",
-      "onError": "continueErrorOutput"
+      "id": "19a9a9cc-9946-4e84-91c0-122ec4c9b157",
+      "name": "Edit Fields3"
     },
     {
       "parameters": {
-        "jsCode": "const videoItems = items[0].json.items;\nconst videoIds = [];\n\nfor (const video of videoItems) {\n  const id = video.id?.videoId;\n  if (id) {\n    videoIds.push(id);\n  }\n}\n\nreturn [\n  {\n    json: {\n      videoIds: videoIds.join(\",\")\n    }\n  }\n];"
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7e225c73-6ba5-4bdd-a529-37304efd4b4d",
+              "name": "key",
+              "value": "AIzaSyA_uQbl3SYvPqIrBhM1WlFqVFdZA6uqzrs",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
       },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
       "position": [
-        800,
-        460
+        1360,
+        700
       ],
-      "id": "d51849d3-fe13-46a2-9d6b-109359449be4",
-      "name": "Code1",
-      "onError": "continueErrorOutput"
+      "id": "26d6b3d3-bd1e-40fc-bf19-59ac1da54419",
+      "name": "key1"
     }
   ],
   "connections": {
@@ -225,18 +349,51 @@
         ]
       ]
     },
-    "HTTP Request": {
+    "When clicking ‘Test workflow’": {
       "main": [
         [
           {
-            "node": "Code1",
+            "node": "key1",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "HTTP Request1": {
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "viws1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "busca": {
       "main": [
         [
           {
@@ -247,11 +404,65 @@
         ]
       ]
     },
-    "Code1": {
+    "HTTP Request1": {
       "main": [
         [
           {
-            "node": "HTTP Request1",
+            "node": "idss1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "shorts1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "idss1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "viws1": {
+      "main": [
+        [
+          {
+            "node": "shorts1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "key1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "busca",
             "type": "main",
             "index": 0
           }
@@ -267,7 +478,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "00dd1c64-fe25-4203-b975-d92a188ba3f6",
+  "versionId": "f714f9cb-e92e-474b-845d-8dd052f249e5",
   "triggerCount": 0,
   "tags": []
 }
