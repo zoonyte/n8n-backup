@@ -1,0 +1,44 @@
+{
+  "createdAt": "2025-04-13T01:54:05.069Z",
+  "updatedAt": "2025-04-13T02:06:34.651Z",
+  "id": "oNvZP6iemS6NfgaU",
+  "name": "My workflow 3",
+  "active": false,
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f0aa3e74-6b15-473f-9683-3d4a1e6670a0",
+      "name": "Telegram Trigger",
+      "webhookId": "70fea5f4-8da7-4f05-998e-e090cec5f9b0",
+      "credentials": {
+        "telegramApi": {
+          "id": "PZOpTvQKttZIfXeq",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "connections": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "pinData": {},
+  "versionId": "40478153-1e40-4264-8289-8589fc823d29",
+  "triggerCount": 1,
+  "tags": []
+}
