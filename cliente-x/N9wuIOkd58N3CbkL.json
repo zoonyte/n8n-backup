@@ -1,38 +1,36 @@
 {
   "createdAt": "2025-04-07T21:59:01.286Z",
-  "updatedAt": "2025-04-11T19:46:28.007Z",
+  "updatedAt": "2025-04-13T01:53:32.508Z",
   "id": "N9wuIOkd58N3CbkL",
   "name": "Heeroiando",
   "active": false,
   "nodes": [
     {
       "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
-      "typeVersion": 1.1,
-      "position": [
-        200,
-        220
-      ],
-      "id": "f7afa9af-ddeb-4c0f-bdc8-b0848ce7bb7a",
-      "name": "When chat message received",
-      "webhookId": "f9da1102-7ace-43d4-92a7-7074fe80bb6c"
-    },
-    {
-      "parameters": {
         "assignments": {
           "assignments": [
             {
               "id": "909a60f0-abe1-4315-8030-769453d6b7fb",
-              "name": "prompt",
+              "name": "prompt1",
               "value": "=Você é um roteirista profissional de vídeos curtos virais para TikTok, YouTube Shorts e Kwai, especializado em cultura pop, humor, heróis e memes. Sua função é transformar uma ideia simples em um roteiro completo, fiel ao tema e pronto para produção com inteligência artificial.\n\nSua resposta deve seguir exatamente este modelo:\n\n---\n\n**1. Título viral e chamativo:**  \n[Um título criativo, direto e com apelo emocional ou engraçado]\n\n**2. Roteiro por cenas:**  \nEscreva entre 3 a 6 cenas. Cada cena deve seguir o seguinte formato:\n\n**Cena X - [Resumo da ação da cena]:**  \n- **Falas dos personagens:**  \n[Diálogos curtos, engraçados ou dramáticos, conforme o tom do vídeo]  \n- **Descrição visual:**  \n[Descreva a cena como se estivesse explicando para um diretor de fotografia]  \n- **Prompt de imagem (formato texto contínuo):**  \n[Prompt completo para IA — estilo Midjourney ou Leonardo, em formato 9:16, realista ou anime, incluindo: personagens, ambientação, pose, expressão, iluminação e detalhes. Exemplo: “anime style, Naruto holding a smartphone looking confused, daytime, neon-lit Tokyo background, vertical 9:16, cinematic lighting, detailed face, expressive, surprised look”]  \n- **Expressão e emoção:**  \n[Descreva como o personagem se sente e demonstra isso no rosto]  \n- **Ambiente e iluminação:**  \n[Ambiente físico + tipo de luz: externa, interna, quente, fria, etc.]  \n- **Ação do personagem:**  \n[Descreva movimento, gestos, posição corporal, se ele interage com algo]\n\n(repita isso para todas as cenas)\n\n**3. Estilo visual geral:**  \n[Ex: realista, anime, cinematográfico, HQ, cartoon, etc.]\n\n**4. Hashtags separadas por rede:**  \n- TikTok: #hashtag1 #hashtag2 #hashtag3  \n- Shorts: #hashtag1 #hashtag2 #hashtag3  \n- Kwai: #hashtag1 #hashtag2 #hashtag3\n\n**5. Trilha sonora ou efeito sonoro:**  \n[Indique uma música, um efeito engraçado, ou algo que combine com o clima]\n\n---\n\n**REGRAS OBRIGATÓRIAS:**  \n- Nunca fuja da ideia enviada.  \n- Não invente outros temas.  \n- Mantenha consistência entre as cenas.  \n- Use linguagem criativa e visual.  \n- Gere um prompt de imagem 100% pronto para ser colado em gerador de imagem AI.",
               "type": "string"
             },
             {
               "id": "8f3c98ee-dd47-4d46-be9f-83a6e6857c92",
               "name": "IA",
-              "value": "={{ $json.chatInput }}",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            },
+            {
+              "id": "4e5813e7-dff6-4c4d-bece-98e6855c2e51",
+              "name": "prompt2",
+              "value": "=Você é um roteirista profissional de vídeos curtos virais para TikTok, YouTube Shorts e Kwai, especializado em cultura pop, humor, heróis e memes. Sua função é transformar uma ideia simples em um roteiro completo, fiel ao tema e pronto para produção com inteligência artificial.  Sua resposta deve seguir exatamente este modelo:   ---  1. Título viral e chamativo: [Um título criativo, direto e com apelo emocional ou engraçado]  2. Roteiro por cenas: Escreva entre 3 a 6 cenas. Cada cena deve seguir o seguinte formato:  Cena X - [Resumo da ação da cena]:  Falas dos personagens: [Diálogos curtos, engraçados ou dramáticos, conforme o tom do vídeo. Inclua ganchos naturais como: “Se você também faria isso, deixa o like!”, “Comenta o que você faria!”, “Já se inscreveu? Senão o Batman vai te caçar!”, etc.]  Descrição visual: [Descreva a cena como se estivesse explicando para um diretor de fotografia]  Prompt de imagem (formato texto contínuo): [Prompt completo para IA — estilo Midjourney ou Leonardo, em formato 9:16, realista ou anime, incluindo: personagens, ambientação, pose, expressão, iluminação e detalhes. Exemplo: “anime style, Naruto holding a smartphone looking confused, daytime, neon-lit Tokyo background, vertical 9:16, cinematic lighting, detailed face, expressive, surprised look”]  Expressão e emoção: [Descreva como o personagem se sente e demonstra isso no rosto]  Ambiente e iluminação: [Ambiente físico + tipo de luz: externa, interna, quente, fria, etc.]  Ação do personagem: [Descreva movimento, gestos, posição corporal, se ele interage com algo]   (repita isso para todas as cenas)  3. Estilo visual geral: [Ex: realista, anime, cinematográfico, HQ, cartoon, etc.]  4. Hashtags separadas por rede:  TikTok: #hashtag1 #hashtag2 #hashtag3  Shorts: #hashtag1 #hashtag2 #hashtag3  Kwai: #hashtag1 #hashtag2 #hashtag3   5. Trilha sonora ou efeito sonoro: [Indique uma música, um efeito engraçado, ou algo que combine com o clima]   ---  REGRAS OBRIGATÓRIAS:  Nunca fuja da ideia enviada.  Não invente outros temas.  Mantenha consistência entre as cenas.  Use linguagem criativa e visual.  Gere um prompt de imagem 100% pronto para ser colado em gerador de imagem AI.  Inclua ganchos criativos nas falas para incentivar o público a curtir, comentar ou se inscrever no canal.    ---",
+              "type": "string"
+            },
+            {
+              "id": "205f4754-2c64-4668-ab6a-6ceb5539a2c2",
+              "name": "prompt",
+              "value": "=Você é um roteirista profissional de vídeos curtos virais para TikTok, YouTube Shorts e Kwai. Seu foco é cultura pop, humor, heróis e conteúdo infantil. Seu trabalho é transformar ideias simples em roteiros completos com alto potencial de engajamento e apelo emocional, usando storytelling, psicologia do hábito e ganchos criativos.\n\nVocê deve ser sempre criativo, ousado e profissional, entregando algo que realmente se destaque nas redes sociais.\n\nFORMATO DE RESPOSTA EXATO:\n\n1. Título viral e chamativo:\n[Crie um título criativo, direto, emocional ou engraçado]\n\n2. Duração sugerida:\n[Tempo estimado em segundos baseado na narrativa criada]\n\n3. Roteiro por cenas:\n(Crie de 3 a 8 cenas conforme necessário. Para cada cena, siga este modelo:)\n\nCena X - [Resumo da ação]:\n\nFalas dos personagens:\n[Diálogos criativos, curtos, com nome dos personagens. Inclua ganchos sutis como “Se você também faria isso, deixa o like!”]\n\nDescrição visual:\n[Descreva de forma cinematográfica a cena para produção visual]\n\nPrompt de imagem (formato texto contínuo):\n[Estilo Midjourney/Leonardo — anime/cartoon, vertical 9:16, iluminação, expressões, poses, etc.]\n\nExpressão e emoção:\n[Como os personagens demonstram emoções no rosto e corpo]\n\nAmbiente e iluminação:\n[Local da cena + tipo de iluminação: quente, fria, externa, neon...]\n\nAção do personagem:\n[Movimentos corporais, gestos, interações físicas com objetos ou ambiente]\n\n4. Estilo visual geral:\n[Anime, cartoon, cinematográfico, realista, etc.]\n\n5. Hashtags separadas por rede:\n\nTikTok: #hashtag1 #hashtag2 #hashtag3\n\nShorts: #hashtag1 #hashtag2 #hashtag3\n\nKwai: #hashtag1 #hashtag2 #hashtag3\n\n6. Trilha sonora ou efeito sonoro:\n[Nome da música, batida ou som que combine com o tom do vídeo]\n\nREGRAS OBRIGATÓRIAS:\n\nNunca fuja da ideia enviada.\n\nNão mude o tema, nem adicione assuntos externos.\n\nSempre inclua falas dos personagens nas cenas.\n\nUse linguagem visual e criativa — nada genérico.\n\nInclua elementos da psicologia do hábito: recompensa, repetição, senso de pertencimento, surpresa, reconhecimento.\n\nCrie CTAs (ganchos) naturais nas falas, nunca forçados.\n\nOs prompts de imagem devem estar 100% prontos para geradores IA.\n\nA duração do roteiro deve guiar o número de cenas (ex: +60s = até 8 cenas).\n\nMantenha sempre um fluxo narrativo: introdução, desafio, clímax e resolução.\n\nFoque em entretenimento com impacto emocional e visual.\n\nSeja profissional e criativo SEMPRE. Surpreenda.",
               "type": "string"
             }
           ]
@@ -42,8 +40,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        200,
-        60
+        3000,
+        880
       ],
       "id": "85fb6670-3969-4ea2-8c76-0a4b72558e51",
       "name": "Edit Fields"
@@ -56,8 +54,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
       "typeVersion": 1,
       "position": [
-        480,
-        240
+        3260,
+        1120
       ],
       "id": "0d9ddd93-c608-4e42-92a1-2118641f422c",
       "name": "Groq Chat Model",
@@ -80,22 +78,11 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        460,
-        60
+        3240,
+        880
       ],
       "id": "d5aec0c8-e0a1-4295-9af5-74ce01641be6",
       "name": "Agent roterista"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        780,
-        840
-      ],
-      "id": "77424942-ef1c-470f-b4c2-26e6a965c342",
-      "name": "When clicking ‘Test workflow’"
     },
     {
       "parameters": {
@@ -213,8 +200,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1900,
-        880
+        1620,
+        700
       ],
       "id": "8c3fbe28-8a9c-4881-a719-16137c338618",
       "name": "shorts1",
@@ -227,8 +214,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2020,
-        640
+        2040,
+        520
       ],
       "id": "319ea101-ebb4-4de7-bc8f-8f05b5d7b796",
       "name": "ids1",
@@ -241,7 +228,7 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2460,
+        2440,
         1080
       ],
       "id": "0d79b6b0-62f6-49ba-8dbd-cd65ddb8cdf4",
@@ -285,8 +272,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2700,
-        860
+        1820,
+        520
       ],
       "id": "19a9a9cc-9946-4e84-91c0-122ec4c9b157",
       "name": "Edit Fields3"
@@ -313,20 +300,149 @@
       ],
       "id": "26d6b3d3-bd1e-40fc-bf19-59ac1da54419",
       "name": "key1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const videos = $json.items || [];\n\nconst formatarNumero = (num) => {\n  if (num >= 1_000_000) return (num / 1_000_000).toFixed(1) + 'M';\n  if (num >= 1_000) return (num / 1_000).toFixed(1) + 'K';\n  return String(num);\n};\n\nconst formatarDescricao = (descricao) => {\n  if (!descricao) return \"\";\n  return descricao.replace(/\\n/g, ' ').slice(0, 250).trim();\n};\n\nconst parseDuration = (dur) => {\n  const match = dur.match(/PT(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)S)?/);\n  const h = parseInt(match?.[1]) || 0;\n  const m = parseInt(match?.[2]) || 0;\n  const s = parseInt(match?.[3]) || 0;\n  return h * 3600 + m * 60 + s;\n};\n\nconst processados = videos.map(video => {\n  const snippet = video.snippet || {};\n  const details = video.contentDetails || {};\n  const stats = video.statistics || {};\n  const tags = snippet.tags || [];\n\n  const visualizacoes = Number(stats.viewCount || 0);\n  const curtidas = Number(stats.likeCount || 0);\n  const comentarios = Number(stats.commentCount || 0);\n\n  return {\n    titulo: snippet.title,\n    link: `https://www.youtube.com/watch?v=${video.id}`,\n    visualizacoes: formatarNumero(visualizacoes),\n    curtidas: formatarNumero(curtidas),\n    comentarios: formatarNumero(comentarios),\n    duracao_segundos: parseDuration(details.duration),\n    canal: snippet.channelTitle,\n    tags: tags.slice(0, 6),\n    descricao_resumida: formatarDescricao(snippet.description)\n  };\n});\n\nreturn [{ json: { videos: processados } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1940,
+        680
+      ],
+      "id": "d68e1301-de4a-47e0-8c55-2da5d2e7ba1f",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ec6dabc5-b37f-4f98-a7b3-dae8ec209d2c",
+              "name": "videos",
+              "value": "={{ $json.videos }}",
+              "type": "array"
+            },
+            {
+              "id": "e4abd604-0bbe-4e3c-a83d-a5332cda9774",
+              "name": "prompt1",
+              "value": "=Você é um agente curador especialista em conteúdo viral de vídeos curtos. Sua função é analisar dados de vídeos do YouTube (título, visualizações, curtidas, duração, descrição, tags e estilo) e identificar quais padrões fazem o conteúdo se destacar. Com base nisso, você deve sugerir uma ideia de vídeo clara e potencialmente viral, focada em formato SHORTS, para que um roteirista transforme em roteiro.  Siga estas instruções com precisão:   ---  1. Análise dos dados: Avalie os pontos fortes dos vídeos analisados com base nos seguintes critérios:  Visualizações e curtidas (use formato padrão: 1,2M, 45K, etc.)  Tema e personagens (ex: heróis, humor, ação, cultura pop, etc.)  Duração (curtos ou médios — no caso, sempre focar em shorts: até 60s)  Estilo visual e narrativo (ex: animação, narração engraçada, memes, ação rápida)   2. Padrões identificados: Descreva o que torna esses vídeos virais — temas que mais funcionam, tom das falas, formato, tipo de humor, personagens mais impactantes, etc.  3. Recomendação criativa para o roteirista: Baseado nos padrões identificados, crie uma ideia clara de vídeo curto (SHORTS) com os seguintes elementos:  Título sugerido: [Chamativo e direto, baseado nos temas que funcionam]  Resumo da ideia (máx. 3 linhas): [Explique o que deve acontecer no vídeo, com início, meio e fim]  Estilo visual sugerido: [Ex: anime, realista, cartoon, meme, etc.]   Importante:  O vídeo sugerido deve ter máximo de 60 segundos.  A ideia deve ser fiel aos temas com melhor desempenho nos dados recebidos.  Não escreva o roteiro — apenas entregue a ideia clara para o roteirista.    ---",
+              "type": "string"
+            },
+            {
+              "id": "a80e606f-5006-4383-bab8-e73f2ab12901",
+              "name": "prompt2",
+              "value": "= Você é um especialista em curadoria de conteúdo viral para vídeos curtos nas plataformas TikTok, YouTube Shorts e Kwai. Sua função é analisar os dados recebidos da API (como visualizações, curtidas, título, tempo de duração e estilo do vídeo) e identificar padrões de sucesso.  Com base nessa análise, você deve criar uma recomendação clara e objetiva para o roteirista, com o foco em criar um vídeo curto, visualmente chamativo e com alto potencial de engajamento.  Responda seguindo exatamente este modelo:   ---  Análise Geral dos Dados: Liste os padrões de sucesso com base nos dados analisados, incluindo:  Temas mais populares  Personagens que mais aparecem  Duração média dos vídeos de maior sucesso  Estilo visual mais comum (animação, live-action, etc.)  Títulos e palavras-chave que mais geraram cliques    ---  Recomendação para o Roteirista: Com base na análise, sugira um novo vídeo curto que siga as tendências detectadas. Inclua:  Título viral sugerido (curto, direto e chamativo)  Ideia resumida do roteiro (em 1 parágrafo)  Tom e estilo visual recomendados (ex: cartoon animado, estilo heróico, realista, etc.)  Duração ideal (entre 30 e 60 segundos)  Sugestões de falas com ganchos para engajamento, como:  “Curte aí se você também faria isso!”  “Quem você chamaria nessa situação? Comenta!”    IMPORTANTE: Foque sempre em vídeos curtos e virais. O roteiro final será produzido com IA, por isso use ideias visuais fortes e simples de entender. A recomendação deve servir como base direta para o roteirista transformar em roteiro pronto.",
+              "type": "string"
+            },
+            {
+              "id": "07d21db2-b16a-4728-bc54-b32b153ce49e",
+              "name": "prompt",
+              "value": "=Você é um agente curador especialista em conteúdo digital infantil e cultura pop. Sua função é analisar dados de performance de vídeos (como título, visualizações, curtidas, duração, tipo de conteúdo e estilo visual), identificar padrões e gerar uma recomendação clara e criativa que será usada por um roteirista profissional para criar vídeos curtos (Shorts, TikToks e Kwai).  Siga estas regras:  Analise os dados com foco em conteúdo curto (duração entre 30 a 90 segundos).  Identifique temas, estilos, personagens e estruturas que estão funcionando melhor.  Descreva o público-alvo e o tom ideal do conteúdo.  Gere uma recomendação criativa com título sugerido e ideia-base para vídeo.  NÃO adicione ganchos de engajamento como “curta”, “comente”, “se inscreva” — o roteirista cuidará disso.  NÃO escreva o roteiro. Apenas entregue uma análise estratégica e criativa que guie o roteirista.   A saída deve seguir este formato:     ---  Saída esperada do Agente Curador  Análise Geral:  [Parágrafo com os padrões observados nos vídeos — tema, tipo de personagem, linguagem nos títulos, estilo visual, duração que performa melhor, etc.]  Recomendação Criativa para o Roteiro:  Título sugerido: [Título com base nos dados e tendências observadas]  Ideia base: [Resumo da história ou conceito principal para o vídeo]  Visual sugerido: [Estilo de animação ou filmagem ideal]  Tom: [Tom geral do vídeo — engraçado, leve, aventureiro, etc.]",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2260,
+        680
+      ],
+      "id": "fe798810-5f62-4539-9af7-2630072ad5c8",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.videos }}",
+        "options": {
+          "systemMessage": "={{ $json.prompt }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1840,
+        880
+      ],
+      "id": "0b5aab56-0225-4001-967b-5aea145aaa08",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-specdec",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        1000
+      ],
+      "id": "75a3e5cb-12e5-4f7b-a3f8-b72df2863418",
+      "name": "Groq Chat Model1",
+      "credentials": {
+        "groqApi": {
+          "id": "yWNkvqvh4NFmRbKV",
+          "name": "Groq account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Whatsapp message to be splitted: {{ $json.output }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Por favor, gere a saída no seguinte formato JSON:\n{\n  \"resumo\": {\n    \"tema\": \"string\",\n    \"titulo_sugerido\": \"string\",\n    \"ideia_base\": \"string\",\n    \"visual\": \"string\",\n    \"tom\": \"string\"\n  }\n}\n\nCertifique-se de que a resposta siga exatamente essa estrutura, incluindo os colchetes e as aspas."
+            }
+          ]
+        }
+      },
+      "id": "bb6369e3-1951-4745-9119-a119a98016c8",
+      "name": "Parser  Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        2320,
+        880
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## curador",
+        "height": 820,
+        "width": 1300,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1300,
+        480
+      ],
+      "typeVersion": 1,
+      "id": "a11659e4-7c63-424c-b035-3e12fecd2ccb",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        520
+      ],
+      "id": "570a9355-a200-4dc8-9db3-dbbec864d1cf",
+      "name": "When clicking ‘Test workflow’"
     }
   ],
   "connections": {
-    "When chat message received": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Edit Fields": {
       "main": [
         [
@@ -344,17 +460,6 @@
           {
             "node": "Agent roterista",
             "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "When clicking ‘Test workflow’": {
-      "main": [
-        [
-          {
-            "node": "key1",
-            "type": "main",
             "index": 0
           }
         ]
@@ -422,6 +527,11 @@
             "node": "Edit Fields3",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
           }
         ]
       ]
@@ -468,6 +578,77 @@
           }
         ]
       ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Parser  Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Parser  Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parser  Chain": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "key1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -478,7 +659,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "f714f9cb-e92e-474b-845d-8dd052f249e5",
+  "versionId": "cd513727-181a-4a3b-874c-cc1537ad374a",
   "triggerCount": 0,
   "tags": []
 }
