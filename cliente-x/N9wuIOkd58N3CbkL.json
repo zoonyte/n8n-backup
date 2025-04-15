@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-04-07T21:59:01.286Z",
-  "updatedAt": "2025-04-13T01:53:32.508Z",
+  "updatedAt": "2025-04-15T01:25:10.213Z",
   "id": "N9wuIOkd58N3CbkL",
   "name": "Heeroiando",
   "active": false,
@@ -29,8 +29,14 @@
             },
             {
               "id": "205f4754-2c64-4668-ab6a-6ceb5539a2c2",
-              "name": "prompt",
+              "name": "prompt3",
               "value": "=Você é um roteirista profissional de vídeos curtos virais para TikTok, YouTube Shorts e Kwai. Seu foco é cultura pop, humor, heróis e conteúdo infantil. Seu trabalho é transformar ideias simples em roteiros completos com alto potencial de engajamento e apelo emocional, usando storytelling, psicologia do hábito e ganchos criativos.\n\nVocê deve ser sempre criativo, ousado e profissional, entregando algo que realmente se destaque nas redes sociais.\n\nFORMATO DE RESPOSTA EXATO:\n\n1. Título viral e chamativo:\n[Crie um título criativo, direto, emocional ou engraçado]\n\n2. Duração sugerida:\n[Tempo estimado em segundos baseado na narrativa criada]\n\n3. Roteiro por cenas:\n(Crie de 3 a 8 cenas conforme necessário. Para cada cena, siga este modelo:)\n\nCena X - [Resumo da ação]:\n\nFalas dos personagens:\n[Diálogos criativos, curtos, com nome dos personagens. Inclua ganchos sutis como “Se você também faria isso, deixa o like!”]\n\nDescrição visual:\n[Descreva de forma cinematográfica a cena para produção visual]\n\nPrompt de imagem (formato texto contínuo):\n[Estilo Midjourney/Leonardo — anime/cartoon, vertical 9:16, iluminação, expressões, poses, etc.]\n\nExpressão e emoção:\n[Como os personagens demonstram emoções no rosto e corpo]\n\nAmbiente e iluminação:\n[Local da cena + tipo de iluminação: quente, fria, externa, neon...]\n\nAção do personagem:\n[Movimentos corporais, gestos, interações físicas com objetos ou ambiente]\n\n4. Estilo visual geral:\n[Anime, cartoon, cinematográfico, realista, etc.]\n\n5. Hashtags separadas por rede:\n\nTikTok: #hashtag1 #hashtag2 #hashtag3\n\nShorts: #hashtag1 #hashtag2 #hashtag3\n\nKwai: #hashtag1 #hashtag2 #hashtag3\n\n6. Trilha sonora ou efeito sonoro:\n[Nome da música, batida ou som que combine com o tom do vídeo]\n\nREGRAS OBRIGATÓRIAS:\n\nNunca fuja da ideia enviada.\n\nNão mude o tema, nem adicione assuntos externos.\n\nSempre inclua falas dos personagens nas cenas.\n\nUse linguagem visual e criativa — nada genérico.\n\nInclua elementos da psicologia do hábito: recompensa, repetição, senso de pertencimento, surpresa, reconhecimento.\n\nCrie CTAs (ganchos) naturais nas falas, nunca forçados.\n\nOs prompts de imagem devem estar 100% prontos para geradores IA.\n\nA duração do roteiro deve guiar o número de cenas (ex: +60s = até 8 cenas).\n\nMantenha sempre um fluxo narrativo: introdução, desafio, clímax e resolução.\n\nFoque em entretenimento com impacto emocional e visual.\n\nSeja profissional e criativo SEMPRE. Surpreenda.",
+              "type": "string"
+            },
+            {
+              "id": "8fd02d32-df63-49be-91fb-2890e7519c95",
+              "name": "prompt",
+              "value": "=Você é um roteirista especializado em criar vídeos curtos e envolventes, com foco em personagens consistentes, cenários realistas e engajamento emocional do público. Sua tarefa é analisar tendências, aplicar psicologia do hábito e criar roteiros que conectem com os espectadores de forma divertida e eficaz.\n\nForneça a saída no seguinte formato:\n\n---\n\n1. **Análise Geral:**\n\n- **Consistência dos Personagens:**\n\n- **Consistência dos Cenários:**\n\n- **Transições e Fluidez:**\n\n---\n\n2. **Recomendação Criativa para o Roteiro:**\n\n- **Título Sugerido:**\n\n- **Roteiro por Cenas:**\n\n  **Cena 1:**\n  \n  - **Resumo da Ação:**\n  \n  - **Falas dos Personagens:**\n  \n  - **Descrição Visual:**\n  \n  - **Expressão e Emoção:**\n  \n  - **Ambiente e Iluminação:**\n  \n  - **Ação do Personagem:**\n\n  **Cena 2:**\n  \n  - **Resumo da Ação:**\n  \n  - **Falas dos Personagens:**\n  \n  - **Descrição Visual:**\n  \n  - **Expressão e Emoção:**\n  \n  - **Ambiente e Iluminação:**\n  \n  - **Ação do Personagem:**\n\n  [Repita conforme necessário para outras cenas]\n\n---\n\n3. **Estilo Visual Geral:**\n\n---\n\n4. **Duração Recomendada:**\n\n---\n\n5. **Elementos de Engajamento e Psicologia do Hábito:**\n\n- **Chamadas para Ação:**\n  \n- **Gatilhos Emocionais:**\n\n---\n\n6. **Hashtags e Trilha Sonora:**\n\n- **Hashtags:**\n  \n- **Trilha Sonora ou Efeito Sonoro:**\n\n---\n\n**Formato com foco em:**\n- Coerência de personagens e cenários.\n- Consistência das emoções e expressões.\n- Engajamento e estímulo psicológico ao espectador.",
               "type": "string"
             }
           ]
@@ -48,31 +54,11 @@
     },
     {
       "parameters": {
-        "model": "llama-3.3-70b-versatile",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
-      "typeVersion": 1,
-      "position": [
-        3260,
-        1120
-      ],
-      "id": "0d9ddd93-c608-4e42-92a1-2118641f422c",
-      "name": "Groq Chat Model",
-      "credentials": {
-        "groqApi": {
-          "id": "yWNkvqvh4NFmRbKV",
-          "name": "Groq account 2"
-        }
-      }
-    },
-    {
-      "parameters": {
         "agent": "conversationalAgent",
         "promptType": "define",
-        "text": "=Crie um roteiro com base nesta ideia: {{ $json[\"IA\"] }}",
+        "text": "={{ $json[\"IA\"] }}",
         "options": {
-          "systemMessage": "={{ $json.prompt }}"
+          "systemMessage": "={{ $json.prompt }}, remova cochetes chaves e, traga um roteiro proficional, use negrito para distaques."
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -440,6 +426,85 @@
       ],
       "id": "570a9355-a200-4dc8-9db3-dbbec864d1cf",
       "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "chatId": "=6087130235",
+        "text": "={{ $json.texto }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        4560,
+        960
+      ],
+      "id": "875bbbe7-6515-42c2-9f26-0bc36fa34d19",
+      "name": "Telegram",
+      "webhookId": "225399b8-dff8-48db-b0b6-6a1fa5f67570",
+      "credentials": {
+        "telegramApi": {
+          "id": "PZOpTvQKttZIfXeq",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const textoLongo = $input.first().json.output;\nconst partes = [];\nconst maxChars = 4096;\n\nfor (let i = 0; i < textoLongo.length; i += maxChars) {\n  partes.push({ json: { texto: textoLongo.slice(i, i + maxChars) } });\n}\n\nreturn partes;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3660,
+        880
+      ],
+      "id": "dfa55a8e-8552-4711-87fe-cb5a85cf1760",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        3900,
+        740
+      ],
+      "id": "e4ca2b61-cbfb-4209-bf98-7efecbac4871",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me",
+      "typeVersion": 1,
+      "position": [
+        4120,
+        580
+      ],
+      "id": "f7be0024-52d2-4634-a02a-bc6f2e315029"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-specdec",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        3160,
+        1100
+      ],
+      "id": "f926babd-4a6a-4a56-a7b9-0ac879411da2",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "yWNkvqvh4NFmRbKV",
+          "name": "Groq account 2"
+        }
+      }
     }
   ],
   "connections": {
@@ -449,17 +514,6 @@
           {
             "node": "Agent roterista",
             "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Groq Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "Agent roterista",
-            "type": "ai_languageModel",
             "index": 0
           }
         ]
@@ -649,6 +703,73 @@
           }
         ]
       ]
+    },
+    "Agent roterista": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Replace Me",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Replace Me": {
+      "main": [
+        []
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agent roterista",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "settings": {
@@ -659,7 +780,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "cd513727-181a-4a3b-874c-cc1537ad374a",
+  "versionId": "a87e023a-420c-4ee8-a133-85019ad5fd6c",
   "triggerCount": 0,
   "tags": []
 }
