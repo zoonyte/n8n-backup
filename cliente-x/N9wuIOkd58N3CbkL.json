@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-04-07T21:59:01.286Z",
-  "updatedAt": "2025-04-15T01:25:10.213Z",
+  "updatedAt": "2025-04-23T19:36:21.454Z",
   "id": "N9wuIOkd58N3CbkL",
   "name": "Heeroiando",
   "active": false,
@@ -46,8 +46,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3000,
-        880
+        2440,
+        680
       ],
       "id": "85fb6670-3969-4ea2-8c76-0a4b72558e51",
       "name": "Edit Fields"
@@ -64,8 +64,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        3240,
-        880
+        3460,
+        580
       ],
       "id": "d5aec0c8-e0a1-4295-9af5-74ce01641be6",
       "name": "Agent roterista"
@@ -80,7 +80,7 @@
       "typeVersion": 3,
       "position": [
         1360,
-        880
+        900
       ],
       "id": "5c04adb9-fa78-4a41-b505-8e54cae49a3a",
       "name": "Merge"
@@ -246,7 +246,7 @@
       "typeVersion": 4.2,
       "position": [
         1620,
-        880
+        900
       ],
       "id": "b8b60fa8-67bc-4188-95df-8530aafa66f8",
       "name": "viws1"
@@ -258,7 +258,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1820,
+        1620,
         520
       ],
       "id": "19a9a9cc-9946-4e84-91c0-122ec4c9b157",
@@ -335,7 +335,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2260,
+        2240,
         680
       ],
       "id": "fe798810-5f62-4539-9af7-2630072ad5c8",
@@ -353,21 +353,21 @@
       "typeVersion": 1.7,
       "position": [
         1840,
-        880
+        860
       ],
       "id": "0b5aab56-0225-4001-967b-5aea145aaa08",
       "name": "AI Agent"
     },
     {
       "parameters": {
-        "model": "llama-3.3-70b-specdec",
+        "model": "llama-3.3-70b-versatile",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
       "typeVersion": 1,
       "position": [
-        2100,
-        1000
+        2080,
+        1160
       ],
       "id": "75a3e5cb-12e5-4f7b-a3f8-b72df2863418",
       "name": "Groq Chat Model1",
@@ -381,7 +381,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Whatsapp message to be splitted: {{ $json.output }}",
+        "text": "={{ $json.output }}",
         "hasOutputParser": true,
         "messages": {
           "messageValues": [
@@ -396,20 +396,20 @@
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.4,
       "position": [
-        2320,
-        880
+        2280,
+        860
       ]
     },
     {
       "parameters": {
-        "content": "## curador",
+        "content": "*curador*",
         "height": 820,
-        "width": 1300,
+        "width": 1360,
         "color": 5
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1300,
+        1280,
         480
       ],
       "typeVersion": 1,
@@ -436,8 +436,8 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        4560,
-        960
+        4760,
+        680
       ],
       "id": "875bbbe7-6515-42c2-9f26-0bc36fa34d19",
       "name": "Telegram",
@@ -456,8 +456,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3660,
-        880
+        3780,
+        580
       ],
       "id": "dfa55a8e-8552-4711-87fe-cb5a85cf1760",
       "name": "Code2"
@@ -469,8 +469,8 @@
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
       "position": [
-        3900,
-        740
+        4520,
+        660
       ],
       "id": "e4ca2b61-cbfb-4209-bf98-7efecbac4871",
       "name": "Loop Over Items"
@@ -481,42 +481,91 @@
       "name": "Replace Me",
       "typeVersion": 1,
       "position": [
-        4120,
-        580
+        4760,
+        540
       ],
       "id": "f7be0024-52d2-4634-a02a-bc6f2e315029"
     },
     {
       "parameters": {
-        "model": "llama-3.3-70b-specdec",
+        "content": "##Envio",
+        "height": 380,
+        "width": 520,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        4460,
+        500
+      ],
+      "typeVersion": 1,
+      "id": "ad2bbb01-fad7-410c-9353-bf7fb78cb8f0",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "\n**Roterista** ",
+        "height": 360,
+        "width": 520
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3440,
+        420
+      ],
+      "typeVersion": 1,
+      "id": "26fd1e84-f97d-4308-b331-30316de0022a",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
       "typeVersion": 1,
       "position": [
-        3160,
-        1100
+        3460,
+        460
       ],
       "id": "f926babd-4a6a-4a56-a7b9-0ac879411da2",
-      "name": "Groq Chat Model",
+      "name": "Model",
       "credentials": {
         "groqApi": {
           "id": "yWNkvqvh4NFmRbKV",
           "name": "Groq account 2"
         }
       }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3780,
+        440
+      ],
+      "id": "58b31ba5-50e2-48c5-84a3-4dcede6b70d2",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "name": "Replace Me1",
+      "typeVersion": 1,
+      "position": [
+        4520,
+        520
+      ],
+      "id": "da299856-500b-4a78-9676-adf99ceb3dc0"
     }
   ],
   "connections": {
     "Edit Fields": {
       "main": [
-        [
-          {
-            "node": "Agent roterista",
-            "type": "main",
-            "index": 0
-          }
-        ]
+        []
       ]
     },
     "Merge": {
@@ -730,7 +779,7 @@
       "main": [
         [
           {
-            "node": "Loop Over Items",
+            "node": "Edit Fields2",
             "type": "main",
             "index": 0
           }
@@ -760,12 +809,28 @@
         []
       ]
     },
-    "Groq Chat Model": {
+    "Model": {
       "ai_languageModel": [
         [
           {
             "node": "Agent roterista",
             "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        []
+      ]
+    },
+    "Replace Me1": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
             "index": 0
           }
         ]
@@ -780,7 +845,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "a87e023a-420c-4ee8-a133-85019ad5fd6c",
+  "versionId": "f270cdb0-606e-4904-a6c4-36b508b5724b",
   "triggerCount": 0,
   "tags": []
 }
