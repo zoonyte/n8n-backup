@@ -1,35 +1,582 @@
 {
   "createdAt": "2025-04-13T01:54:05.069Z",
-  "updatedAt": "2025-04-13T02:06:34.651Z",
+  "updatedAt": "2025-04-23T18:59:23.277Z",
   "id": "oNvZP6iemS6NfgaU",
   "name": "My workflow 3",
   "active": false,
   "nodes": [
     {
       "parameters": {
-        "updates": [
-          "message"
-        ],
-        "additionalFields": {}
+        "assignments": {
+          "assignments": [
+            {
+              "id": "909a60f0-abe1-4315-8030-769453d6b7fb",
+              "name": "prompt1",
+              "value": "=Você é um roteirista profissional de vídeos curtos virais para TikTok, YouTube Shorts e Kwai, especializado em cultura pop, humor, heróis e memes. Sua função é transformar uma ideia simples em um roteiro completo, fiel ao tema e pronto para produção com inteligência artificial.\n\nSua resposta deve seguir exatamente este modelo:\n\n---\n\n**1. Título viral e chamativo:**  \n[Um título criativo, direto e com apelo emocional ou engraçado]\n\n**2. Roteiro por cenas:**  \nEscreva entre 3 a 6 cenas. Cada cena deve seguir o seguinte formato:\n\n**Cena X - [Resumo da ação da cena]:**  \n- **Falas dos personagens:**  \n[Diálogos curtos, engraçados ou dramáticos, conforme o tom do vídeo]  \n- **Descrição visual:**  \n[Descreva a cena como se estivesse explicando para um diretor de fotografia]  \n- **Prompt de imagem (formato texto contínuo):**  \n[Prompt completo para IA — estilo Midjourney ou Leonardo, em formato 9:16, realista ou anime, incluindo: personagens, ambientação, pose, expressão, iluminação e detalhes. Exemplo: “anime style, Naruto holding a smartphone looking confused, daytime, neon-lit Tokyo background, vertical 9:16, cinematic lighting, detailed face, expressive, surprised look”]  \n- **Expressão e emoção:**  \n[Descreva como o personagem se sente e demonstra isso no rosto]  \n- **Ambiente e iluminação:**  \n[Ambiente físico + tipo de luz: externa, interna, quente, fria, etc.]  \n- **Ação do personagem:**  \n[Descreva movimento, gestos, posição corporal, se ele interage com algo]\n\n(repita isso para todas as cenas)\n\n**3. Estilo visual geral:**  \n[Ex: realista, anime, cinematográfico, HQ, cartoon, etc.]\n\n**4. Hashtags separadas por rede:**  \n- TikTok: #hashtag1 #hashtag2 #hashtag3  \n- Shorts: #hashtag1 #hashtag2 #hashtag3  \n- Kwai: #hashtag1 #hashtag2 #hashtag3\n\n**5. Trilha sonora ou efeito sonoro:**  \n[Indique uma música, um efeito engraçado, ou algo que combine com o clima]\n\n---\n\n**REGRAS OBRIGATÓRIAS:**  \n- Nunca fuja da ideia enviada.  \n- Não invente outros temas.  \n- Mantenha consistência entre as cenas.  \n- Use linguagem criativa e visual.  \n- Gere um prompt de imagem 100% pronto para ser colado em gerador de imagem AI.",
+              "type": "string"
+            },
+            {
+              "id": "8f3c98ee-dd47-4d46-be9f-83a6e6857c92",
+              "name": "IA",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            },
+            {
+              "id": "4e5813e7-dff6-4c4d-bece-98e6855c2e51",
+              "name": "prompt2",
+              "value": "=Você é um roteirista profissional de vídeos curtos virais para TikTok, YouTube Shorts e Kwai, especializado em cultura pop, humor, heróis e memes. Sua função é transformar uma ideia simples em um roteiro completo, fiel ao tema e pronto para produção com inteligência artificial.  Sua resposta deve seguir exatamente este modelo:   ---  1. Título viral e chamativo: [Um título criativo, direto e com apelo emocional ou engraçado]  2. Roteiro por cenas: Escreva entre 3 a 6 cenas. Cada cena deve seguir o seguinte formato:  Cena X - [Resumo da ação da cena]:  Falas dos personagens: [Diálogos curtos, engraçados ou dramáticos, conforme o tom do vídeo. Inclua ganchos naturais como: “Se você também faria isso, deixa o like!”, “Comenta o que você faria!”, “Já se inscreveu? Senão o Batman vai te caçar!”, etc.]  Descrição visual: [Descreva a cena como se estivesse explicando para um diretor de fotografia]  Prompt de imagem (formato texto contínuo): [Prompt completo para IA — estilo Midjourney ou Leonardo, em formato 9:16, realista ou anime, incluindo: personagens, ambientação, pose, expressão, iluminação e detalhes. Exemplo: “anime style, Naruto holding a smartphone looking confused, daytime, neon-lit Tokyo background, vertical 9:16, cinematic lighting, detailed face, expressive, surprised look”]  Expressão e emoção: [Descreva como o personagem se sente e demonstra isso no rosto]  Ambiente e iluminação: [Ambiente físico + tipo de luz: externa, interna, quente, fria, etc.]  Ação do personagem: [Descreva movimento, gestos, posição corporal, se ele interage com algo]   (repita isso para todas as cenas)  3. Estilo visual geral: [Ex: realista, anime, cinematográfico, HQ, cartoon, etc.]  4. Hashtags separadas por rede:  TikTok: #hashtag1 #hashtag2 #hashtag3  Shorts: #hashtag1 #hashtag2 #hashtag3  Kwai: #hashtag1 #hashtag2 #hashtag3   5. Trilha sonora ou efeito sonoro: [Indique uma música, um efeito engraçado, ou algo que combine com o clima]   ---  REGRAS OBRIGATÓRIAS:  Nunca fuja da ideia enviada.  Não invente outros temas.  Mantenha consistência entre as cenas.  Use linguagem criativa e visual.  Gere um prompt de imagem 100% pronto para ser colado em gerador de imagem AI.  Inclua ganchos criativos nas falas para incentivar o público a curtir, comentar ou se inscrever no canal.    ---",
+              "type": "string"
+            },
+            {
+              "id": "205f4754-2c64-4668-ab6a-6ceb5539a2c2",
+              "name": "prompt3",
+              "value": "=Você é um roteirista profissional de vídeos curtos virais para TikTok, YouTube Shorts e Kwai. Seu foco é cultura pop, humor, heróis e conteúdo infantil. Seu trabalho é transformar ideias simples em roteiros completos com alto potencial de engajamento e apelo emocional, usando storytelling, psicologia do hábito e ganchos criativos.\n\nVocê deve ser sempre criativo, ousado e profissional, entregando algo que realmente se destaque nas redes sociais.\n\nFORMATO DE RESPOSTA EXATO:\n\n1. Título viral e chamativo:\n[Crie um título criativo, direto, emocional ou engraçado]\n\n2. Duração sugerida:\n[Tempo estimado em segundos baseado na narrativa criada]\n\n3. Roteiro por cenas:\n(Crie de 3 a 8 cenas conforme necessário. Para cada cena, siga este modelo:)\n\nCena X - [Resumo da ação]:\n\nFalas dos personagens:\n[Diálogos criativos, curtos, com nome dos personagens. Inclua ganchos sutis como “Se você também faria isso, deixa o like!”]\n\nDescrição visual:\n[Descreva de forma cinematográfica a cena para produção visual]\n\nPrompt de imagem (formato texto contínuo):\n[Estilo Midjourney/Leonardo — anime/cartoon, vertical 9:16, iluminação, expressões, poses, etc.]\n\nExpressão e emoção:\n[Como os personagens demonstram emoções no rosto e corpo]\n\nAmbiente e iluminação:\n[Local da cena + tipo de iluminação: quente, fria, externa, neon...]\n\nAção do personagem:\n[Movimentos corporais, gestos, interações físicas com objetos ou ambiente]\n\n4. Estilo visual geral:\n[Anime, cartoon, cinematográfico, realista, etc.]\n\n5. Hashtags separadas por rede:\n\nTikTok: #hashtag1 #hashtag2 #hashtag3\n\nShorts: #hashtag1 #hashtag2 #hashtag3\n\nKwai: #hashtag1 #hashtag2 #hashtag3\n\n6. Trilha sonora ou efeito sonoro:\n[Nome da música, batida ou som que combine com o tom do vídeo]\n\nREGRAS OBRIGATÓRIAS:\n\nNunca fuja da ideia enviada.\n\nNão mude o tema, nem adicione assuntos externos.\n\nSempre inclua falas dos personagens nas cenas.\n\nUse linguagem visual e criativa — nada genérico.\n\nInclua elementos da psicologia do hábito: recompensa, repetição, senso de pertencimento, surpresa, reconhecimento.\n\nCrie CTAs (ganchos) naturais nas falas, nunca forçados.\n\nOs prompts de imagem devem estar 100% prontos para geradores IA.\n\nA duração do roteiro deve guiar o número de cenas (ex: +60s = até 8 cenas).\n\nMantenha sempre um fluxo narrativo: introdução, desafio, clímax e resolução.\n\nFoque em entretenimento com impacto emocional e visual.\n\nSeja profissional e criativo SEMPRE. Surpreenda.",
+              "type": "string"
+            },
+            {
+              "id": "8fd02d32-df63-49be-91fb-2890e7519c95",
+              "name": "prompt",
+              "value": "=Você é um roteirista especializado em criar vídeos curtos e envolventes, com foco em personagens consistentes, cenários realistas e engajamento emocional do público. Sua tarefa é analisar tendências, aplicar psicologia do hábito e criar roteiros que conectem com os espectadores de forma divertida e eficaz.\n\nForneça a saída no seguinte formato:\n\n---\n\n1. **Análise Geral:**\n\n- **Consistência dos Personagens:**\n\n- **Consistência dos Cenários:**\n\n- **Transições e Fluidez:**\n\n---\n\n2. **Recomendação Criativa para o Roteiro:**\n\n- **Título Sugerido:**\n\n- **Roteiro por Cenas:**\n\n  **Cena 1:**\n  \n  - **Resumo da Ação:**\n  \n  - **Falas dos Personagens:**\n  \n  - **Descrição Visual:**\n  \n  - **Expressão e Emoção:**\n  \n  - **Ambiente e Iluminação:**\n  \n  - **Ação do Personagem:**\n\n  **Cena 2:**\n  \n  - **Resumo da Ação:**\n  \n  - **Falas dos Personagens:**\n  \n  - **Descrição Visual:**\n  \n  - **Expressão e Emoção:**\n  \n  - **Ambiente e Iluminação:**\n  \n  - **Ação do Personagem:**\n\n  [Repita conforme necessário para outras cenas]\n\n---\n\n3. **Estilo Visual Geral:**\n\n---\n\n4. **Duração Recomendada:**\n\n---\n\n5. **Elementos de Engajamento e Psicologia do Hábito:**\n\n- **Chamadas para Ação:**\n  \n- **Gatilhos Emocionais:**\n\n---\n\n6. **Hashtags e Trilha Sonora:**\n\n- **Hashtags:**\n  \n- **Trilha Sonora ou Efeito Sonoro:**\n\n---\n\n**Formato com foco em:**\n- Coerência de personagens e cenários.\n- Consistência das emoções e expressões.\n- Engajamento e estímulo psicológico ao espectador.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
       },
-      "type": "n8n-nodes-base.telegramTrigger",
-      "typeVersion": 1.2,
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
       "position": [
-        0,
-        0
+        2380,
+        440
       ],
-      "id": "f0aa3e74-6b15-473f-9683-3d4a1e6670a0",
-      "name": "Telegram Trigger",
-      "webhookId": "70fea5f4-8da7-4f05-998e-e090cec5f9b0",
+      "id": "faaa733d-5b1a-4b9c-9e38-b19301e75cb6",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        640,
+        220
+      ],
+      "id": "b3850ee9-4df2-4a88-bb23-a79f304fa72c",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Recebe o campo 'termos' do input, que deve ser uma string separada por vírgulas\nconst termosBrutos = $json.termos || '';\n\n// Divide os termos por vírgula, limpa espaços e filtra vazios\nconst termos = termosBrutos\n  .split(',')\n  .map(t => t.trim())\n  .filter(Boolean);\n\n// Embaralha e seleciona até 3 termos aleatórios\nconst selecionados = termos\n  .sort(() => 0.5 - Math.random())\n  .slice(0, 3);\n\n// Junta os termos com espaço (estilo de busca do YouTube)\nconst busca = selecionados.join(' ');\n\n// Retorna o valor da busca como campo 'q' para passar na API\nreturn [\n  {\n    json: {\n      q: busca\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        540,
+        600
+      ],
+      "id": "5af94a14-fe15-41d2-9e4e-f412328132f7",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        860,
+        580
+      ],
+      "id": "5f3c3b6c-131c-42b8-abee-175b86bb4c67",
+      "name": "Merge1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b54a2881-7f0a-443d-af39-35b72f91ec22",
+              "name": "termos",
+              "value": "dc, desenho para crianças, spiderman, memes, marvel, herois, superhero, shorts, funny moments, batman, homem aranha, cartoon, kids, marvel shorts, superman, avengers, desenhos engraçados, superhero meme, ação infantil, iron man, hq animada, super hero kids, justice league, shorts engraçados, mini heróis, anime heroes, venom, marvel funny, epic battle",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        600
+      ],
+      "id": "13c9f680-5b0d-4b1f-bbb3-a5d2b5a496e6",
+      "name": "busca"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/youtube/v3/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "part",
+              "value": "snippet"
+            },
+            {
+              "name": "q",
+              "value": "={{ $json.q }}"
+            },
+            {
+              "name": "type",
+              "value": "video"
+            },
+            {
+              "name": "order",
+              "value": "viewCount"
+            },
+            {
+              "name": "maxResults",
+              "value": "2"
+            },
+            {
+              "name": "key",
+              "value": "={{ $json.key }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1080,
+        580
+      ],
+      "id": "2b7a6121-78c7-4234-bd76-78987cb4f0bd",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.filter(item => {\n  const duration = item.json.contentDetails?.duration || \"\";\n  const title = item.json.snippet?.title?.toLowerCase() || \"\";\n  const description = item.json.snippet?.description?.toLowerCase() || \"\";\n  const tags = item.json.snippet?.tags || [];\n\n  // Converter ISO 8601 (PT1M30S) para segundos\n  const match = duration.match(/PT(?:(\\d+)M)?(?:(\\d+)S)?/);\n  const minutes = match && match[1] ? parseInt(match[1]) : 0;\n  const seconds = match && match[2] ? parseInt(match[2]) : 0;\n  const totalSeconds = minutes * 60 + seconds;\n\n  const hasShortInTitle = title.includes(\"short\");\n  const hasShortInDesc = description.includes(\"short\");\n  const hasShortInTags = tags.some(tag => tag.toLowerCase().includes(\"short\"));\n\n  // critério inteligente\n  return totalSeconds <= 62 || hasShortInTitle || hasShortInDesc || hasShortInTags;\n});"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1080,
+        220
+      ],
+      "id": "741d4671-dcdd-41fc-946e-80498f0d763f",
+      "name": "shorts1",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const videoItems = items[0].json.items;\nconst videoIds = [];\n\nfor (const video of videoItems) {\n  const id = video.id?.videoId;\n  if (id) {\n    videoIds.push(id);\n  }\n}\n\nreturn [\n  {\n    json: {\n      videoIds: videoIds.join(\",\")\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        -120
+      ],
+      "id": "57a3179e-872e-45e8-ad65-58e804fe99b7",
+      "name": "ids1",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const videoIds = items.flatMap(item => {\n  return item.json.items.map(video => video.id.videoId);\n});\n\nreturn [\n  {\n    json: {\n      videoIds: videoIds.join(',')\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1300,
+        580
+      ],
+      "id": "31bab6ac-ccab-4817-af5e-7920e7145cb5",
+      "name": "idss1"
+    },
+    {
+      "parameters": {
+        "url": "https://www.googleapis.com/youtube/v3/videos",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": "={{ $json.key }}"
+            },
+            {
+              "name": "part",
+              "value": "snippet,statistics,contentDetails"
+            },
+            {
+              "name": "id",
+              "value": "={{ $json.videoIds }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        220
+      ],
+      "id": "4b1536f4-e55e-499e-9bfd-f7d271448f55",
+      "name": "viws1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7e225c73-6ba5-4bdd-a529-37304efd4b4d",
+              "name": "key",
+              "value": "AIzaSyA_uQbl3SYvPqIrBhM1WlFqVFdZA6uqzrs",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        280,
+        200
+      ],
+      "id": "e48b472b-167d-4435-9db4-3536f8bb7e58",
+      "name": "key1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const videos = $json.items || [];\n\nconst formatarNumero = (num) => {\n  if (num >= 1_000_000) return (num / 1_000_000).toFixed(1) + 'M';\n  if (num >= 1_000) return (num / 1_000).toFixed(1) + 'K';\n  return String(num);\n};\n\nconst formatarDescricao = (descricao) => {\n  if (!descricao) return \"\";\n  return descricao.replace(/\\n/g, ' ').slice(0, 250).trim();\n};\n\nconst parseDuration = (dur) => {\n  const match = dur.match(/PT(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+)S)?/);\n  const h = parseInt(match?.[1]) || 0;\n  const m = parseInt(match?.[2]) || 0;\n  const s = parseInt(match?.[3]) || 0;\n  return h * 3600 + m * 60 + s;\n};\n\nconst processados = videos.map(video => {\n  const snippet = video.snippet || {};\n  const details = video.contentDetails || {};\n  const stats = video.statistics || {};\n  const tags = snippet.tags || [];\n\n  const visualizacoes = Number(stats.viewCount || 0);\n  const curtidas = Number(stats.likeCount || 0);\n  const comentarios = Number(stats.commentCount || 0);\n\n  return {\n    titulo: snippet.title,\n    link: `https://www.youtube.com/watch?v=${video.id}`,\n    visualizacoes: formatarNumero(visualizacoes),\n    curtidas: formatarNumero(curtidas),\n    comentarios: formatarNumero(comentarios),\n    duracao_segundos: parseDuration(details.duration),\n    canal: snippet.channelTitle,\n    tags: tags.slice(0, 6),\n    descricao_resumida: formatarDescricao(snippet.description)\n  };\n});\n\nreturn [{ json: { videos: processados } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1280,
+        200
+      ],
+      "id": "aa420053-dbb2-4744-b700-34716f2abefe",
+      "name": "Code1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "ec6dabc5-b37f-4f98-a7b3-dae8ec209d2c",
+              "name": "videos",
+              "value": "={{ $json.videos }}",
+              "type": "array"
+            },
+            {
+              "id": "e4abd604-0bbe-4e3c-a83d-a5332cda9774",
+              "name": "prompt1",
+              "value": "=Você é um agente curador especialista em conteúdo viral de vídeos curtos. Sua função é analisar dados de vídeos do YouTube (título, visualizações, curtidas, duração, descrição, tags e estilo) e identificar quais padrões fazem o conteúdo se destacar. Com base nisso, você deve sugerir uma ideia de vídeo clara e potencialmente viral, focada em formato SHORTS, para que um roteirista transforme em roteiro.  Siga estas instruções com precisão:   ---  1. Análise dos dados: Avalie os pontos fortes dos vídeos analisados com base nos seguintes critérios:  Visualizações e curtidas (use formato padrão: 1,2M, 45K, etc.)  Tema e personagens (ex: heróis, humor, ação, cultura pop, etc.)  Duração (curtos ou médios — no caso, sempre focar em shorts: até 60s)  Estilo visual e narrativo (ex: animação, narração engraçada, memes, ação rápida)   2. Padrões identificados: Descreva o que torna esses vídeos virais — temas que mais funcionam, tom das falas, formato, tipo de humor, personagens mais impactantes, etc.  3. Recomendação criativa para o roteirista: Baseado nos padrões identificados, crie uma ideia clara de vídeo curto (SHORTS) com os seguintes elementos:  Título sugerido: [Chamativo e direto, baseado nos temas que funcionam]  Resumo da ideia (máx. 3 linhas): [Explique o que deve acontecer no vídeo, com início, meio e fim]  Estilo visual sugerido: [Ex: anime, realista, cartoon, meme, etc.]   Importante:  O vídeo sugerido deve ter máximo de 60 segundos.  A ideia deve ser fiel aos temas com melhor desempenho nos dados recebidos.  Não escreva o roteiro — apenas entregue a ideia clara para o roteirista.    ---",
+              "type": "string"
+            },
+            {
+              "id": "a80e606f-5006-4383-bab8-e73f2ab12901",
+              "name": "prompt2",
+              "value": "= Você é um especialista em curadoria de conteúdo viral para vídeos curtos nas plataformas TikTok, YouTube Shorts e Kwai. Sua função é analisar os dados recebidos da API (como visualizações, curtidas, título, tempo de duração e estilo do vídeo) e identificar padrões de sucesso.  Com base nessa análise, você deve criar uma recomendação clara e objetiva para o roteirista, com o foco em criar um vídeo curto, visualmente chamativo e com alto potencial de engajamento.  Responda seguindo exatamente este modelo:   ---  Análise Geral dos Dados: Liste os padrões de sucesso com base nos dados analisados, incluindo:  Temas mais populares  Personagens que mais aparecem  Duração média dos vídeos de maior sucesso  Estilo visual mais comum (animação, live-action, etc.)  Títulos e palavras-chave que mais geraram cliques    ---  Recomendação para o Roteirista: Com base na análise, sugira um novo vídeo curto que siga as tendências detectadas. Inclua:  Título viral sugerido (curto, direto e chamativo)  Ideia resumida do roteiro (em 1 parágrafo)  Tom e estilo visual recomendados (ex: cartoon animado, estilo heróico, realista, etc.)  Duração ideal (entre 30 e 60 segundos)  Sugestões de falas com ganchos para engajamento, como:  “Curte aí se você também faria isso!”  “Quem você chamaria nessa situação? Comenta!”    IMPORTANTE: Foque sempre em vídeos curtos e virais. O roteiro final será produzido com IA, por isso use ideias visuais fortes e simples de entender. A recomendação deve servir como base direta para o roteirista transformar em roteiro pronto.",
+              "type": "string"
+            },
+            {
+              "id": "07d21db2-b16a-4728-bc54-b32b153ce49e",
+              "name": "prompt",
+              "value": "=Você é um agente curador especialista em conteúdo digital infantil e cultura pop. Sua função é analisar dados de performance de vídeos (como título, visualizações, curtidas, duração, tipo de conteúdo e estilo visual), identificar padrões e gerar uma recomendação clara e criativa que será usada por um roteirista profissional para criar vídeos curtos (Shorts, TikToks e Kwai).  Siga estas regras:  Analise os dados com foco em conteúdo curto (duração entre 30 a 90 segundos).  Identifique temas, estilos, personagens e estruturas que estão funcionando melhor.  Descreva o público-alvo e o tom ideal do conteúdo.  Gere uma recomendação criativa com título sugerido e ideia-base para vídeo.  NÃO adicione ganchos de engajamento como “curta”, “comente”, “se inscreva” — o roteirista cuidará disso.  NÃO escreva o roteiro. Apenas entregue uma análise estratégica e criativa que guie o roteirista.   A saída deve seguir este formato:     ---  Saída esperada do Agente Curador  Análise Geral:  [Parágrafo com os padrões observados nos vídeos — tema, tipo de personagem, linguagem nos títulos, estilo visual, duração que performa melhor, etc.]  Recomendação Criativa para o Roteiro:  Título sugerido: [Título com base nos dados e tendências observadas]  Ideia base: [Resumo da história ou conceito principal para o vídeo]  Visual sugerido: [Estilo de animação ou filmagem ideal]  Tom: [Tom geral do vídeo — engraçado, leve, aventureiro, etc.]",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1420,
+        200
+      ],
+      "id": "4a4d3c65-64af-41ed-8af6-95b1b459c588",
+      "name": "Edit Fields1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.videos }}",
+        "options": {
+          "systemMessage": "={{ $json.prompt }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        2160,
+        180
+      ],
+      "id": "2d14e88c-6e8b-4054-92a3-9621d2c6626f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "llama-3.3-70b-versatile",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        2080,
+        820
+      ],
+      "id": "8881dafb-35c8-4e62-8877-ed4650a86762",
+      "name": "Groq Chat Model1",
       "credentials": {
-        "telegramApi": {
-          "id": "PZOpTvQKttZIfXeq",
-          "name": "Telegram account"
+        "groqApi": {
+          "id": "yWNkvqvh4NFmRbKV",
+          "name": "Groq account 2"
         }
       }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.output }}",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Por favor, gere a saída no seguinte formato JSON:\n{\n  \"resumo\": {\n    \"tema\": \"string\",\n    \"titulo_sugerido\": \"string\",\n    \"ideia_base\": \"string\",\n    \"visual\": \"string\",\n    \"tom\": \"string\"\n  }\n}\n\nCertifique-se de que a resposta siga exatamente essa estrutura, incluindo os colchetes e as aspas."
+            }
+          ]
+        }
+      },
+      "id": "feff53af-ae99-4dcb-b94a-694871a769af",
+      "name": "Parser  Chain",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.4,
+      "position": [
+        2480,
+        140
+      ]
+    },
+    {
+      "parameters": {
+        "content": "",
+        "height": 820,
+        "width": 1360,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        200,
+        -20
+      ],
+      "typeVersion": 1,
+      "id": "ab93d4f7-86fc-4404-841e-8e0158375c6a",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        280,
+        0
+      ],
+      "id": "6250d6d1-8ce5-436e-9518-6bdfaa40c05b",
+      "name": "When clicking ‘Test workflow’"
     }
   ],
-  "connections": {},
+  "connections": {
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "viws1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "busca": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "idss1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "shorts1": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "idss1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "viws1": {
+      "main": [
+        [
+          {
+            "node": "shorts1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "key1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "busca",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        []
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Parser  Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Parser  Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parser  Chain": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "key1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "settings": {
     "executionOrder": "v1"
   },
@@ -38,7 +585,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "40478153-1e40-4264-8289-8589fc823d29",
+  "versionId": "5bc2f13d-fa29-4102-bb50-74eb8113e62f",
   "triggerCount": 1,
   "tags": []
 }
