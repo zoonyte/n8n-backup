@@ -1,6 +1,6 @@
 {
   "createdAt": "2025-04-07T21:59:01.286Z",
-  "updatedAt": "2025-04-23T19:36:21.454Z",
+  "updatedAt": "2025-04-25T18:06:29.700Z",
   "id": "N9wuIOkd58N3CbkL",
   "name": "Heeroiando",
   "active": false,
@@ -64,8 +64,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        3460,
-        580
+        3280,
+        680
       ],
       "id": "d5aec0c8-e0a1-4295-9af5-74ce01641be6",
       "name": "Agent roterista"
@@ -456,8 +456,8 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3780,
-        580
+        3600,
+        680
       ],
       "id": "dfa55a8e-8552-4711-87fe-cb5a85cf1760",
       "name": "Code2"
@@ -510,8 +510,8 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        3440,
-        420
+        3260,
+        520
       ],
       "typeVersion": 1,
       "id": "26fd1e84-f97d-4308-b331-30316de0022a",
@@ -525,8 +525,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
       "typeVersion": 1,
       "position": [
-        3460,
-        460
+        3280,
+        560
       ],
       "id": "f926babd-4a6a-4a56-a7b9-0ac879411da2",
       "name": "Model",
@@ -544,8 +544,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3780,
-        440
+        3600,
+        540
       ],
       "id": "58b31ba5-50e2-48c5-84a3-4dcede6b70d2",
       "name": "Edit Fields2"
@@ -565,7 +565,13 @@
   "connections": {
     "Edit Fields": {
       "main": [
-        []
+        [
+          {
+            "node": "Agent roterista",
+            "type": "main",
+            "index": 0
+          }
+        ]
       ]
     },
     "Merge": {
@@ -845,7 +851,7 @@
     "templateCredsSetupCompleted": true
   },
   "pinData": {},
-  "versionId": "f270cdb0-606e-4904-a6c4-36b508b5724b",
+  "versionId": "b10a2812-55ce-4589-b0f2-d7fe020c934d",
   "triggerCount": 0,
   "tags": []
 }
